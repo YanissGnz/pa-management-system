@@ -1,0 +1,7 @@
+**/node_modules/*
+**/build/*
+**/.next/*
+tailwind.config.js
+next.config.js
+prettier.config.js
+postcss.config.js
