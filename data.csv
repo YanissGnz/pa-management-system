@@ -1,0 +1,189 @@
+id,code,fullName,age,sex,phoneNumber,schoolType,level,paymentStatus,amount,note,registrationStatus,ageCategory,schoolYear,type,address,email,whatsappNumber,parentName,parentNumber,parentEmail,parentAddress,parentOccupation,schoolType
+e2fa44ac-32cb-4e5f-a229-e700336e7831,PRE-B692,Achour nihal,9,female,0668775962,preschool,L2,not paid,9000,called 2-10-2023 the mother's father is died she'll call back,pre-registered,kid,2023-2024,individual,,,,,0,,,,preschool
+ed2cde0b-61c1-4c9c-a20d-c9f20d4f986d,PRE-B36E,Achour Issam,13,male,0668775962,preschool,L2,not paid,8000,,pre-registered,kid,2023-2024,individual,,,,,0,,,,preschool
+a89aba9c-6296-45df-8e48-72400f6827e6,PRE-E0E9,Laouar Zinedin,14,male,669673503,preschool,L3,not paid,9000,called 2-10-2023 no answer Has debt from last year,pre-registered,kid,2023-2024,individual,,,,,0,,,,preschool
+e4c8840c-3e77-48b1-84c4-6945d1aa9c1a,REG-A8EA,Kadouri Meriem,11,female,0790275206,preschool,L3,not paid,9000,Called to not come in the first session ( informed ),registered,kid,2023-2024,individual,,,,,0,,,,preschool
+cdcc246e-91fd-4fcd-b6e3-e73d9daa25ed,REG-DB69,Kadouri Amira,9,female,0790275206,preschool,L1,not paid,8000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+6129ca2d-a857-4bd0-b8ef-886fd4ce3d48,REG-3E20,Kadouri Maya,7,female,0790275206,preschool,L1,not paid,8000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+6c11fbd0-e5a0-43ae-84f0-b2e15a3f8ab3,REG-2371,Yahlali Lina,13,female,"0697032511/0655363276",preschool,L3,not paid,9000,called 2-10-2023 no answer,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+a4cc1583-59d6-4762-a539-46c854f74526,REG-0B5E,yahlali Ilyes,10,male,"0697032511/0655363276",preschool,L1,not paid,8000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+6ccdaf78-f8e1-4588-af68-efd5e7007062,REG-2A5A,Yahlali Yanis,7,male,"0697032511/0655363276",preschool,NL,not paid,8000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+0c234b05-da4c-47fb-92f2-b9fc8b417794,REG-767B,Ziat Imad,13,male,"0661611815/0552701616",preschool,L2,not paid,9000,called on 1-10-2023 informed   she'll come tomorrow to pay,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+f6b22a6c-95e8-48f3-9b64-8e3b6f2d6f55,REG-CE46,Ziat Mohamed,7,male,"0661611815/0552701616",preschool,L1,not paid,8000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+91f4d6e1-858e-4cce-a163-b9e5ac20fccb,REG-D5A2,Bounedjad Louai,8,male,0773642520,preschool,L1,not paid,9000,called on 2-10-2023 no answer,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+a4e6f86c-4e6c-43a7-bc94-0e5e1d2bc8f8,REG-5612,Boussaoud Feriel,13,male,0554073912,preschool,L3,not paid,9000,called to not come in the first session ( informed ),registered,kid,2023-2024,individual,,,,,0,,,,preschool
+b825b2e3-c1b9-4967-8dff-f121371d858d,REG-F591,Boussaoud Racha,12,male,0554073912,preschool,L3,not paid,8000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+135ada62-bb8e-447b-b92a-cb2ac1572509,PRE-715D,Badaoui Mahdi,13,male,0669751706,preschool,L3,completed,9000,,pre-registered,kid,2023-2024,individual,,,,,0,,,,preschool
+7b0ce697-da2c-4de8-8a89-0c13c98c287b,PRE-28D3,Badaoui dina,11,female,0669751706,preschool,L2,completed,8000,,pre-registered,kid,2023-2024,individual,,,,,0,,,,preschool
+4df18a19-7f52-4e71-8657-41fe0e433d51,PRE-2B94,Badaoui Aboubaker Saddik,11,male,0669751706,preschool,L2,completed,8000,,pre-registered,kid,2023-2024,individual,,,,,0,,,,preschool
+23ef62e2-5905-43bd-90a5-f1942dbb0172,PRE-5FBF,El-Attatfa Ayoub,13,male,"0698001300/0660692190",preschool,L3,not paid,9000,,pre-registered,kid,2023-2024,individual,,,,,0,,,,preschool
+b5fab034-d966-4e7e-94d5-6f99ddc1f961,REG-1364,Khaldi Nouh,10,male,0774388661,preschool,L1,incomplete,9000,called to not come in the first session ( informed ),registered,kid,2023-2024,individual,,,,,0,,,,preschool
+85ccf2a5-d948-40ac-888d-f60135dd9e15,REG-C4C9,Sidene Rayane,6,male,0661619551,preschool,L1,not paid,9000,called on 1-10-2023 about choosing day and payment.. she has a baby so she'll pay on sat when they start studing,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+b80a0602-1318-41fe-a9b4-031b2529ce83,REG-018E,Sidene Marame,5,female,0661619551,preschool,NL,incomplete,5000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+3ef0b516-23a8-4774-bd1e-1dd1dda44ee5,REG-C50E,Kadri Maroua,8,female,"0555694774/0673757966",preschool,L1,ky,0,called to not come on the first session ( informed ),registered,kid,2023-2024,individual,,,,,0,,,,preschool
+4fda3373-901e-4024-a2bf-b34cb942560f,REG-9919,Mezough Majdouline,8,female,770210265,preschool,L1,not paid,9000,called on 1-10-2023 about pay,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+781eb329-6479-45c3-8ad8-683b9ae30ec5,PRE-F7AE,Djababbi Abdelrahman,0,male,542468561,preschool,NL,not paid,0,no answer,pre-registered,kid,2023-2024,individual,,,,,0,,,,preschool
+00dfe2a2-c54d-48d7-98f0-5528b56ec0c0,REG-8CB7,Labga Racim,9,male,671495338,preschool,NL,incomplete,9000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+fdff5b72-48d3-4bcc-8ff1-65195a2b1a63,REG-617C,Labga Tasnim,7,female,671495338,preschool,NL,incomplete,8000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+bfd9cb61-a95a-4cd0-9e77-0a8d62236285,REG-A2E9,Ould Chakmakdji maissa,4,female,792556984,preschool,unknown,confirmd,5000,called 2-10-2023 she'll come on saturday to try 1st session then she'll regiter her,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+7f8bd059-4b5b-4bb4-8a3d-edfc9c0475c7,REG-4F82,Baouch Ines,12,female,"0698182732/0663513317",preschool,unknown,incomplete,9000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+61207302-238b-479c-ab7d-e88938d24827,REG-9B4F,Bathey Rimas,8,female,0552279078,preschool,NL,incomplete,9000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+284bfc38-df52-457b-81b1-744f51a27400,REG-9977,Bathey Adem,4,male,0552279078,preschool,unknown,incomplete,8000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+e13c4b1b-ea92-4c56-8ba9-59840341ca5c,REG-F967,Safi Mohamed Akram,7,male,0559205355,preschool,NL,incomplete,6000,called on 17-09-23 will pay before the beginning..... called on 1-10-2023,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+db83a3a3-ba57-48a6-8fc5-833e6089af80,REG-E174,Haffaf Chaker,12,male,0698804635,preschool,L2,incomplete,9000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+f1ff3f3e-4618-46ab-99d9-4ef09c8225f8,REG-4F81,Lourdjane Djihad,14,male,0552419037,preschool,L1,incomplete,9000,called on 25-09-23 they'll pay tomorrow ....  called on 1-10-2023 he'll come,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+fb5a1bb6-2e9a-463d-a696-3871f4462794,PRE-7B11,Lourdjane Rida,15,male,0552419038,preschool,unknown,not paid,8000,,pre-registered,kid,2023-2024,individual,,,,,0,,,,preschool
+52d94977-791d-4713-9da0-ef180466f2ea,REG-D25E,Lourdjane Islem,9,male,0552419039,preschool,NL,incomplete,8000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+678635b2-1256-414f-a20c-fb684b477b61,REG-19B9,Lourdjane Mohamed Seifeddine,7,male,0552419040,preschool,NL,incomplete,8000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+0b17c87f-7315-4090-95c0-8d3770cbe089,PRE-397D,Sidi Achour Yasser,5,male,0674551203,preschool,unknown,not paid,9000,clalled on 1-10-23 (no answer ),pre-registered,kid,2023-2024,individual,,,,,0,,,,preschool
+2f9cffb3-1fe4-44a0-adc5-520a28cbc4d1,PRE-7E8B,Aggoun Zaineb,14,female,"0661612399/0557362691",preschool,L1,not paid,9000,called on 25-09-23 about payment ( the dad is not in blida these days . hell come pay in the next few days )... called on 1-10-2023 no answer,pre-registered,kid,2023-2024,individual,,,,,0,,,,preschool
+7f8c5f29-9f6a-4f6a-859c-22a9119c5e3c,PRE-0621,Aggoun Amina,9,female,"0661612399/0557362691",preschool,unknown,not paid,8000,,pre-registered,kid,2023-2024,individual,,,,,0,,,,preschool
+8fb69701-11f1-44be-8ad3-8dfe25d0fed8,PRE-EA79,Aggoun Abdelmalek,10,male,"0661612399/0557362691",preschool,unknown,not paid,8000,,pre-registered,kid,2023-2024,individual,,,,,0,,,,preschool
+d9ebd0d5-ab77-4d39-a8ad-12903ac3a729,REG-F036,Hareche Adem,4,male,"0792484453/0559066780",preschool,unknown,incomplete,5000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+17c6b804-3e02-4103-8759-189cb2e62a10,REG-55FE,Meziane Nour Assil,6,female,793812558,preschool,unknown,incomplete,9000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+7a1e3cb1-66d9-4bfa-ba77-0aa9dabf2145,REG-7065,Menmdala Maram,13,female,655237287,preschool,unknown,incomplete,9000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+3a717927-93aa-421a-8738-baa8699792ea,REG-7D05,Chelghoum Islem,12,male,549585912,preschool,L1,incomplete,8000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+2d894390-9934-4e94-ae46-11d5e3e5a8e9,REG-7397,Chelghoum Adem,11,male,549585912,preschool,L1,incomplete,8000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+be2b44df-65a9-4c1c-910f-04c84d38a67f,REG-8429,Chelghoum Amir,4,male,549585912,preschool,unknown,incomplete,5000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+028fe7a3-3cfa-4ae3-bd86-7a98c2ea3078,REG-9E7F,Kadri Abderrahman,8,male,770216361,preschool,NL,incomplete,9000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+0314dc82-96ed-4ba8-a7c0-656287d2dbba,REG-FA36,Kadri Salma,9,female,770216361,preschool,NL,incomplete,8000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+5be8f22a-e9ec-425d-9b4d-1d519a1913a9,REG-C70B,Hablal Abrar Nour Elimane,14,male,"0661700077/0657257755",preschool,L3,incomplete,9000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+94e88319-d61e-4e73-a5d5-b3e66f7c35ba,REG-0AD2,Hablal Akrem Seif Eddine,11,male,"0661700077/0657257755",preschool,L1,incomplete,8000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+2f767f81-aeab-4e00-902e-23de688b5887,REG-31FE,Bounou Taline,10,female,"0773049241/0558253982",preschool,L1,incomplete,9000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+3e3d6522-2ebd-4f95-ba8a-bab960b35fe8,REG-D58E,Laleg Houda,7,female,0661156032,preschool,NL,incomplete,8000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+4a595a97-f76f-4437-8ead-3dc9c053901f,REG-B6CF,Bentiba Lina,11,female,"0770289170/0661751139",preschool,unknown,incomplete,9000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+d77f493a-eef9-4b1c-b421-ac8ff9d48ccd,REG-7A08,Boucharif Abdelillah,13,male,0561609051,preschool,unknown,incomplete,9000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+facc652a-4068-4342-bf00-78fcc82c6eeb,REG-781D,Boulassel Firase,4,male,0663487550,preschool,unknown,incomplete,5000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+aea4bbf7-87c2-4735-81bc-55048631e22f,REG-2C48,Babaslimane Abdenour,12,male,"0552636307/0540446655",preschool,unknown,incomplete,9000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+70909bf3-4cbb-4e18-b57d-1a746c54b311,REG-6C0C,Lekhal Nour Elhouda,11,male,"0777139517/0667889705",preschool,unknown,incomplete,9000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+bd2cec38-db6c-46d7-be37-612e01aa0097,REG-D472,Mezian Rama,8,female,"0797802029/0797947719",preschool,NL,incomplete,9000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+5e88de58-edcf-4565-b509-8add3321a95f,REG-20C0,Mezian Ikhlas,6,female,"0797802029/0797947719",preschool,NL,incomplete,8000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+e60bdcee-a3a6-4e92-9866-dc7e25450a4b,REG-C661,Mezian Djana,4,female,"0797802029/0797947719",preschool,unknown,incomplete,8000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+dbdb598b-424d-4460-b6ed-d5b4a02479a8,REG-2CD9,Khedaoui Alaa Mostafa,8,male,0557476259,preschool,unknown,incomplete,9000,called on 8-10 because he didn't come ( no answer ),registered,kid,2023-2024,individual,,,,,0,,,,preschool
+e8a7b018-48ad-43a6-849b-01b36a1562fa,REG-3471,Menhaouech Kerroube Dina,5,female,"0554820889/0675615826",preschool,unknown,incomplete,9000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+f3e2c4dd-b04d-4a06-aa23-0659cba1fa08,REG-C448,Kenoudi Anes,8,male,"0773933577/0791115576",preschool,unknown,incomplete,9000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+5e82e6bf-eaed-4322-b4ff-ffabb614f096,REG-F305,Mouzai Abdelmalek,14,male,"0795802029/0797947719",preschool,L1,incomplete,9000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+082b40a9-4fab-4a6d-be54-733871093c89,REG-356B,Moumene Ania,10,female,554003789,preschool,NL,incomplete,9000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+ac93ff7d-35b0-4dfb-b32a-150984781e6d,REG-4952,Moumene Kamil,8,male,554003789,preschool,NL,incomplete,8000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+a1e82c53-c91d-48d3-b608-8c9f89709c2f,REG-9F0D,Kherfi Yaccine,8,male,"0540661090/0559052497",preschool,unknown,incomplete,9000,they'll come this tuesday to catch up the 1st lesson,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+442f65b2-b331-4a14-9310-4a67b36797fe,REG-C16B,Kherfi Lina,6,female,"0540661090/0559052497",preschool,unknown,incomplete,9000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+96329586-05fe-4efe-ba85-b0126615822a,REG-0C10,Kherfi Sarah,12,female,"0540661090/0559052497",preschool,unknown,incomplete,9000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+6263ef9d-6d4e-48d6-a083-e078691e4c2c,REG-B576,Bencherchali Rym,5,female,0776036113,preschool,unknown,incomplete,9000,called to change time to friday or saturday ( Informed . they'll think about it and let us know ),registered,kid,2023-2024,individual,,,,,0,,,,preschool
+c9dc7e7a-4b71-4c7e-be11-aa4114a55910,REG-9E2C,Rahmani Mouna,11,female,"0551481926/0774456409",preschool,L1,incomplete,9000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+db7c1cd0-ceb1-4937-8828-13db4132f024,REG-ADF0,Helmi Nour,12,female,0674658023/0777357737,preschool,L1,incomplete,9000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+ec4c23df-0c74-4d54-b843-e273a7e5f0bd,REG-246F,Helmi Aya,11,female,0674658023/0777357737,preschool,L1,incomplete,9000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+bdab07d1-2626-43a0-b8f4-e3281e0e151c,REG-F357,Helmi dina,8,female,0674658023/0777357737,preschool,NL,incomplete,8000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+6f6b8b26-e05f-454a-bd0f-da0396d9a6a8,REG-C96A,Ankok Slim,8,male,551619090,preschool,NL,incomplete,9000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+d3200b6f-90e0-46f6-9b53-51b3f538b7c4,REG-B4C1,Atari Mohamed Djoud,9,male,775034551,preschool,NL,incomplete,9000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+db85b617-b6af-4293-94a5-9dea64734750,REG-B620,Khadar Seif Eddin,4,male,0794620155,preschool,unknown,incomplete,5000,called on 1-10-2023 no answer,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+8f4f2afe-06b3-415b-acf5-25ae8f4df45f,REG-6DFA,Khadar Zaineb,7,female,0794620155,preschool,NL,incomplete,9000,"called on 25-09-23 about payment ( will come tomorrow to pay) called on 03-10-23 about payment and timing ( no answer + chanched timing from sat8-11 to sat 11-02 )",registered,kid,2023-2024,individual,,,,,0,,,,preschool
+528cd986-c6cf-4413-9953-b3e695b13a21,REG-E4CF,Allouti Adem,10,male,0670071246,preschool,unknown,incomplete,9000,called on 25-09-23 about payment ( will come in the next few days to pay),registered,kid,2023-2024,individual,,,,,0,,,,preschool
+a856d8c8-4b21-4ada-8d9a-a00a470136c1,REG-3947,Allouti Tarek,6,male,0670071246,preschool,unknown,incomplete,8000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+08fb5f56-eaca-4b6d-8fd6-d9f52374bb65,REG-0B2B,Allouti Raouf,14,male,0670071246,preschool,unknown,not paid,7000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+5aff4a0c-4ee2-42c6-93b9-bb3a7f5c3883,REG-91EB,Allouti doha,11,female,0670071246,preschool,L3,incomplete,8000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+f9066dc1-8ddd-42a6-abd9-424d01d8ef17,PRE-6022,Boulesnam Wissem,13,female,555210070,preschool,unknown,not paid,7000,"Fammily of Bahout Affaf Amel ( Radio Blida )  called on 26-09-23 about payment (informed)",pre-registered,kid,2023-2024,individual,,,,,0,,,,preschool
+a027f255-4503-4702-af33-17c515b9a3d2,PRE-8282,Fiya Bahiya,10,female,555210070,preschool,unknown,not paid,7000,,pre-registered,kid,2023-2024,individual,,,,,0,,,,preschool
+89080a01-adf5-423b-8dd4-6158f72ae623,REG-5D02,Alaa Abderrahman,13,female,780753121,preschool,unknown,not paid,8000,"Called on 26-09-23 about payment ( will pay next saturday) her mom Bouzid Amina is registered in EFE L1 Sat 2-5 she wants to come with her daughter at the same time ",registered,kid,2023-2024,family,,,,,0,,,,preschool
+a1d9af21-32d4-41fd-998d-7b7bc9f7bbef,REG-1BC2,Boudouani Houssem,11,male,797498710,preschool,L1,not paid,9000,"Called on 26-09-23 about payment ( will pay next saturday) ",registered,kid,2023-2024,individual,,,,,0,,,,preschool
+5f160afe-bbfd-46db-94cb-78842eb223e0,REG-B8B3,Bakka Mriem,13,female,555065964,preschool,L2,incomplete,9000,"Minus 20% (Summer camp)",registered,kid,2023-2024,family,,,,,0,,,,preschool
+bd82dcc0-553d-4f3a-9514-3e0b6be21d47,REG-FD5C,Bakka Ania,10,female,555065964,preschool,L1,incomplete,6000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+7df9f007-04a7-4ae0-ab3b-6aa70df27760,REG-3533,Bakka Sofia,6,female,555065964,preschool,NL,incomplete,5000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+4077d9b1-0051-4847-abfc-d9b4807954a1,REG-B1D7,Boualida Ayla,4,female,0671610060,preschool,unknown,incomplete,5000,called 26-09-23 about payment (informed),registered,kid,2023-2024,individual,,,,,0,,,,preschool
+7a734449-f9ee-47aa-b0ac-66727d2c078b,PRE-62E9,Chader Yanis,7,male,0658716075,preschool,unknown,not paid,9000,called on 1-10-2023 about choosing the day he'll call back,pre-registered,kid,2023-2024,individual,,,,,0,,,,preschool
+9836086b-dd8c-4a64-a201-8b73293c75a5,REG-3098,Hammad Mohamed Younes,8,male,0698306971,preschool,L1,incomplete,9000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+eec3dd88-222b-448b-b5d6-aea90268a299,REG-16DB,Hammad Haithem,6,male,0698306971,preschool,L1,incomplete,8000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+464d2ec9-4c22-4ab9-b3be-c0aa7d23d3fc,REG-7BF4,Gelil Qusai,9,male,"0770436719/0558262345",preschool,unknown,incomplete,9000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+a30c2cf3-0d74-47c4-bce5-e517da76de2f,REG-6001,Gelil Farah,12,female,"0770436719/0558262345",preschool,unknown,incomplete,8000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+da8a1272-9409-4cdc-948a-a362a3c090c5,REG-8E9B,Bailich Leticia,6,female,0555983091,preschool,unknown,incomplete,9000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+19532071-53c5-4858-865a-b4fe32a6b616,REG-6E38,Khiat Abderrahmane,9,male,0560760394,preschool,NL,incomplete,9000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+4bd1847b-68c6-4e63-99f2-7c2049932d42,REG-A942,Brahimi Hana,8,male,0553341673,preschool,unknown,incomplete,9000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+f95e1d30-d59a-4b99-a268-23356371798d,REG-1F65,Moulay Djawad,5,male,0770218846,preschool,unknown,incomplete,5000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+d4fb89e1-06a2-47b8-b68b-fc455cb5cb44,REG-C001,Dhaif Allah Kounouz,9,male,661511429,preschool,unknown,incomplete,9000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+4865835a-0590-4c27-8ebc-b39c2693aba6,REG-82BD,Oudjer Nassim,6,male,"0554649241/0552114249",preschool,unknown,not paid,9000,called on 1-10-2023 about payment. he'll come those few days,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+a956a748-e1ce-47e9-bb4e-38378a8a7440,REG-5854,Boumdal Anfel,12,female,0782013976,preschool,unknown,completed,9000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+06271a23-fc91-4ea9-8568-b89bbf19b667,REG-7577,Aribi Mahdi,10,male,"0661138098/0783124119",preschool,unknown,incomplete,9000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+414de7ca-c501-424f-bc51-393e4d8d9cef,REG-B104,Bouzina Adem,7,male,0770378740,preschool,NL,not paid,9000,called on 1-10-2023 informed,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+37e51f47-f579-4de9-b430-435c07a8c0e5,REG-F158,Della Haithem,13,male,0556868801,preschool,L2,incomplete,9000,called on 1-10-2023 he'll come those few days,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+062c2a65-e1d7-4c2d-adfa-4c7c7dd5155d,PRE-E88A,Bezaz Malak,13,female,"0560850132/025213590",preschool,L3,not paid,9000,"Called on 27-09-23 about payment ( Informed )  ",pre-registered,kid,2023-2024,individual,,,,,0,,,,preschool
+a933f3d6-2a03-492f-8755-67c8d56907a8,PRE-1F2D,Bezaz Kaouter,9,female,"0560850132/025213590",preschool,unknown,not paid,8000,,pre-registered,kid,2023-2024,individual,,,,,0,,,,preschool
+02024982-d9fd-48e0-aa1b-a73e301c0b4a,REG-7693,Belkacem Djauad,10,male,0555028981,preschool,unknown,not paid,9000,Added from ( scholastic call list ),registered,kid,2023-2024,individual,,,,,0,,,,preschool
+dc3b926e-2e1b-45da-aafb-9e50116c7ab4,REG-8E51,Djarbi alaa  (Neibor),13,female,540951097,preschool,L2,not paid,9000,,registered,kid,2023-2024,family,,,,,0,,,,preschool
+0d480792-7fc5-41c0-ae54-513de2ab2484,REG-13A7,Abssi Younes,10,male,0670005617,preschool,unknown,incomplete,9000,he has a hearing loss,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+b3dbd1e7-36a7-4fc6-b3d0-c6bb56830dc5,REG-3F63,Meghraoui Mohamed,10,male,0550287930,preschool,unknown,not paid,8000,,registered,kid,2023-2024,family,,,,,0,,,,preschool
+0a2eaced-4cee-4750-b11e-7e2022e3776e,REG-C1BD,Hazi Abdelkarim,8,male,0550677717,preschool,NL,incomplete,9000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+87756d67-beaf-41ba-a85a-9905258a0336,REG-AF91,Hazi Chiraze,7,female,0550677717,preschool,NL,incomplete,8000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+cbe863e1-83e0-4936-8435-8745fb4eaeb0,REG-23E7,Medjadji Ahmed Gheyth,11,male,"0549479306/0773101342",preschool,L1,incomplete,9000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+78b3d975-ceee-48f9-acb5-5baf0ffc196d,PRE-BCD8,Mekhbat Med Abdellah,7,male,"0778606887/0771526567",preschool,unknown,not paid,9000,,pre-registered,kid,2023-2024,individual,,,,,0,,,,preschool
+3689c80c-cabb-4331-aa21-fe0e571a63ea,REG-DF04,Benkri Med Said,9,male,0794882836,preschool,NL,incomplete,9000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+d33506e2-463a-43e3-be46-5edef9123294,REG-4D9E,Boukara Malak,13,female,0773488034,preschool,L1,incomplete,9000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+f92228c7-ed7a-45da-983d-e5e2a3dad069,REG-F7CA,Bouakara  Nour,11,female,0773488034,preschool,L1,incomplete,8000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+cc23a5d5-20de-480c-ba1f-40f738ad45d0,REG-8227,Boukara Houssem,9,male,0773488034,preschool,NL,incomplete,8000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+e7041a86-b1a5-4696-b0dd-3e16735bff4d,REG-58D9,Belagh Chahinaz Sama,7,female,554050012,preschool,unknown,incomplete,9000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+cd12033f-5286-41a3-bfb5-f2064b43e597,PRE-2FD6,mansori anis's brother,4,male,,preschool,unknown,not paid,9000,,pre-registered,kid,2023-2024,individual,,,,,0,,,,preschool
+05fd57fe-200f-4495-97bb-9482d5a7446b,PRE-1D91,Mansouri Anis,0,male,"0541359564/0562090629",preschool,unknown,not paid,8000,June Summer Camp called 1-10-2023 she will come soon,pre-registered,kid,2023-2024,individual,,,,,0,,,,preschool
+bea54658-98bb-4684-b25c-a0182273a485,REG-42A0,Hadjadja Ahmed,14,male,657333517,preschool,L2,not paid,9000,July Summer Camp called 1-10-2023 he will come to pay soon,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+57f33ca1-b73d-4b3e-852b-6907c6242404,REG-1B9F,Hadjadja Salssabil,14,male,657333517,preschool,L2,not paid,8000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+400d377c-7ecd-44ac-8268-ea1fa5d5e64f,REG-DFC3,Hadjadja Abderrahim,11,male,657333517,preschool,L1,not paid,8000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+e1a2fc21-3800-423a-a589-42bede8bfae5,PRE-0286,Rabet Aymen,0,male,"552229493/0770347040",preschool,L1,not paid,9000,June Summer Camp called 1-10-2023 no answer,pre-registered,kid,2023-2024,individual,,,,,0,,,,preschool
+10838afd-f791-47e2-85e3-2e0dac1dea4f,PRE-E5EB,Rabet Meriem,0,male,"552229493/0770347040",preschool,L1,not paid,8000,,pre-registered,kid,2023-2024,individual,,,,,0,,,,preschool
+741b7d73-24b8-4173-a4b6-b66d34d266d7,PRE-73B8,Safronn Mohamed,0,male,"0555091319/0782792500",preschool,L1,not paid,9000,July Summer Camp called 1-10-2023 no answer,pre-registered,kid,2023-2024,individual,,,,,0,,,,preschool
+d4f47bd0-b7bb-4131-86b7-2f2bba9848e0,PRE-BE3A,Safronn Yasmine,0,male,"0555091319/0782792500",preschool,NL,not paid,8000,,pre-registered,kid,2023-2024,individual,,,,,0,,,,preschool
+560d15e1-4677-480c-8dc9-98313aad518d,PRE-466E,Safronn Ryad,0,male,"0555091319/0782792500",preschool,NL,not paid,8000,,pre-registered,kid,2023-2024,individual,,,,,0,,,,preschool
+3d84808a-a88b-4e38-826a-97ea0ad8132c,PRE-C373,Adda Mohamed,0,male,"0555091319/0782792500",preschool,L1,not paid,8000,,pre-registered,kid,2023-2024,individual,,,,,0,,,,preschool
+ebbe77e9-d960-4a91-b640-28cf5c634a7b,REG-B3C5,Ziat Yacine,13,male,"664941472/0560111815",preschool,L2,incomplete,6000,July Summer Camp called 1-10-2023 she'll come today evening,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+75a4fca8-56b9-408d-95cd-106e2a6d15ea,REG-1A02,ziat safaa,6,male,"664941472/0560111815",preschool,NL,incomplete,8000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+40616fdd-1059-4569-8c32-4211f58fa57c,REG-A976,Kalil Nihed,13,male,696976248,preschool,unknown,not paid,9000,he registered by phone called on 2-10-2023,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+23e9f6ac-690f-43bc-9c8c-4447387e25fa,REG-9735,kalil lina,11,male,696976248,preschool,unknown,not paid,8000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+4c732ca3-39e5-4a17-b320-4d753ba419df,REG-9A14,Homan sirine,9,male,0550801679,preschool,unknown,incomplete,9000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+aba54a72-ddd6-4d0a-bfcc-478198b44244,REG-7E17,Homane Roua,4,male,0550801679,preschool,unknown,incomplete,5000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+877e24ad-1fe2-4f6a-83aa-68965345de7f,REG-39F0,Kerroud Abderrahmane,10,male,550631859,preschool,unknown,incomplete,9000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+9f09bc10-0ed0-4fce-9481-391a07142cf1,REG-6906,Amrandi Ritedj,12,female,0557418235/ 0540873117,preschool,L2,incomplete,9000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+409aa56e-32b0-4c42-a0d3-f1b0e446bef6,REG-C085,Amrandi Mustapha,7,male,0557418235/ 0540873117,preschool,NL,incomplete,8000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+dd6d48cd-ebd9-4dd1-9420-d0e5a2209589,REG-64D0,Sebbache Rahaf,6,female,550566413,preschool,unknown,incomplete,9000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+236f4b96-09a7-4068-8ee9-add39aa85af9,REG-49DF,Sebbache Med Abderrahmane,6,male,550566413,preschool,unknown,incomplete,8000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+3c6df660-a29f-44d1-8f3a-3a1f7786e4cd,REG-F66F,Sebbache Yacine,14,male,550566413,preschool,unknown,incomplete,8000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+e95d8e44-fb62-4e77-a367-e8076d3dd57b,REG-1BA9,ould chaaban joud,4,female,552459092,preschool,unknown,incomplete,5000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+377599f7-dee1-4d8c-b833-2026aea66803,REG-09FB,Berkani Mohamed Emaddedine,11,male,554669756,preschool,L1,incomplete,9000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+e7a7d756-fe1e-49a5-9021-0229018ddc67,REG-E52D,Kerouidi nourhane,8,male,664179215,preschool,unknown,incomplete,9000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+56375745-5bc2-47da-90d2-95b568881bfc,REG-38E4,Tsakedert Ritaj,8,female,665794266,preschool,unknown,incomplete,9000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+0e8c9097-13ea-42d6-aca4-bbc6ff01c89e,REG-56A5,ounteghar yasser,9,male,660001716,preschool,unknown,incomplete,9000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+82ec516e-f15a-45ce-948d-e75fcbd4b917,REG-10A8,cherief iyad,9,male,661105582,preschool,unknown,incomplete,9000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+1b9bbf6c-69ac-473b-8afd-4315404da1a1,REG-48E9,cherief nihal,5,female,661105582,preschool,unknown,incomplete,5000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+48ab6b08-3c48-4429-8bd6-0df3f051e43e,REG-660E,khedaoui mohamed anis,7,male,0698111266/0670065808,preschool,NL,incomplete,9000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+79229f82-9b5a-4ad6-9054-88af8287f533,REG-ED3D,khedaoui nadhir,4,male,0698111266/0670065808,preschool,unknown,incomplete,5000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+561e5c53-18e6-4049-a71a-1a605f0de02a,REG-F5A0,balala dania,8,female,660883870,preschool,unknown,incomplete,9000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+8f3effcd-90d8-4477-a480-53b35ec1fe5b,REG-D978,maaizi meriem,6,female,672279090,preschool,unknown,incomplete,9000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+3eedc074-f0ca-4905-abca-017893471738,REG-A900,zenati abdelkader,10,male,0555033863/0661593793,preschool,L1,incomplete,7000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+27cf2837-ba0d-453f-8bbe-84a90e323ec9,REG-96CE,zenati mira,11,female,0555033863/0661593793,preschool,L1,incomplete,7000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+6ee01ff3-096f-43b4-b118-d6ce133a9ccb,REG-A931,bourenane ishak,9,male,0559055821/0559055819,preschool,NL,incomplete,9000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+32651c2e-abbf-4383-b971-07033c53b9ba,REG-096F,bourenane zakaria,9,male,0559055821/0559055819,preschool,NL,incomplete,8000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+1aaea91b-302a-4808-ac4b-ff944bd7dffd,REG-5B76,Boughouch Safouane iyad,8,male,"0557269460/0550592734",preschool,NL,not paid,0,from sumer camp . he want to change to saturday 8-11,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+7f2c0b86-5cd9-4a29-a3fd-425b45a9d4ce,REG-2137,Farouzi Nada,5,female,698078853,preschool,unknown,incomplete,5000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+1126f197-91b8-4646-b1ab-89ee170a3bbc,REG-6EAD,labadi nelia,3,female,777762643,preschool,unknown,incomplete,5000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+f352b185-f04a-4314-8c1d-8e26caf94c0c,REG-51F3,rekab Maha,13,male,0698227700,preschool,unknown,incomplete,9000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+c644ab60-1850-4cee-a976-29f04c783304,REG-3879,berkat tasnim,11,female,792930828,preschool,unknown,incomplete,9000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+21f8c32f-13df-44ad-aba2-ec9a8253e2bf,REG-2522,berkat ranim,8,female,792930828,preschool,NL,incomplete,8000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+7393c5dd-6ce5-41cb-8d39-c3d8df0dd945,REG-5D55,Cherguelain Sirine,11,female,773746829,preschool,L2,completed,9000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+a5aca8b4-cfaf-42e0-8b55-97d1bd8c72ad,REG-0D7A,Cherguelain Mohamed,8,male,773746829,preschool,NL,completed,8000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+0a7aa25d-b908-4a14-85d0-1560150e94db,REG-EA53,El- Feles Chiker Rayane,4,male,"0560366195\/0698015380",preschool,unknown,incomplete,5000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+ca13215d-e18d-46ce-9894-be00208a08fc,REG-D5CC,mokran syrine,9,female,556510752,preschool,NL,incomplete,8000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+c0463eea-7c23-4842-8608-25a39d9a6161,REG-8FBD,mokan nermine,7,female,556510752,preschool,NL,incomplete,8000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+938b72c0-08e7-47b9-bb9d-10f5dea27744,REG-C9DD,hadfi asil,8,female,699810792,preschool,NL,incomplete,9000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+b7321b14-a75a-4e2e-a10d-c0327ddaeefa,REG-1A74,moulay meriem,10,female,698752645,preschool,NL,incomplete,9000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+553554ef-75c2-492d-81a8-795b3a77e907,REG-D6DA,bouleghbar iyad,7,male,550275154,preschool,NL,incomplete,9000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+68ad4fbf-5762-4a53-b759-c57daa111ce7,REG-340C,saifi ahmed abderrahmane,13,male,,preschool,L1,incomplete,9000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+624f2f8f-cf74-43d9-a733-649a5b6014f7,REG-5C53,harima haithem seddik,8,male,770846370,preschool,unknown,incomplete,9000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+b53f435a-f745-491a-b85a-833211ceff09,REG-0CEB,Djanine meriem,9,female,550778796,preschool,unknown,incomplete,9000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+7af662e5-4959-4856-a965-f63ab689b39d,REG-1E0F,Djanine Lamise,15,female,550778796,preschool,unknown,incomplete,8000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+fa92f70b-0737-4be8-b948-083f46150aae,REG-4C9F,Bounab Iyad,9,male,662703656,preschool,unknown,incomplete,9000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+0e35090d-eaa3-4276-a8a2-e2c6a1a68118,REG-3D7A,Bounab Joury,4,female,662703656,preschool,unknown,incomplete,5000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+82a411c9-6146-4f44-9353-0df0c5df96a7,REG-9476,Bentiba ranim,8,female,670163756,preschool,unknown,incomplete,9000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+5cbedd31-a1f8-4c03-8d03-a46f6ee8c1c3,REG-2FF3,Bentiba rayane,5,male,670163756,preschool,unknown,incomplete,5000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+ff4e056d-6721-43dd-b266-d5c23e07b264,REG-70B1,Kawid ben ali assil,7,female,670163756,preschool,unknown,incomplete,8000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+d54ae939-349a-4c7c-afd9-bcc4ce0cb4da,REG-CEC0,Hadef Lina,13,female,671435137,preschool,unknown,incomplete,9000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+7f337c50-f0b4-4aa8-928c-8b1a13e85421,REG-FDE9,Bouri Lail,11,female,770800799,preschool,unknown,incomplete,9000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+14628530-e12f-4850-99d5-abea24ccec6f,REG-D5FA,Tebal Hadjer,9,female,540342725,preschool,unknown,incomplete,9000,,registered,kid,2023-2024,individual,,,,,0,,,,preschool
+f22777f7-492a-48a5-ac2f-ee69c7623978,PRE-3D98,,0,male,,preschool,unknown,,0,,pre-registered,kid,2023-2024,individual,,,,,0,,,,preschool
+2be4950c-3230-4e04-8cbd-d0ff79604acb,PRE-5BC7,,0,male,,preschool,unknown,,0,,pre-registered,kid,2023-2024,individual,,,,,0,,,,preschool
+2cf33134-0882-4ccd-ae5e-5062cd504adc,PRE-DD83,,0,male,,preschool,unknown,,0,,pre-registered,kid,2023-2024,individual,,,,,0,,,,preschool
+8c4964e3-fa53-44ac-bf9e-52d7bab07ec1,PRE-AC9A,,0,male,,preschool,unknown,,0,,pre-registered,kid,2023-2024,individual,,,,,0,,,,preschool

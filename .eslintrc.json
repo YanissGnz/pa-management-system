@@ -1,6 +1,8 @@
 {
   "plugins": ["@typescript-eslint"],
   "extends": [
+    "next",
+    "next/core-web-vitals",
     "plugin:@next/next/recommended",
     "airbnb-base",
     "airbnb-typescript/base",
@@ -33,6 +35,22 @@
         "ignoreRestSiblings": false
       }
     ],
-    "import/prefer-default-export": 0
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [".ts", ".tsx", ".js", ".jsx"]
+      }
+    ],
+    "react/jsx-props-no-spreading": "off",
+    "jsx-a11y/anchor-is-valid": [
+      "error",
+      {
+        "components": ["Link"],
+        "specialLink": ["hrefLeft", "hrefRight"],
+        "aspects": ["invalidHref", "preferButton"]
+      }
+    ],
+    "no-nested-ternary": "off",
+    "import/prefer-default-export": "off"
   }
 }

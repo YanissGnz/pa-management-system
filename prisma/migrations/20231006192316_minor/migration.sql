@@ -1,0 +1,24 @@
+-- AlterTable
+ALTER TABLE "Level" ALTER COLUMN "duration" SET DATA TYPE DOUBLE PRECISION,
+ALTER COLUMN "price" SET DATA TYPE DOUBLE PRECISION;
+
+-- AlterTable
+ALTER TABLE "Payment" ALTER COLUMN "amount" SET DATA TYPE DOUBLE PRECISION,
+ALTER COLUMN "total" SET DATA TYPE DOUBLE PRECISION,
+ALTER COLUMN "discount" SET DATA TYPE DOUBLE PRECISION,
+ALTER COLUMN "payedAmount" SET DATA TYPE DOUBLE PRECISION;
+
+-- CreateTable
+CREATE TABLE "StudentPayment" (
+    "id" TEXT NOT NULL,
+    "studentId" TEXT NOT NULL,
+    "paymentId" TEXT NOT NULL,
+
+    CONSTRAINT "StudentPayment_pkey" PRIMARY KEY ("id")
+);
+
+-- AddForeignKey
+ALTER TABLE "StudentPayment" ADD CONSTRAINT "StudentPayment_studentId_fkey" FOREIGN KEY ("studentId") REFERENCES "Student"("id") ON DELETE NO ACTION ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "StudentPayment" ADD CONSTRAINT "StudentPayment_paymentId_fkey" FOREIGN KEY ("paymentId") REFERENCES "Payment"("id") ON DELETE NO ACTION ON UPDATE CASCADE;

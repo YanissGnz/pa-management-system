@@ -1,4 +1,5 @@
-import type { Config } from "tailwindcss";
+import type { Config } from "tailwindcss"
+import tailwindAnimate from "tailwindcss-animate"
 
 const config: Config = {
   darkMode: ["class"],
@@ -16,9 +17,6 @@ const config: Config = {
       screens: {
         "2xl": "1400px",
       },
-    },
-    borderRadius: {
-      DEFAULT: "var(--radius)",
     },
     extend: {
       colors: {
@@ -77,6 +75,6 @@ const config: Config = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
-};
-export default config;
+  plugins: [tailwindAnimate],
+}
+export default config

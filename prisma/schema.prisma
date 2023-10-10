@@ -1,55 +1,155 @@
 datasource db {
-  provider          = "postgresql"
-  url               = env("DATABASE_URL")
-  shadowDatabaseUrl = env("SHADOW_DATABASE_URL") // Only needed when using a cloud provider that doesn't support the creation of new databases, like Heroku. Learn more: https://pris.ly/d/migrate-shadow
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 generator client {
   provider = "prisma-client-js"
 }
 
-model Account {
-  id                String  @id @default(cuid())
-  userId            String
-  type              String
-  provider          String
-  providerAccountId String
-  refresh_token     String? @db.Text
-  access_token      String? @db.Text
-  expires_at        Int?
-  token_type        String?
-  scope             String?
-  id_token          String? @db.Text
-  session_state     String?
+model User {
+  id       String  @id @default(uuid())
+  name     String?
+  username String? @unique
+  password String?
+  image    String?
+}
 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+model Teacher {
+  id          String    @id @default(uuid())
+  firstName   String
+  lastName    String
+  email       String    @unique
+  password    String
+  address     String?
+  phoneNumber String?
+  Class       Class[]
+  Session     Session[]
+}
 
-  @@unique([provider, providerAccountId])
+model Student {
+  id                 String    @id @default(uuid())
+  code               String
+  fullName           String
+  address            String?
+  phoneNumber        String?
+  email              String?
+  type               String
+  age                Int?
+  ageCategory        String?
+  level              String?
+  whatsappNumber     String?
+  parentName         String?
+  parentNumber       String?
+  parentEmail        String?
+  parentAddress      String?
+  parentOccupation   String?
+  schoolType         String?
+  schoolYear         String?
+  registrationDate   DateTime
+  registrationStatus String
+  expectedClasses    String[]
+  paymentStatus      String
+  sex                String
+  paymentId          String?
+  payments           Payment[]
+  Kids               Kid[]
+  Partner            Partner?
+  classes            Class[]
+  sessions           Session[]
+  sessionId          String?
+  note               String?
+}
+
+model Partner {
+  id        String  @id @default(uuid())
+  studentId String  @unique
+  partnerId String  @unique
+  student   Student @relation(fields: [partnerId], references: [id], onDelete: Cascade)
+}
+
+model Kid {
+  id        String  @id @default(uuid())
+  studentId String
+  parentId  String
+  student   Student @relation(fields: [parentId], references: [id], onDelete: Cascade)
+}
+
+model Class {
+  id          String    @id @default(uuid())
+  title       String    @unique
+  description String?
+  teacherId   String
+  teacher     Teacher   @relation(fields: [teacherId], references: [id], onDelete: NoAction)
+  programId   String
+  program     Program   @relation(fields: [programId], references: [id], onDelete: NoAction)
+  levelId     String
+  level       Level     @relation(fields: [levelId], references: [id], onDelete: NoAction)
+  startDate   DateTime
+  endDate     DateTime
+  day         String
+  startTime   String
+  endTime     String
+  students    Student[]
+  color       String?
+  sessions    Session[]
 }
 
 model Session {
-  id           String   @id @default(cuid())
-  sessionToken String   @unique
-  userId       String
-  expires      DateTime
-  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id          String    @id @default(uuid())
+  title       String
+  description String?
+  teacherId   String
+  teacher     Teacher   @relation(fields: [teacherId], references: [id], onDelete: NoAction)
+  students    Student[]
+  attendance  String[]  @default([])
+  programId   String
+  program     Program   @relation(fields: [programId], references: [id], onDelete: NoAction)
+  levelId     String
+  level       Level     @relation(fields: [levelId], references: [id], onDelete: NoAction)
+  start       DateTime
+  end         DateTime
+  color       String?
+  class       Class?    @relation(fields: [classId], references: [id])
+  classId     String?
+
+  @@unique([title, start, end])
 }
 
-model User {
-  id            String    @id @default(cuid())
-  name          String?
-  email         String?   @unique
-  password      String?
-  emailVerified DateTime?
-  image         String?
-  accounts      Account[]
-  sessions      Session[]
+model Program {
+  id          String    @id @default(uuid())
+  name        String
+  description String?
+  Class       Class[]
+  levels      Level[]
+  Session     Session[]
 }
 
-model VerificationToken {
-  identifier String
-  token      String   @unique
-  expires    DateTime
+model Level {
+  id          String    @id @default(uuid())
+  name        String
+  duration    Float
+  description String?
+  price       Float
+  programId   String
+  program     Program   @relation(fields: [programId], references: [id], onDelete: NoAction)
+  Class       Class[]
+  Session     Session[]
+}
 
-  @@unique([identifier, token])
+model Payment {
+  id          String    @id @default(uuid())
+  code        String
+  amount      Float
+  total       Float
+  date        DateTime
+  period      String
+  status      String
+  discount    Float
+  note        String?
+  payedAmount Float
+  due         DateTime
+  payedDate   DateTime?
+  students    Student[]
+  archived    Boolean   @default(false)
 }

@@ -1,80 +1,81 @@
-"use client";
+"use client"
 
-import { useState } from "react";
-import { redirect, useRouter } from "next/navigation";
+import { useState } from "react"
+import { redirect, useRouter } from "next/navigation"
 // React Hook Form
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { signIn, useSession } from "next-auth/react";
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+import { signIn, useSession } from "next-auth/react"
 // components
-import { AlertCircle, Loader2 } from "lucide-react";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { AlertCircle, Loader2 } from "lucide-react"
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 // types
-import { TLoginSchema, loginSchema } from "@/types/Login";
+import { TLoginSchema, loginSchema } from "@/types/Login"
 
 export default function LoginForm() {
-  const session = useSession();
+  const session = useSession()
 
-  const { push } = useRouter();
+  const { push } = useRouter()
 
-  const [error, setError] = useState<string | null>(null);
-  const [googleLoading, setGoogleLoading] = useState(false);
-  const [facebookLoading, setFacebookLoading] = useState(false);
-
+  const [error, setError] = useState<string | null>(null)
   const form = useForm<TLoginSchema>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
-      email: "",
+      username: "",
       password: "",
     },
-  });
+  })
 
   async function onSubmit(values: TLoginSchema) {
-    const { email, password } = values;
+    const { username, password } = values
 
     const response = await signIn("credentials", {
       redirect: false,
-      email,
+      username,
       password,
-    });
+    })
 
     if (response?.error) {
-      setError(response.error);
+      setError(response.error)
+      return
     }
 
-    if (response?.ok) {
-      push("/");
-    }
+    push("/dashboard/students")
   }
-  
 
   if (session.status === "authenticated") {
-    redirect("/");
+    redirect("/dashboard/students")
   }
 
   return (
-    <div className='w-full px-5 sm:px-10 md:w-1/2 lg:w-1/3' >
+    <div className='w-full px-5 sm:px-10 md:w-1/2 lg:w-1/3'>
       {error && (
-        <Alert variant="destructive">
-          <AlertCircle className="h-4 w-4" />
+        <Alert variant='destructive'>
+          <AlertCircle className='h-4 w-4' />
           <AlertTitle>Error</AlertTitle>
           <AlertDescription>{error}</AlertDescription>
         </Alert>
       )}
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="w-full space-y-2">
+        <form onSubmit={form.handleSubmit(onSubmit)} className='w-full space-y-2 px-2'>
           <FormField
             control={form.control}
-            name="email"
+            name='username'
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Email</FormLabel>
+                <FormLabel>Username</FormLabel>
                 <FormControl>
-                  <Input placeholder="Enter you email" {...field} />
+                  <Input placeholder='Enter you username' {...field} />
                 </FormControl>
 
                 <FormMessage />
@@ -83,12 +84,12 @@ export default function LoginForm() {
           />
           <FormField
             control={form.control}
-            name="password"
+            name='password'
             render={({ field }) => (
-              <FormItem className="mb-5">
+              <FormItem className='mb-5'>
                 <FormLabel>Password</FormLabel>
                 <FormControl>
-                  <Input placeholder="Enter a password" {...field} type="password" />
+                  <Input placeholder='Enter a password' {...field} type='password' />
                 </FormControl>
 
                 <FormMessage />
@@ -96,12 +97,12 @@ export default function LoginForm() {
             )}
           />
 
-          <Button disabled={form.formState.isSubmitting} type="submit">
-            {form.formState.isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+          <Button disabled={form.formState.isSubmitting} type='submit'>
+            {form.formState.isSubmitting && <Loader2 className='mr-2 h-4 w-4 animate-spin' />}
             Login
           </Button>
         </form>
       </Form>
     </div>
-  );
+  )
 }
