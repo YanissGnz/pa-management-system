@@ -12,7 +12,7 @@ import { TProgramSchema, programSchema } from "@/types/Program"
 import { TPaymentSchema, paymentSchema } from "@/types/Payment"
 import { Prisma } from "@prisma/client"
 import { DefaultArgs } from "@prisma/client/runtime/library"
-import { authOptions } from "./api/auth/[...nextauth]/route"
+import { authOptions } from "@/lib/utils/authOptions"
 
 export type TActionReturn<TSchema> = {
   errors?: string | { [K in keyof TSchema]?: string }
@@ -74,6 +74,12 @@ export const addTeacher = async (
 }
 
 export const deleteTeacher = async (id: string) => {
+  const session = await getServerSession(authOptions)
+
+  if (!session) {
+    return { status: 401, errors: "Unauthorized" }
+  }
+
   try {
     await prisma.teacher.delete({
       where: {
@@ -95,6 +101,12 @@ export const updateTeacher = async (
   formData: TTeacherSchema,
   id: string
 ): Promise<TActionReturn<TTeacherSchema>> => {
+  const session = await getServerSession(authOptions)
+
+  if (!session) {
+    return { status: 401, errors: "Unauthorized" }
+  }
+
   const result = teacherSchema.safeParse(formData)
 
   let zodErrors: ZodErrors<TTeacherSchema> = {}
@@ -296,6 +308,11 @@ export const addStudent = async (
 }
 
 export const deleteStudent = async (id: string) => {
+  const session = await getServerSession(authOptions)
+
+  if (!session) {
+    return { status: 401, errors: "Unauthorized" }
+  }
   try {
     await prisma.student.delete({
       where: { id },
@@ -315,6 +332,12 @@ export const updateStudent = async (
   formData: TStudentSchema,
   id: string
 ): Promise<TActionReturn<TStudentSchema>> => {
+  const session = await getServerSession(authOptions)
+
+  if (!session) {
+    return { status: 401, errors: "Unauthorized" }
+  }
+
   const result = studentSchema.safeParse(formData)
 
   let zodErrors: ZodErrors<TStudentSchema> = {}
@@ -380,6 +403,12 @@ export const updateStudent = async (
 }
 
 export const assignStudentToClass = async (studentId: string, classId: string) => {
+  const session = await getServerSession(authOptions)
+
+  if (!session) {
+    return { status: 401, errors: "Unauthorized" }
+  }
+
   try {
     const Class = await prisma.class.findUnique({ where: { id: classId } })
 
@@ -417,6 +446,11 @@ export const assignStudentToClass = async (studentId: string, classId: string) =
 }
 
 export const assignMultipleStudentsToSession = async (studentsIds: string[], sessionId: string) => {
+  const session = await getServerSession(authOptions)
+
+  if (!session) {
+    return { status: 401, errors: "Unauthorized" }
+  }
   try {
     await prisma.session.update({
       where: { id: sessionId },
@@ -445,6 +479,11 @@ export const assignMultipleStudentsToSession = async (studentsIds: string[], ses
 // Classes Actions
 
 export const addClass = async (formData: TClassSchema): Promise<TActionReturn<TClassSchema>> => {
+  const session = await getServerSession(authOptions)
+
+  if (!session) {
+    return { status: 401, errors: "Unauthorized" }
+  }
   const result = classSchema.safeParse(formData)
 
   let zodErrors: ZodErrors<TClassSchema> = {}
@@ -579,6 +618,11 @@ export const updateClass = async (
   formData: TClassSchema,
   id: string
 ): Promise<TActionReturn<TClassSchema>> => {
+  const session = await getServerSession(authOptions)
+
+  if (!session) {
+    return { status: 401, errors: "Unauthorized" }
+  }
   const result = classSchema.omit({ classSessions: true }).safeParse(formData)
 
   let zodErrors: ZodErrors<TClassSchema> = {}
@@ -643,6 +687,11 @@ export const updateClass = async (
 }
 
 export const deleteClass = async (id: string) => {
+  const session = await getServerSession(authOptions)
+
+  if (!session) {
+    return { status: 401, errors: "Unauthorized" }
+  }
   try {
     await prisma.class.delete({ where: { id } })
   } catch (error) {
@@ -654,6 +703,11 @@ export const deleteClass = async (id: string) => {
 }
 
 export const updateSessionAttendance = async (sessionId: string, studentsIds: string[]) => {
+  const session = await getServerSession(authOptions)
+
+  if (!session) {
+    return { status: 401, errors: "Unauthorized" }
+  }
   try {
     await prisma.session.update({
       where: { id: sessionId },
@@ -673,6 +727,11 @@ export const updateSessionAttendance = async (sessionId: string, studentsIds: st
 }
 
 export const assignStudentsToClass = async (classId: string, studentsIds: string[]) => {
+  const session = await getServerSession(authOptions)
+
+  if (!session) {
+    return { status: 401, errors: "Unauthorized" }
+  }
   try {
     const Class = await prisma.class.findUnique({ where: { id: classId } })
 
@@ -758,6 +817,11 @@ export const assignStudentsToClass = async (classId: string, studentsIds: string
 export const addProgram = async (
   formData: TProgramSchema
 ): Promise<TActionReturn<TProgramSchema>> => {
+  const session = await getServerSession(authOptions)
+
+  if (!session) {
+    return { status: 401, errors: "Unauthorized" }
+  }
   const result = programSchema.safeParse(formData)
 
   let zodErrors: ZodErrors<TClassSchema> = {}
@@ -810,6 +874,11 @@ export const deleteProgram = async (id: string) => {
 export const addPayment = async (
   formData: TPaymentSchema
 ): Promise<TActionReturn<TPaymentSchema>> => {
+  const session = await getServerSession(authOptions)
+
+  if (!session) {
+    return { status: 401, errors: "Unauthorized" }
+  }
   const result = paymentSchema.safeParse(formData)
 
   if (result.success) {
@@ -914,6 +983,11 @@ export const addPayment = async (
 }
 
 export const archivePayment = async (id: string) => {
+  const session = await getServerSession(authOptions)
+
+  if (!session) {
+    return { status: 401, errors: "Unauthorized" }
+  }
   try {
     await prisma.payment.update({
       where: { id },
@@ -931,6 +1005,11 @@ export const archivePayment = async (id: string) => {
 }
 
 export const completePayment = async (id: string) => {
+  const session = await getServerSession(authOptions)
+
+  if (!session) {
+    return { status: 401, errors: "Unauthorized" }
+  }
   try {
     await prisma.payment.update({
       where: { id },

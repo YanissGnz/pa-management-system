@@ -29,9 +29,9 @@ interface BreadcrumbsProps {
 export default function Breadcrumbs({ links, activeLast = false, ...other }: BreadcrumbsProps) {
   const currentLink = links[links.length - 1].name
 
-  const listDefault = links.map((link) => <LinkItem key={link.name} link={link} />)
+  const listDefault = links.map(link => <LinkItem key={link.name} link={link} />)
 
-  const listActiveLast = links.map((link) => (
+  const listActiveLast = links.map(link => (
     <div key={link.name}>
       {link.name !== currentLink ? (
         <LinkItem link={link} />

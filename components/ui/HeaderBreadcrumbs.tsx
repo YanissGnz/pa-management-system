@@ -42,7 +42,7 @@ export default function HeaderBreadcrumbs({
             <h2 className='text-sm'>{moreLink}</h2>
           </Link>
         ) : (
-          moreLink.map((href) => (
+          moreLink.map(href => (
             <Link key={href} href={href} className='text-sm' target='_blank'>
               {href}
             </Link>
