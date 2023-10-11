@@ -335,7 +335,12 @@ export default function AddEditStudentForm({
             <FormItem>
               <FormLabel>Age</FormLabel>
               <FormControl>
-                <Input type='number' {...field} value={field.value || ""} />
+                <Input
+                  type='number'
+                  {...field}
+                  onChange={e => field.onChange(Number(e.target.value))}
+                  value={field.value || ""}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>

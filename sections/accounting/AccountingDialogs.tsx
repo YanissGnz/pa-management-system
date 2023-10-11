@@ -2,7 +2,7 @@
 
 import { PDFViewer } from "@react-pdf/renderer"
 import { useAppDispatch, useAppSelector } from "@/app/store/hooks"
-import { closeDialog } from "@/app/store/slices/printDialogSlice"
+import { closeDialog } from "@/app/store/slices/deleteDialogSlice"
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet"
 import { archivePayment } from "@/app/actions"
 import { toast } from "sonner"
@@ -82,7 +82,7 @@ export default function AccountingDialogs() {
               onClick={handleArchivePayment}
               asChild
             >
-              <Button variant={"destructive"}>Delete</Button>
+              <Button variant={"destructive"}>Archive</Button>
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>

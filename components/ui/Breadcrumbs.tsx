@@ -36,7 +36,7 @@ export default function Breadcrumbs({ links, activeLast = false, ...other }: Bre
       {link.name !== currentLink ? (
         <LinkItem link={link} />
       ) : (
-        <h2 className='max-w-xs cursor-default overflow-hidden text-ellipsis whitespace-nowrap text-xs text-gray-600 dark:text-gray-400'>
+        <h2 className='max-w-xs cursor-default truncate text-xs text-gray-600 dark:text-gray-400'>
           {currentLink}
         </h2>
       )}

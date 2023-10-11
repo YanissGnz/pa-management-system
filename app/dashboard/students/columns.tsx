@@ -183,13 +183,18 @@ const columns: ColumnDef<TStudentSchema>[] = [
           </DropdownMenuTrigger>
           <DropdownMenuContent align='end'>
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem asChild>
+            <DropdownMenuItem asChild onClick={e => e.stopPropagation()}>
               <Link href={`/dashboard/students/edit/${original.id}`}>
                 <Edit2Icon className='mr-2 h-4 w-4' />
                 Edit
               </Link>
             </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => store.dispatch(openAssignDialog(original.id))}>
+            <DropdownMenuItem
+              onClick={e => {
+                e.stopPropagation()
+                store.dispatch(openAssignDialog(original.id))
+              }}
+            >
               {original.classes && original.classes?.length > 0 ? (
                 <>
                   <ReplaceIcon className='mr-2 h-4 w-4' />
@@ -204,7 +209,10 @@ const columns: ColumnDef<TStudentSchema>[] = [
             </DropdownMenuItem>
             <DropdownMenuItem
               className='text-red-500 hover:text-red-500'
-              onClick={() => store.dispatch(openDialog(original.id))}
+              onClick={e => {
+                e.stopPropagation()
+                store.dispatch(openDialog(original.id))
+              }}
             >
               <Trash2Icon className='mr-2 h-4 w-4' />
               Delete

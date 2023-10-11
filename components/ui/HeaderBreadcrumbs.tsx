@@ -28,12 +28,12 @@ export default function HeaderBreadcrumbs({
   return (
     <div className='mb-5'>
       <div className='flex items-center '>
-        <div className='flex-grow'>
+        <div className='grow'>
           <h4 className='mb-2 text-2xl font-bold'>{heading}</h4>
           {links && <Breadcrumbs links={links} {...other} />}
         </div>
 
-        {action && <div className='flex-shrink-0'>{action}</div>}
+        {action && <div className='shrink-0'>{action}</div>}
       </div>
 
       <div className='mt-1'>
