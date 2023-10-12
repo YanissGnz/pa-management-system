@@ -84,10 +84,7 @@ export default function AddProgramForm() {
   return (
     <ScrollArea className='h-full w-full !overflow-x-visible'>
       <FormProvider {...form}>
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className='4 grid w-full grid-cols-2 gap-5 px-2'
-        >
+        <form onSubmit={form.handleSubmit(onSubmit)} className='grid w-full grid-cols-2 gap-5 px-2'>
           <FormField
             control={form.control}
             name='name'

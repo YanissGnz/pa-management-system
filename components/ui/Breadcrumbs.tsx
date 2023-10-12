@@ -29,14 +29,14 @@ interface BreadcrumbsProps {
 export default function Breadcrumbs({ links, activeLast = false, ...other }: BreadcrumbsProps) {
   const currentLink = links[links.length - 1].name
 
-  const listDefault = links.map((link) => <LinkItem key={link.name} link={link} />)
+  const listDefault = links.map(link => <LinkItem key={link.name} link={link} />)
 
-  const listActiveLast = links.map((link) => (
+  const listActiveLast = links.map(link => (
     <div key={link.name}>
       {link.name !== currentLink ? (
         <LinkItem link={link} />
       ) : (
-        <h2 className='max-w-xs cursor-default overflow-hidden text-ellipsis whitespace-nowrap text-xs text-gray-600 dark:text-gray-400'>
+        <h2 className='max-w-xs cursor-default truncate text-xs text-gray-600 dark:text-gray-400'>
           {currentLink}
         </h2>
       )}

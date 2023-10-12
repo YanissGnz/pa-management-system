@@ -7,7 +7,7 @@ import { ListIcon } from "lucide-react"
 import HeaderBreadcrumbs from "@/components/ui/HeaderBreadcrumbs"
 import { Button } from "@/components/ui/button"
 import CalendarView from "@/sections/classes/CalendarView"
-import { prisma } from "@/lib/prisma"
+import prisma from "@/lib/prisma"
 
 export const metadata: Metadata = {
   title: "Classes Calendar",

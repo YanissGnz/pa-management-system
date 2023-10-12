@@ -35,6 +35,8 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet"
+import { closeStudentDetails } from "@/app/store/slices/studentsDetailsSlice"
+import { format } from "date-fns"
 
 const fetcher = (url: string) => fetch(url).then(res => res.json())
 
@@ -50,12 +52,12 @@ export default function StudentDialogs() {
   const [selectedClassId, setSelectedClassId] = useState("")
 
   const { data: classes, isLoading: classesLoading } = useSWR<TClassSchema[], Error>(
-    "http://localhost:3000/api/classes",
+    `${process.env.NEXT_BASE_URL}/api/classes`,
     fetcher
   )
 
   const { data: student, isLoading: studentLoading } = useSWR<TStudentSchema, Error>(
-    `http://localhost:3000/api/students/${studentId}`,
+    `${process.env.NEXT_BASE_URL}/api/students/${studentId}`,
     fetcher
   )
 
@@ -260,18 +262,82 @@ export default function StudentDialogs() {
       <Sheet
         open={isDetailsOpen}
         onOpenChange={open => {
-          if (!open) dispatch(closeAssignDialog())
+          if (!open) dispatch(closeStudentDetails())
         }}
       >
         <SheetContent>
-          <SheetHeader>
+          <SheetHeader className='mb-5'>
             <SheetTitle>Student details</SheetTitle>
           </SheetHeader>
           {currentStudent && (
-            <div className=''>
+            <div className='space-y-2'>
               <p>
                 <span className='font-semibold'>Full name:</span> {currentStudent.fullName}
-              </p>
+              </p>{" "}
+              <div>
+                <p className='font-semibold'>Comments:</p>
+                {currentStudent.note ? (
+                  <p>{currentStudent.note}</p>
+                ) : (
+                  <p className='text-red-500'>No comments</p>
+                )}
+              </div>{" "}
+              <p className='border-b font-semibold'>Class:</p>
+              {currentStudent.classes && currentStudent.classes.length > 0 ? (
+                <div className='space-y-1'>
+                  <p>
+                    <span className='font-semibold'>Title:</span> {currentStudent.classes[0].title}
+                  </p>
+                  <p>
+                    <span className='font-semibold'>Program:</span>{" "}
+                    {currentStudent.classes[0].program.name}
+                  </p>
+                  <p>
+                    <span className='font-semibold'>Level:</span>{" "}
+                    {currentStudent.classes[0].level.name}
+                  </p>
+                  <p>
+                    <span className='font-semibold'>Time:</span>{" "}
+                    <div className='inline-flex items-center gap-1'>
+                      <Badge variant='outline' className='text-sm'>
+                        {currentStudent.classes[0].day}
+                      </Badge>{" "}
+                      -
+                      <Badge variant='outline' className='text-sm'>
+                        {currentStudent.classes[0].startTime} - {currentStudent.classes[0].endTime}
+                      </Badge>
+                    </div>
+                  </p>
+                  <p>
+                    <span className='font-semibold'>Start date:</span>{" "}
+                    {format(new Date(currentStudent.classes[0].startDate), "PPP")}
+                  </p>
+                  <p>
+                    <span className='font-semibold'>End date:</span>{" "}
+                    {format(new Date(currentStudent.classes[0].endDate), "PPP")}
+                  </p>
+                  <p>
+                    <span className='font-semibold'>Week:</span>{" "}
+                    {/* calculate the week number based on start date */}
+                    {Math.ceil(
+                      (new Date().getTime() -
+                        new Date(currentStudent.classes[0].startDate).getTime()) /
+                        (1000 * 3600 * 24 * 7)
+                    )}
+                  </p>{" "}
+                  <p>
+                    <span className='font-semibold'>Teacher:</span>{" "}
+                    {currentStudent.classes[0].teacher.firstName}{" "}
+                    {currentStudent.classes[0].teacher.lastName}
+                  </p>
+                  <p>
+                    <span className='font-semibold'>Students count:</span>{" "}
+                    {currentStudent.classes[0].students.length} / 15
+                  </p>
+                </div>
+              ) : (
+                <p className='text-red-500'>Not assigned to any class</p>
+              )}
             </div>
           )}
         </SheetContent>

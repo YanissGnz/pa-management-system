@@ -1,7 +1,12 @@
-import { NextResponse } from "next/server"
-import { prisma } from "@/lib/prisma"
+import prisma from "@/lib/prisma"
+import { getServerSession } from "next-auth"
 
 export async function GET() {
+  const session = await getServerSession()
+
+  if (!session) {
+    return Response.redirect(`${process.env.NEXT_BASE_URL}/login`)
+  }
   const sessions = await prisma.session.findMany({
     select: {
       id: true,
@@ -39,5 +44,12 @@ export async function GET() {
     },
   })
 
-  return NextResponse.json(sessions, { status: 200 })
+  return Response.json(sessions, { status: 200 })
 }
+
+export const dynamic = "force-dynamic"
+export const dynamicParams = true
+export const revalidate = 0
+export const fetchCache = "force-no-store"
+export const runtime = "nodejs"
+export const preferredRegion = "auto"

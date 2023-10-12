@@ -82,7 +82,7 @@ export default function AddEditStudentForm({
   student?: TStudentSchema
 }) {
   const { data, isLoading } = useSWR<TClassSchema[], Error>(
-    "http://localhost:3000/api/classes",
+    `${process.env.NEXT_BASE_URL}/api/classes`,
     fetcher
   )
 
@@ -335,7 +335,12 @@ export default function AddEditStudentForm({
             <FormItem>
               <FormLabel>Age</FormLabel>
               <FormControl>
-                <Input type='number' {...field} value={field.value || ""} />
+                <Input
+                  type='number'
+                  {...field}
+                  onChange={e => field.onChange(Number(e.target.value))}
+                  value={field.value || ""}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>

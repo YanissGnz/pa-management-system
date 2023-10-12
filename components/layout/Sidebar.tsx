@@ -1,6 +1,7 @@
 import { Backpack, Clipboard, DollarSignIcon, DoorOpen, Users } from "lucide-react"
 import Image from "next/image"
 import NavItem from "./NavItem"
+import User from "./User"
 
 const NAV_ITEMS = [
   {
@@ -30,13 +31,15 @@ const NAV_ITEMS = [
   },
 ]
 
-export default function Sidebar() {
+export default async function Sidebar() {
   return (
-    <div className='h-screen w-64 border-r border-dashed bg-primary'>
+    <div className='h-screen w-64 border-r border-dashed bg-primary px-2'>
       <div className='flex w-full justify-center p-2'>
         <Image src='/logo.png' alt='logo' width={40} height={40} />
       </div>
-      <ul className='mt-1 flex-1 space-y-2 px-2'>
+      <User />
+
+      <ul className='mt-1 flex-1 space-y-2 '>
         {NAV_ITEMS.map((item, i) => (
           <NavItem key={i} {...item} />
         ))}

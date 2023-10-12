@@ -19,7 +19,7 @@ export default function DataTablePagination<TData>({ table }: DataTablePaginatio
           <p className='text-sm font-medium'>Rows per page</p>
           <Select
             value={`${table.getState().pagination.pageSize}`}
-            onValueChange={(value) => {
+            onValueChange={value => {
               table.setPageSize(Number(value))
             }}
           >
@@ -27,7 +27,7 @@ export default function DataTablePagination<TData>({ table }: DataTablePaginatio
               <SelectValue placeholder={table.getState().pagination.pageSize} />
             </SelectTrigger>
             <SelectContent side='top'>
-              {[10, 20, 30, 40, 50].map((pageSize) => (
+              {[10, 20, 30, 40, 50].map(pageSize => (
                 <SelectItem key={pageSize} value={`${pageSize}`}>
                   {pageSize}
                 </SelectItem>

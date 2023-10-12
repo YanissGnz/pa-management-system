@@ -106,13 +106,21 @@ const columns: ColumnDef<TClassSchema>[] = [
               Edit
             </Link>
           </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => store.dispatch(openAssignStudentsDialog(id!))}>
+          <DropdownMenuItem
+            onClick={e => {
+              e.stopPropagation()
+              store.dispatch(openAssignStudentsDialog(id!))
+            }}
+          >
             <UserPlus className='mr-2 h-4 w-4' />
             Assign Students
           </DropdownMenuItem>
           <DropdownMenuItem
             className='text-red-500 hover:text-red-500'
-            onClick={() => store.dispatch(openDialog(id!))}
+            onClick={e => {
+              e.stopPropagation()
+              store.dispatch(openDialog(id!))
+            }}
           >
             <Trash2Icon className='mr-2 h-4 w-4' />
             Delete
