@@ -1,19 +1,9 @@
 "use client"
 
 import React, { useEffect, useState } from "react"
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-} from "@/components/ui/alert-dialog"
 import { useAppDispatch, useAppSelector } from "@/app/store/hooks"
 import { Button, buttonVariants } from "@/components/ui/button"
-import { closeDialog } from "@/app/store/slices/deleteDialogSlice"
+import { closeDialog as closeDeleteDialog } from "@/app/store/slices/deleteDialogSlice"
 import { assignStudentToClass, deleteStudent } from "@/app/actions"
 import { LoaderIcon } from "lucide-react"
 import useSWR from "swr"
@@ -22,6 +12,7 @@ import { capitalize } from "lodash"
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
@@ -42,7 +33,7 @@ const fetcher = (url: string) => fetch(url).then(res => res.json())
 
 export default function StudentDialogs() {
   const dispatch = useAppDispatch()
-  const { id, isOpen } = useAppSelector(state => state.deleteDialog)
+  const { id, isOpen: isDeleteOpen } = useAppSelector(state => state.deleteDialog)
   const { id: studentId, isOpen: isAssignOpen } = useAppSelector(state => state.assignToClassDialog)
   const { isOpen: isDetailsOpen, student: currentStudent } = useAppSelector(
     state => state.studentDetails
@@ -62,7 +53,7 @@ export default function StudentDialogs() {
 
   const handleDelete = async () => {
     if (!id) return
-    dispatch(closeDialog())
+    dispatch(closeDeleteDialog())
     const promise = new Promise((resolve, reject) => {
       deleteStudent(id)
         .then(result => {
@@ -120,33 +111,31 @@ export default function StudentDialogs() {
 
   return (
     <>
-      <AlertDialog
-        open={isOpen}
+      <Dialog
+        open={isDeleteOpen}
         onOpenChange={open => {
-          if (!open) dispatch(closeDialog())
+          if (!open) dispatch(closeDeleteDialog())
         }}
       >
-        <AlertDialogContent>
-          <AlertDialogHeader>
-            <AlertDialogTitle>Confirm action</AlertDialogTitle>
-          </AlertDialogHeader>
-          <AlertDialogDescription>
-            Are you sure you want to delete this student?
-          </AlertDialogDescription>
-          <AlertDialogFooter>
-            <AlertDialogCancel>
-              <Button variant={"ghost"}>Cancel</Button>
-            </AlertDialogCancel>
-            <AlertDialogAction
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Confirm action</DialogTitle>
+          </DialogHeader>
+          <DialogDescription>Are you sure you want to delete this student?</DialogDescription>
+          <DialogFooter>
+            <Button variant={"ghost"} onClick={() => dispatch(closeDeleteDialog())}>
+              Cancel
+            </Button>
+            <Button
+              variant={"destructive"}
               className={buttonVariants({ variant: "destructive" })}
               onClick={handleDelete}
-              asChild
             >
-              <Button variant={"destructive"}>Delete</Button>
-            </AlertDialogAction>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
+              Delete
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
 
       <Dialog
         open={isAssignOpen}

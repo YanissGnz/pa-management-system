@@ -6,17 +6,16 @@ import { closeDialog } from "@/app/store/slices/deleteDialogSlice"
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet"
 import { archivePayment } from "@/app/actions"
 import { toast } from "sonner"
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-} from "@/components/ui/alert-dialog"
+
 import { Button, buttonVariants } from "@/components/ui/button"
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog"
 import InvoicePDFView from "./InvoicePDFView"
 
 export default function AccountingDialogs() {
@@ -60,33 +59,31 @@ export default function AccountingDialogs() {
           )}
         </SheetContent>
       </Sheet>
-      <AlertDialog
+      <Dialog
         open={isArchiveOpen}
         onOpenChange={open => {
           if (!open) dispatch(closeDialog())
         }}
       >
-        <AlertDialogContent>
-          <AlertDialogHeader>
-            <AlertDialogTitle>Confirm action</AlertDialogTitle>
-          </AlertDialogHeader>
-          <AlertDialogDescription>
-            Are you sure you want to archive this payment?
-          </AlertDialogDescription>
-          <AlertDialogFooter>
-            <AlertDialogCancel>
-              <Button variant={"ghost"}>Cancel</Button>
-            </AlertDialogCancel>
-            <AlertDialogAction
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Confirm action</DialogTitle>
+          </DialogHeader>
+          <DialogDescription>Are you sure you want to archive this payment?</DialogDescription>
+          <DialogFooter>
+            <Button variant={"ghost"} onClick={() => dispatch(closeDialog())}>
+              Cancel
+            </Button>
+            <Button
+              variant={"destructive"}
               className={buttonVariants({ variant: "destructive" })}
               onClick={handleArchivePayment}
-              asChild
             >
-              <Button variant={"destructive"}>Archive</Button>
-            </AlertDialogAction>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
+              Archive
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </>
   )
 }

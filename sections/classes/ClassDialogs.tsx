@@ -5,20 +5,11 @@ import React, { useEffect, useState } from "react"
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog"
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-} from "@/components/ui/alert-dialog"
 import { useAppDispatch, useAppSelector } from "@/app/store/hooks"
 import { closeAssignStudentsDialog } from "@/app/store/slices/assignStudentsDialog"
 import useSWR from "swr"
@@ -29,7 +20,7 @@ import { toast } from "sonner"
 import { capitalize } from "lodash"
 import { assignStudentsToClass, deleteClass } from "@/app/actions"
 import { Checkbox } from "@/components/ui/checkbox"
-import { closeDialog } from "@/app/store/slices/deleteDialogSlice"
+import { closeDialog as closeDeleteDialog } from "@/app/store/slices/deleteDialogSlice"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
@@ -60,7 +51,7 @@ export default function ClassDialogs() {
 
   const handleAssignStudentsToClass = async () => {
     if (!id) return
-    dispatch(closeDialog())
+    dispatch(closeDeleteDialog())
     const promise = new Promise((resolve, reject) => {
       assignStudentsToClass(id, selectedStudentsIds)
         .then(result => {
@@ -83,7 +74,7 @@ export default function ClassDialogs() {
 
   const handleDeleteClass = async () => {
     if (!classIdToDelete) return
-    dispatch(closeDialog())
+    dispatch(closeDeleteDialog())
 
     const promise = new Promise((resolve, reject) => {
       deleteClass(classIdToDelete)
@@ -118,33 +109,36 @@ export default function ClassDialogs() {
 
   return (
     <>
-      <AlertDialog
+      <Dialog
         open={isOpen}
         onOpenChange={open => {
-          if (!open) dispatch(closeDialog())
+          if (!open) dispatch(closeDeleteDialog())
         }}
       >
-        <AlertDialogContent>
-          <AlertDialogHeader>
-            <AlertDialogTitle>Confirm action</AlertDialogTitle>
-          </AlertDialogHeader>
-          <AlertDialogDescription>
-            Are you sure you want to delete this student?
-          </AlertDialogDescription>
-          <AlertDialogFooter>
-            <AlertDialogCancel>
-              <Button variant={"ghost"}>Cancel</Button>
-            </AlertDialogCancel>
-            <AlertDialogAction
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Confirm action</DialogTitle>
+          </DialogHeader>
+          <DialogDescription>Are you sure you want to delete this student?</DialogDescription>
+          <DialogFooter>
+            <Button
+              variant={"ghost"}
+              onClick={() => {
+                dispatch(closeDeleteDialog())
+              }}
+            >
+              Cancel
+            </Button>
+            <Button
+              variant={"destructive"}
               className={buttonVariants({ variant: "destructive" })}
               onClick={handleDeleteClass}
-              asChild
             >
-              <Button variant={"destructive"}>Delete</Button>
-            </AlertDialogAction>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
+              Delete
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
       <Dialog
         open={isAssignStudentsOpen}
         onOpenChange={open => {
