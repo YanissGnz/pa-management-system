@@ -52,12 +52,12 @@ export default function StudentDialogs() {
   const [selectedClassId, setSelectedClassId] = useState("")
 
   const { data: classes, isLoading: classesLoading } = useSWR<TClassSchema[], Error>(
-    "http://localhost:3000/api/classes",
+    `${process.env.NEXT_BASE_URL}/api/classes`,
     fetcher
   )
 
   const { data: student, isLoading: studentLoading } = useSWR<TStudentSchema, Error>(
-    `http://localhost:3000/api/students/${studentId}`,
+    `${process.env.NEXT_BASE_URL}/api/students/${studentId}`,
     fetcher
   )
 

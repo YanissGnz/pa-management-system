@@ -81,12 +81,12 @@ export default function AddEditClassForm({
   const [selectedProgramId, setSelectedProgramId] = useState<string | null>(null)
 
   const { data, isLoading } = useSWR<TTeacherSchema[], Error>(
-    "http://localhost:3000/api/teachers",
+    `${process.env.NEXT_BASE_URL}/api/teachers`,
     fetcher
   )
 
   const { data: programs, isLoading: isProgramsLoading } = useSWR<TProgramSchema[], Error>(
-    "http://localhost:3000/api/programs",
+    `${process.env.NEXT_BASE_URL}/api/programs`,
     fetcher
   )
 

@@ -49,7 +49,7 @@ export default function CalendarView({ sessions }: { sessions: TSession[] }) {
   )
 
   const { data: students, isLoading } = useSWR<TStudentSchema[], Error>(
-    "http://localhost:3000/api/students",
+    `${process.env.NEXT_BASE_URL}/api/students`,
     fetcher
   )
 
