@@ -12,7 +12,7 @@ import { TProgramSchema, programSchema } from "@/types/Program"
 import { TPaymentSchema, paymentSchema } from "@/types/Payment"
 import { Prisma } from "@prisma/client"
 import { DefaultArgs } from "@prisma/client/runtime/library"
-import { authOptions } from "./api/auth/[...nextauth]/route"
+import { authOptions } from "@/lib/utils/authOptions"
 
 export type TActionReturn<TSchema> = {
   errors?: string | { [K in keyof TSchema]?: string }
