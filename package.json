@@ -10,7 +10,8 @@
     "lint:debug": "eslint ./ --debug",
     "lint:fix": "eslint ./ --fix",
     "prepare": "husky install",
-    "pre-commit": "pnpm lint"
+    "pre-commit": "pnpm lint",
+    "postinstall": "prisma generate"
   },
   "husky": {
     "hooks": {
