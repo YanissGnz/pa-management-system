@@ -33,7 +33,7 @@ const NAV_ITEMS = [
 
 export default async function Sidebar() {
   return (
-    <div className='h-screen w-64 border-r border-dashed bg-primary px-2'>
+    <div className='h-screen w-64 border-r border-dashed bg-primary px-2 dark:bg-background'>
       <div className='flex w-full justify-center p-2'>
         <Image src='/logo.png' alt='logo' width={40} height={40} />
       </div>

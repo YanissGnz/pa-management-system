@@ -18,8 +18,8 @@ export default function NavItem({ href, name, icon }: Props) {
       href={href}
       key={name}
       className={cn(
-        "flex cursor-pointer items-center space-x-2 rounded p-3 font-bold text-white hover:bg-secondary  hover:text-black",
-        pathname.includes(href) && "bg-secondary text-black"
+        "flex cursor-pointer items-center space-x-2 rounded p-3 font-bold text-white hover:bg-secondary hover:text-black  dark:hover:text-white",
+        pathname.includes(href) && "bg-secondary text-black dark:text-white"
       )}
     >
       <span className='h-6 w-6'>{icon}</span>

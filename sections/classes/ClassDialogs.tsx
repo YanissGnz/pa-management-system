@@ -26,7 +26,7 @@ import { TStudentSchema } from "@/types/Student"
 import { Button, buttonVariants } from "@/components/ui/button"
 import { LoaderIcon } from "lucide-react"
 import { toast } from "sonner"
-import { capitalize, isString } from "lodash"
+import { capitalize } from "lodash"
 import { assignStudentsToClass, deleteClass } from "@/app/actions"
 import { Checkbox } from "@/components/ui/checkbox"
 import { closeDialog } from "@/app/store/slices/deleteDialogSlice"
@@ -53,7 +53,6 @@ export default function ClassDialogs() {
     fetcher
   )
   const dispatch = useAppDispatch()
-  const [isLoading, setIsLoading] = useState(false)
 
   const [selectedStudentsIds, setSelectedStudentsIds] = useState<string[]>([])
 
@@ -61,18 +60,25 @@ export default function ClassDialogs() {
 
   const handleAssignStudentsToClass = async () => {
     if (!id) return
-    setIsLoading(true)
-    const result = await assignStudentsToClass(id, selectedStudentsIds)
-    if (result.errors) {
-      const { errors } = result
-      if (isString(errors)) {
-        toast.error(errors)
-      }
-    } else {
-      toast.success("Students assigned successfully")
-    }
-    dispatch(closeAssignStudentsDialog())
-    setIsLoading(false)
+    dispatch(closeDialog())
+    const promise = new Promise((resolve, reject) => {
+      assignStudentsToClass(id, selectedStudentsIds)
+        .then(result => {
+          if (result.success) {
+            resolve("Students assigned successfully")
+          } else {
+            reject()
+          }
+        })
+        .catch(() => {
+          reject()
+        })
+    })
+    toast.promise(promise, {
+      loading: "Assigning students...",
+      success: () => "Students assigned successfully",
+      error: "Error assigning students",
+    })
   }
 
   const handleDeleteClass = async () => {
@@ -102,7 +108,7 @@ export default function ClassDialogs() {
   useEffect(() => {
     if (!students) return
     setFilteredStudents(students)
-  }, [students, isLoading])
+  }, [students, studentsLoading])
 
   useEffect(() => {
     if (!Class) return
@@ -132,13 +138,9 @@ export default function ClassDialogs() {
             <AlertDialogAction
               className={buttonVariants({ variant: "destructive" })}
               onClick={handleDeleteClass}
-              disabled={isLoading}
               asChild
             >
-              <Button variant={"destructive"} disabled={isLoading}>
-                {isLoading && <LoaderIcon className='h-4 w-4 animate-spin' />}
-                Delete
-              </Button>
+              <Button variant={"destructive"}>Delete</Button>
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
@@ -247,10 +249,7 @@ export default function ClassDialogs() {
             >
               Cancel
             </Button>
-            <Button onClick={handleAssignStudentsToClass} disabled={isLoading}>
-              {isLoading && <LoaderIcon className='h-4 w-4 animate-spin' />}
-              Assign
-            </Button>
+            <Button onClick={handleAssignStudentsToClass}>Assign</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>

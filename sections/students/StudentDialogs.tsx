@@ -15,10 +15,10 @@ import { useAppDispatch, useAppSelector } from "@/app/store/hooks"
 import { Button, buttonVariants } from "@/components/ui/button"
 import { closeDialog } from "@/app/store/slices/deleteDialogSlice"
 import { assignStudentToClass, deleteStudent } from "@/app/actions"
-import { Loader, LoaderIcon } from "lucide-react"
+import { LoaderIcon } from "lucide-react"
 import useSWR from "swr"
 import { TClassSchema } from "@/types/Class"
-import { capitalize, isString } from "lodash"
+import { capitalize } from "lodash"
 import {
   Dialog,
   DialogContent,
@@ -47,7 +47,6 @@ export default function StudentDialogs() {
   const { isOpen: isDetailsOpen, student: currentStudent } = useAppSelector(
     state => state.studentDetails
   )
-  const [isLoading, setIsLoading] = useState(false)
   const [filteredClasses, setFilteredClasses] = useState<TClassSchema[]>([])
   const [selectedClassId, setSelectedClassId] = useState("")
 
@@ -63,31 +62,48 @@ export default function StudentDialogs() {
 
   const handleDelete = async () => {
     if (!id) return
-    setIsLoading(true)
-    const result = await deleteStudent(id)
-    if (result.success) {
-      toast.success("Student deleted successfully")
-    } else {
-      toast.error("Student deletion failed")
-    }
     dispatch(closeDialog())
-    setIsLoading(false)
+    const promise = new Promise((resolve, reject) => {
+      deleteStudent(id)
+        .then(result => {
+          if (result.success) {
+            resolve("Student deleted successfully")
+          } else {
+            reject()
+          }
+        })
+        .catch(() => {
+          reject()
+        })
+    })
+    toast.promise(promise, {
+      loading: "Deleting student...",
+      success: () => "Student deleted successfully",
+      error: "Error deleting student",
+    })
   }
 
   const handleAssignStudentToClass = async () => {
     if (!studentId) return
-    setIsLoading(true)
-    const result = await assignStudentToClass(studentId, selectedClassId)
-    if (result.errors) {
-      const { errors } = result
-      if (isString(errors)) {
-        toast.error(errors)
-      }
-    } else {
-      toast.success("Student assigned successfully")
-    }
-    setIsLoading(false)
     dispatch(closeAssignDialog())
+    const promise = new Promise((resolve, reject) => {
+      assignStudentToClass(studentId, selectedClassId)
+        .then(result => {
+          if (result.success) {
+            resolve("Student assigned successfully")
+          } else {
+            reject()
+          }
+        })
+        .catch(() => {
+          reject()
+        })
+    })
+    toast.promise(promise, {
+      loading: "Assigning student...",
+      success: () => "Student assigned successfully",
+      error: "Error assigning student",
+    })
   }
 
   useEffect(() => {
@@ -124,13 +140,9 @@ export default function StudentDialogs() {
             <AlertDialogAction
               className={buttonVariants({ variant: "destructive" })}
               onClick={handleDelete}
-              disabled={isLoading}
               asChild
             >
-              <Button variant={"destructive"} disabled={isLoading}>
-                {isLoading && <Loader className='h-4 w-4 animate-spin' />}
-                Delete
-              </Button>
+              <Button variant={"destructive"}>Delete</Button>
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
@@ -251,10 +263,7 @@ export default function StudentDialogs() {
               Cancel
             </Button>
             {/* {student?.paymentStatus !== "not paid" && ( */}
-            <Button onClick={handleAssignStudentToClass} disabled={isLoading}>
-              {isLoading && <Loader className='h-4 w-4 animate-spin' />}
-              Assign
-            </Button>
+            <Button onClick={handleAssignStudentToClass}>Assign</Button>
             {/* )} */}
           </DialogFooter>
         </DialogContent>
