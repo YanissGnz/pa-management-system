@@ -1,13 +1,7 @@
 import prisma from "@/lib/prisma"
-import { getServerSession } from "next-auth"
 import { NextRequest } from "next/server"
 
 export async function GET(_: NextRequest, { params }: { params: { id: string } }) {
-  const session = await getServerSession()
-
-  if (!session) {
-    return Response.redirect(`${process.env.NEXT_BASE_URL}/login`)
-  }
   const { id } = params
 
   const classObject = await prisma.class.findUnique({ where: { id }, include: { students: true } })

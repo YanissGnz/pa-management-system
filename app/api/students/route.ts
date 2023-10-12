@@ -1,12 +1,7 @@
 import prisma from "@/lib/prisma"
-import { getServerSession } from "next-auth"
+import { NextResponse } from "next/server"
 
 export async function GET() {
-  const session = await getServerSession()
-
-  if (!session) {
-    return Response.redirect(`${process.env.NEXT_BASE_URL}/login`)
-  }
   const students = await prisma.student.findMany({
     include: {
       classes: {
@@ -40,7 +35,7 @@ export async function GET() {
     },
   })
 
-  return Response.json(students, { status: 200 })
+  return NextResponse.json(students, { status: 200 })
 }
 
 export const dynamic = "force-dynamic"
