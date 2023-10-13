@@ -29,7 +29,7 @@ export default function User() {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className='mb-5 flex w-full items-center justify-start gap-2 rounded text-white hover:bg-secondary dark:hover:text-white'>
+      <DropdownMenuTrigger className='mb-5 flex w-full items-center justify-start gap-2 rounded text-white hover:bg-secondary hover:text-black dark:hover:text-white'>
         <Avatar>
           <AvatarFallback className='text-black dark:text-white'>
             {session.data?.user?.name?.slice(0, 1).toUpperCase()}
