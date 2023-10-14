@@ -154,7 +154,8 @@ export async function GET() {
               : student.paymentStatus === "incomplete"
               ? Number(student.amount!) / 2
               : 0,
-          period: "December",
+          from: new Date(),
+          to: new Date(),
         },
       })
     })

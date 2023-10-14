@@ -165,8 +165,8 @@ export default function StudentDialogs() {
                     const filtered = classes?.filter(
                       c =>
                         c.title.toLowerCase().includes(value) ||
-                        c.program.name.toLowerCase().includes(value) ||
-                        c.level.name.toLowerCase().includes(value) ||
+                        c?.program?.name.toLowerCase().includes(value) ||
+                        c?.level?.name.toLowerCase().includes(value) ||
                         c.day.toLowerCase().includes(value) ||
                         c.startTime.toLowerCase().includes(value) ||
                         c.endTime.toLowerCase().includes(value)
@@ -210,8 +210,8 @@ export default function StudentDialogs() {
                           className='col-span-11 grid flex-1 grid-cols-11 items-center text-base leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70'
                         >
                           <p className='col-span-3'>{c.title} </p>
-                          <p className='col-span-3'>{c.program.name} </p>
-                          <p className='col-span-2'>{c.level.name} </p>
+                          <p className='col-span-3'>{c.program?.name || "No program"} </p>
+                          <p className='col-span-2'>{c?.level?.name || "No level"} </p>
                           <div className='col-span-2 space-y-1'>
                             <Badge variant='outline' className='text-sm'>
                               {capitalize(c.day)}
@@ -288,11 +288,11 @@ export default function StudentDialogs() {
                   </p>
                   <p>
                     <span className='font-semibold'>Program:</span>{" "}
-                    {currentStudent.classes[0].program.name}
+                    {currentStudent.classes[0]?.program?.name || "No program"}
                   </p>
                   <p>
                     <span className='font-semibold'>Level:</span>{" "}
-                    {currentStudent.classes[0].level.name}
+                    {currentStudent.classes[0]?.level?.name || "No level"}
                   </p>
                   <p>
                     <span className='font-semibold'>Time:</span>{" "}
@@ -325,8 +325,9 @@ export default function StudentDialogs() {
                   </p>{" "}
                   <p>
                     <span className='font-semibold'>Teacher:</span>{" "}
-                    {currentStudent.classes[0].teacher.firstName}{" "}
-                    {currentStudent.classes[0].teacher.lastName}
+                    {currentStudent.classes[0]?.teacher
+                      ? `${currentStudent.classes[0]?.teacher?.firstName} ${currentStudent.classes[0]?.teacher?.lastName}`
+                      : "No teacher"}
                   </p>
                   <p>
                     <span className='font-semibold'>Students count:</span>{" "}

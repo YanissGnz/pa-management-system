@@ -23,7 +23,7 @@ export default function AddTeacherForm({ handleClose }: { handleClose: () => voi
     defaultValues: {
       firstName: "",
       lastName: "",
-      email: "",
+      username: "",
       phoneNumber: "",
       address: "",
       password: "",
@@ -43,8 +43,8 @@ export default function AddTeacherForm({ handleClose }: { handleClose: () => voi
         if (errors.lastName) {
           form.setError("lastName", { message: errors.lastName })
         }
-        if (errors.email) {
-          form.setError("email", { message: errors.email })
+        if (errors.username) {
+          form.setError("username", { message: errors.username })
         }
         if (errors.phoneNumber) {
           form.setError("phoneNumber", { message: errors.phoneNumber })
@@ -95,12 +95,12 @@ export default function AddTeacherForm({ handleClose }: { handleClose: () => voi
           />
           <FormField
             control={form.control}
-            name='email'
+            name='username'
             render={({ field }) => (
               <FormItem className='grid grid-cols-4 items-center gap-4'>
-                <FormLabel>Email</FormLabel>
+                <FormLabel>Username</FormLabel>
                 <FormControl>
-                  <Input {...field} className='col-span-3' />
+                  <Input {...field} value={field.value || ""} className='col-span-3' />
                 </FormControl>
                 <FormMessage className='col-span-4' />
               </FormItem>
@@ -113,7 +113,7 @@ export default function AddTeacherForm({ handleClose }: { handleClose: () => voi
               <FormItem className='grid grid-cols-4 items-center gap-4'>
                 <FormLabel>Password</FormLabel>
                 <FormControl>
-                  <Input {...field} className='col-span-3' />
+                  <Input {...field} value={field.value || ""} className='col-span-3' />
                 </FormControl>
                 <FormMessage className='col-span-4' />
               </FormItem>

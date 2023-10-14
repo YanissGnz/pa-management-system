@@ -6,9 +6,9 @@ export type TSession = {
   id: string
   title: string
   color?: string | null
-  teacher: TTeacherSchema
-  program: Partial<TProgramSchema>
-  level: Partial<TLevelSchema>
+  teacher?: TTeacherSchema | null
+  program?: Partial<TProgramSchema> | null
+  level?: Partial<TLevelSchema> | null
   description: string | null
   start: Date
   end: Date
