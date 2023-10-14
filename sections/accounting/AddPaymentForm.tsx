@@ -70,12 +70,12 @@ const PERIODS = [
 
 export default function AddPaymentForm() {
   const { data, isLoading } = useSWR<TStudentSchema[], Error>(
-    `${process.env.NEXT_BASE_URL}/api/students`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/students`,
     fetcher
   )
 
   const { data: classes, isLoading: classesLoading } = useSWR<TClassSchema[], Error>(
-    `${process.env.NEXT_BASE_URL}/api/classes`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/classes`,
     fetcher
   )
 

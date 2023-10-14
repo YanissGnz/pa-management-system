@@ -35,12 +35,12 @@ export default function ClassDialogs() {
   const { isOpen: isAssignStudentsOpen, id } = useAppSelector(state => state.assignStudentsDialog)
 
   const { data: Class, isLoading: classLoading } = useSWR<TClassSchema, Error>(
-    `${process.env.NEXT_BASE_URL}/api/classes/${id}`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/classes/${id}`,
     fetcher
   )
 
   const { data: students, isLoading: studentsLoading } = useSWR<TStudentSchema[], Error>(
-    `${process.env.NEXT_BASE_URL}/api/students`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/students`,
     fetcher
   )
   const dispatch = useAppDispatch()

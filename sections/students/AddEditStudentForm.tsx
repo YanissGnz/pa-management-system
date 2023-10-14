@@ -82,7 +82,7 @@ export default function AddEditStudentForm({
   student?: TStudentSchema
 }) {
   const { data, isLoading } = useSWR<TClassSchema[], Error>(
-    `${process.env.NEXT_BASE_URL}/api/classes`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/classes`,
     fetcher
   )
 

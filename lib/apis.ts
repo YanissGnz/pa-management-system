@@ -2,7 +2,7 @@ import { TPaymentSchema } from "@/types/Payment"
 import { TTeacherSchema } from "@/types/Teacher"
 
 export const getTeachers = async (): Promise<TTeacherSchema[]> => {
-  const teachers = await fetch(`${process.env.NEXT_BASE_URL}/api/teachers`, {
+  const teachers = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/teachers`, {
     cache: "no-cache",
   }).then(res => res.json())
 
@@ -10,7 +10,7 @@ export const getTeachers = async (): Promise<TTeacherSchema[]> => {
 }
 
 export const getStudents = async () => {
-  const students = await fetch(`${process.env.NEXT_BASE_URL}/api/students`, {
+  const students = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/students`, {
     cache: "no-cache",
   }).then(res => res.json())
 
@@ -18,7 +18,7 @@ export const getStudents = async () => {
 }
 
 export const getStudentById = async (id: string) => {
-  const student = await fetch(`${process.env.NEXT_BASE_URL}/api/students/${id}`, {
+  const student = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/students/${id}`, {
     cache: "no-cache",
   }).then(res => res.json())
 
@@ -26,7 +26,7 @@ export const getStudentById = async (id: string) => {
 }
 
 export const getClasses = async () => {
-  const classes = await fetch(`${process.env.NEXT_BASE_URL}/api/classes`, {
+  const classes = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/classes`, {
     cache: "no-cache",
   }).then(res => res.json())
 
@@ -34,7 +34,7 @@ export const getClasses = async () => {
 }
 
 export const getSessions = async () => {
-  const sessions = await fetch(`${process.env.NEXT_BASE_URL}/api/sessions`, {
+  const sessions = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/sessions`, {
     cache: "no-cache",
   }).then(res => res.json())
 
@@ -42,7 +42,7 @@ export const getSessions = async () => {
 }
 
 export const getPrograms = async () => {
-  const programs = await fetch(`${process.env.NEXT_BASE_URL}/api/programs`, {
+  const programs = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/programs`, {
     cache: "no-cache",
   }).then(res => res.json())
 
@@ -50,7 +50,7 @@ export const getPrograms = async () => {
 }
 
 export const getPayments = async (): Promise<TPaymentSchema[]> => {
-  const payments = await fetch(`${process.env.NEXT_BASE_URL}/api/payments`, {
+  const payments = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/payments`, {
     cache: "no-cache",
   }).then(res => res.json())
 
@@ -58,7 +58,7 @@ export const getPayments = async (): Promise<TPaymentSchema[]> => {
 }
 
 export const getClassById = async (id: string) => {
-  const classes = await fetch(`${process.env.NEXT_BASE_URL}/api/classes/${id}`, {
+  const classes = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/classes/${id}`, {
     cache: "no-cache",
   }).then(res => res.json())
 
