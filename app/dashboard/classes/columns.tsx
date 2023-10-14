@@ -1,7 +1,7 @@
 "use client"
 
 import { ColumnDef } from "@tanstack/react-table"
-import { Edit2Icon, MoreHorizontal, Trash2Icon, UserPlus } from "lucide-react"
+import { ClipboardListIcon, Edit2Icon, MoreHorizontal, Trash2Icon, UserPlus } from "lucide-react"
 import { TClassSchema } from "@/types/Class"
 import {
   DropdownMenu,
@@ -20,6 +20,7 @@ import { openAssignStudentsDialog } from "@/app/store/slices/assignStudentsDialo
 import { openDialog } from "@/app/store/slices/deleteDialogSlice"
 import Link from "next/link"
 import { PATHS } from "@/lib/routes"
+import { openAttendanceSheetDialog } from "@/app/store/slices/attendanceSheetDialog"
 
 const columns: ColumnDef<TClassSchema>[] = [
   {
@@ -28,13 +29,15 @@ const columns: ColumnDef<TClassSchema>[] = [
   },
   {
     accessorKey: "teacher",
-    accessorFn: ({ teacher }) => `${teacher?.firstName} ${teacher?.lastName}`,
+    accessorFn: ({ teacher }) =>
+      teacher ? `${teacher?.firstName} ${teacher?.lastName}` : "Not assigned",
     header: ({ column }) => <DataTableColumnHeader column={column} title='Teacher' />,
   },
   {
     id: "program",
-    accessorFn: ({ program, level }) => `${program?.name} - ${level?.name}`,
-    header: ({ column }) => <DataTableColumnHeader column={column} title='Teacher' />,
+    accessorFn: ({ program, level }) =>
+      program && level ? `${program?.name} - ${level?.name}` : "No program",
+    header: ({ column }) => <DataTableColumnHeader column={column} title='Program/Level' />,
   },
   {
     id: "day",
@@ -114,6 +117,15 @@ const columns: ColumnDef<TClassSchema>[] = [
           >
             <UserPlus className='mr-2 h-4 w-4' />
             Assign Students
+          </DropdownMenuItem>
+          <DropdownMenuItem
+            onClick={e => {
+              e.stopPropagation()
+              store.dispatch(openAttendanceSheetDialog(id!))
+            }}
+          >
+            <ClipboardListIcon className='mr-2 h-4 w-4' />
+            Fill attendance sheet
           </DropdownMenuItem>
           <DropdownMenuItem
             className='text-red-500 hover:text-red-500'

@@ -1,7 +1,7 @@
 "use client"
 
-import { useMemo, useState } from "react"
-import { useRouter } from "next/navigation"
+import { useEffect, useMemo, useState } from "react"
+import { useRouter, useSearchParams } from "next/navigation"
 import { isString } from "lodash"
 import useSWR from "swr"
 // form
@@ -19,13 +19,6 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { ScrollArea } from "@/components/ui/scroll-area"
 
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import { cn } from "@/lib/utils"
 import {
@@ -36,7 +29,7 @@ import {
   CommandItem,
 } from "@/components/ui/command"
 import { Textarea } from "@/components/ui/textarea"
-import { format } from "date-fns"
+import { addDays, format } from "date-fns"
 import { Calendar } from "@/components/ui/calendar"
 import {
   Dialog,
@@ -50,25 +43,17 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Label } from "@/components/ui/label"
 import { TClassSchema } from "@/types/Class"
 import { toast } from "sonner"
+import { DateRange } from "react-day-picker"
 
 const fetcher = (url: string) => fetch(url).then(res => res.json())
 
-const PERIODS = [
-  { label: "January", value: "January" },
-  { label: "February", value: "February" },
-  { label: "March", value: "March" },
-  { label: "April", value: "April" },
-  { label: "May", value: "May" },
-  { label: "June", value: "June" },
-  { label: "July", value: "July" },
-  { label: "August", value: "August" },
-  { label: "September", value: "September" },
-  { label: "October", value: "October" },
-  { label: "November", value: "November" },
-  { label: "December", value: "December" },
-]
-
 export default function AddPaymentForm() {
+  // get student id from url if available
+
+  const searchParams = useSearchParams()
+
+  const studentId = searchParams.get("studentId")
+
   const { data, isLoading } = useSWR<TStudentSchema[], Error>(
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/students`,
     fetcher
@@ -104,6 +89,11 @@ export default function AddPaymentForm() {
 
   const [selectedClassesId, setSelectedClassesId] = useState<string>("")
 
+  const [date, setDate] = useState<DateRange | undefined>({
+    from: new Date(),
+    to: addDays(new Date(), 20),
+  })
+
   const studentsList = useMemo(() => {
     if (isLoading) return []
     if (!data) return []
@@ -115,7 +105,9 @@ export default function AddPaymentForm() {
         ((student?.Kids && student?.Kids?.length > 0) || student.Partner !== null),
       partner: student?.Partner?.id ?? null,
       kids: student?.Kids?.map(kid => kid.id!) ?? [],
-      isAssigned: student.classes !== null,
+      isAssigned: Boolean(
+        student.classes !== null && student.classes && student.classes?.length > 0
+      ),
       expectedClasses: student.expectedClasses,
     }))
   }, [data, isLoading])
@@ -127,7 +119,6 @@ export default function AddPaymentForm() {
       code: "",
       note: "",
       studentId: "",
-      period: "",
       status: "",
       due: new Date(),
     },
@@ -161,8 +152,11 @@ export default function AddPaymentForm() {
         if (errors.studentId) {
           form.setError("studentId", { message: errors.studentId })
         }
-        if (errors.period) {
-          form.setError("period", { message: errors.period })
+        if (errors.from) {
+          toast.error("Invalid start date")
+        }
+        if (errors.to) {
+          toast.error("Invalid end date")
         }
         if (errors.status) {
           form.setError("status", { message: errors.status })
@@ -196,6 +190,16 @@ export default function AddPaymentForm() {
       push("/dashboard/accounting")
     }
   }
+
+  useEffect(() => {
+    if (studentId) {
+      const student = studentsList.find(s => s.value === studentId)
+      if (student) {
+        setSelectedStudent(student)
+        form.setValue("studentId", student.value)
+      }
+    }
+  }, [studentId, studentsList, form])
 
   return (
     <ScrollArea className='h-full w-full !overflow-x-visible'>
@@ -258,40 +262,50 @@ export default function AddPaymentForm() {
             )}
           />
 
-          <FormField
-            control={form.control}
-            name='period'
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Month to pay</FormLabel>
-                <Select
-                  onValueChange={value => {
-                    field.onChange(value)
-                    // set the due date to the 15th of the month of this year
-                    const date = new Date()
-                    date.setMonth(PERIODS.findIndex(period => period.value === value))
-                    date.setDate(15)
-                    form.setValue("due", date)
-                  }}
-                  defaultValue={field.value}
-                >
-                  <FormControl>
-                    <SelectTrigger>
-                      <SelectValue placeholder='Select a verified email to display' />
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent>
-                    {PERIODS.map(period => (
-                      <SelectItem value={period.value} key={period.value}>
-                        {period.label}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+          <FormItem className='flex flex-col'>
+            <FormLabel>Period</FormLabel>
+            <FormControl>
+              <Popover>
+                <PopoverTrigger asChild>
+                  <Button
+                    variant='outline'
+                    className={cn(
+                      "justify-start text-left font-normal",
+                      !date && "text-muted-foreground"
+                    )}
+                  >
+                    <CalendarIcon className='mr-2 h-4 w-4' />
+                    {date?.from ? (
+                      date.to ? (
+                        <>
+                          {format(date.from, "LLL dd, y")} - {format(date.to, "LLL dd, y")}
+                        </>
+                      ) : (
+                        format(date.from, "LLL dd, y")
+                      )
+                    ) : (
+                      <span>Select period</span>
+                    )}
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className='w-auto p-0' align='start'>
+                  <Calendar
+                    initialFocus
+                    mode='range'
+                    defaultMonth={date?.from}
+                    selected={date}
+                    onSelect={value => {
+                      setDate(value)
+                      if (value?.from) form.setValue("from", value.from)
+                      if (value?.to) form.setValue("to", value.to)
+                    }}
+                    numberOfMonths={2}
+                  />
+                </PopoverContent>
+              </Popover>
+            </FormControl>
+            <FormMessage />
+          </FormItem>
 
           <FormField
             control={form.control}
@@ -319,7 +333,7 @@ export default function AddPaymentForm() {
                       mode='single'
                       selected={field.value}
                       onSelect={field.onChange}
-                      disabled={date => date < new Date() || date < new Date("1900-01-01")}
+                      disabled={d => d < new Date() || d < new Date("1900-01-01")}
                       initialFocus
                     />
                   </PopoverContent>
@@ -355,6 +369,7 @@ export default function AddPaymentForm() {
                   <Input
                     {...field}
                     type='number'
+                    value={field.value || 0}
                     onChange={e => field.onChange(Number(e.target.value))}
                   />
                 </FormControl>
@@ -373,6 +388,7 @@ export default function AddPaymentForm() {
                   <Input
                     {...field}
                     type='number'
+                    value={field.value || 0}
                     onChange={e => field.onChange(Number(e.target.value))}
                   />
                 </FormControl>
@@ -446,7 +462,7 @@ export default function AddPaymentForm() {
                         `Expected N°: ${
                           selectedStudent.expectedClasses.findIndex(ec => ec === c.id) + 1
                         }. `}
-                      {c.title} - {c.program.name} {c.level.name} - {c.day} {c.startTime} to{" "}
+                      {c.title} - {c.program?.name} {c.level?.name} - {c.day} {c.startTime} to{" "}
                       {c.endTime}
                     </Label>
                   </div>

@@ -20,8 +20,8 @@ model Teacher {
   id          String    @id @default(uuid())
   firstName   String
   lastName    String
-  email       String    @unique
-  password    String
+  username    String?   @unique
+  password    String?
   address     String?
   phoneNumber String?
   Class       Class[]
@@ -80,12 +80,12 @@ model Class {
   id          String    @id @default(uuid())
   title       String    @unique
   description String?
-  teacherId   String
-  teacher     Teacher   @relation(fields: [teacherId], references: [id], onDelete: NoAction)
-  programId   String
-  program     Program   @relation(fields: [programId], references: [id], onDelete: NoAction)
-  levelId     String
-  level       Level     @relation(fields: [levelId], references: [id], onDelete: NoAction)
+  teacherId   String?
+  teacher     Teacher?  @relation(fields: [teacherId], references: [id], onDelete: NoAction)
+  programId   String?
+  program     Program?  @relation(fields: [programId], references: [id], onDelete: NoAction)
+  levelId     String?
+  level       Level?    @relation(fields: [levelId], references: [id], onDelete: NoAction)
   startDate   DateTime
   endDate     DateTime
   day         String
@@ -100,14 +100,14 @@ model Session {
   id          String    @id @default(uuid())
   title       String
   description String?
-  teacherId   String
-  teacher     Teacher   @relation(fields: [teacherId], references: [id], onDelete: NoAction)
+  teacherId   String?
+  teacher     Teacher?  @relation(fields: [teacherId], references: [id], onDelete: NoAction)
   students    Student[]
   attendance  String[]  @default([])
-  programId   String
-  program     Program   @relation(fields: [programId], references: [id], onDelete: NoAction)
-  levelId     String
-  level       Level     @relation(fields: [levelId], references: [id], onDelete: NoAction)
+  programId   String?
+  program     Program?  @relation(fields: [programId], references: [id], onDelete: NoAction)
+  levelId     String?
+  level       Level?    @relation(fields: [levelId], references: [id], onDelete: NoAction)
   start       DateTime
   end         DateTime
   color       String?
@@ -121,6 +121,7 @@ model Program {
   id          String    @id @default(uuid())
   name        String
   description String?
+  code        String    @unique
   Class       Class[]
   levels      Level[]
   Session     Session[]
@@ -144,11 +145,12 @@ model Payment {
   amount      Float
   total       Float
   date        DateTime
-  period      String
+  from        DateTime
+  to          DateTime
   status      String
-  discount    Float
+  discount    Float?
   note        String?
-  payedAmount Float
+  payedAmount Float?
   due         DateTime
   payedDate   DateTime?
   students    Student[]

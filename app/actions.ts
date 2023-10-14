@@ -37,23 +37,26 @@ export const addTeacher = async (
   let zodErrors: ZodErrors<TTeacherSchema> = {}
   if (result.success) {
     try {
-      const { email, firstName, lastName, password, address, phoneNumber } = result.data
-      const exist = await prisma.teacher.findUnique({
-        where: {
-          email,
-        },
-      })
-      if (exist) {
-        zodErrors = { ...zodErrors, email: "Email already exists" }
-        return { errors: zodErrors, status: 400 }
+      const { username, firstName, lastName, password, address, phoneNumber } = result.data
+      if (username) {
+        const exist = await prisma.teacher.findUnique({
+          where: {
+            username,
+          },
+        })
+        if (exist) {
+          zodErrors = { ...zodErrors, username: "Email already exists" }
+          return { errors: zodErrors, status: 400 }
+        }
       }
-      const hashedPassword = await bcrypt.hash(password, 10)
+
+      const hashedPassword = await bcrypt.hash(password ?? "", 10)
       await prisma.teacher.create({
         data: {
           firstName,
           lastName,
-          email,
-          password: hashedPassword,
+          username,
+          password: password ? hashedPassword : null,
           address,
           phoneNumber,
         },
@@ -113,20 +116,37 @@ export const updateTeacher = async (
 
   if (result.success) {
     try {
-      const { email, firstName, lastName, password, address, phoneNumber } = result.data
+      const { firstName, lastName, password, address, phoneNumber, username } = result.data
 
-      const exist = await prisma.teacher.findUnique({
-        where: {
-          email,
-        },
-      })
+      if (username) {
+        const exist = await prisma.teacher.findUnique({
+          where: {
+            username,
+          },
+        })
 
-      if (exist && exist.id !== id) {
-        zodErrors = { ...zodErrors, email: "Email already exists" }
-        return { errors: zodErrors, status: 400 }
+        if (exist && exist.id !== id) {
+          zodErrors = { ...zodErrors, username: "Username already exists" }
+          return { errors: zodErrors, status: 400 }
+        }
       }
 
-      const hashedPassword = await bcrypt.hash(password, 10)
+      if (password) {
+        const hashedPassword = await bcrypt.hash(password, 10)
+        await prisma.teacher.update({
+          where: {
+            id,
+          },
+          data: {
+            firstName,
+            lastName,
+            username,
+            password: hashedPassword,
+            address,
+            phoneNumber,
+          },
+        })
+      }
 
       await prisma.teacher.update({
         where: {
@@ -135,8 +155,7 @@ export const updateTeacher = async (
         data: {
           firstName,
           lastName,
-          email,
-          password: hashedPassword,
+          username,
           address,
           phoneNumber,
         },
@@ -497,12 +516,14 @@ export const addClass = async (formData: TClassSchema): Promise<TActionReturn<TC
           id: string
           title: string
           description: string | null
-          teacherId: string
-          programId: string
-          levelId: string
+          teacherId: string | null
+          attendance: string[]
+          programId: string | null
+          levelId: string | null
           start: Date
           end: Date
           color: string | null
+          classId: string | null
         },
         never,
         DefaultArgs
@@ -513,9 +534,9 @@ export const addClass = async (formData: TClassSchema): Promise<TActionReturn<TC
           id: string
           title: string
           description: string | null
-          teacherId: string
-          programId: string
-          levelId: string
+          teacherId: string | null
+          programId: string | null
+          levelId: string | null
           startDate: Date
           endDate: Date
           day: string
@@ -562,9 +583,9 @@ export const addClass = async (formData: TClassSchema): Promise<TActionReturn<TC
                 title,
                 description,
                 color,
-                teacherId,
-                programId,
-                levelId,
+                teacherId: teacherId || undefined,
+                programId: programId || undefined,
+                levelId: levelId || undefined,
                 start: new Date(
                   date.setHours(Number(startTime.split(":")[0]), Number(startTime.split(":")[1]))
                 ),
@@ -585,9 +606,9 @@ export const addClass = async (formData: TClassSchema): Promise<TActionReturn<TC
               startDate,
               endDate,
               description,
-              levelId,
-              programId,
-              teacherId,
+              teacherId: teacherId || undefined,
+              programId: programId || undefined,
+              levelId: levelId || undefined,
               color,
             },
           })
@@ -602,7 +623,7 @@ export const addClass = async (formData: TClassSchema): Promise<TActionReturn<TC
       return { status: 200, success: true }
     } catch (error) {
       // eslint-disable-next-line no-console
-      console.log("🚀 ~ file: actions.ts:531 ~ addClass ~ error:", error)
+      console.log("🚀 ~ file: actions.ts:625 ~ addClass ~ error:", error)
 
       return { status: 500, success: false, errors: "Internal Server Error" }
     }
@@ -635,12 +656,14 @@ export const updateClass = async (
           id: string
           title: string
           description: string | null
-          teacherId: string
-          programId: string
-          levelId: string
+          teacherId: string | null
+          attendance: string[]
+          programId: string | null
+          levelId: string | null
           start: Date
           end: Date
           color: string | null
+          classId: string | null
         },
         never,
         DefaultArgs
@@ -828,10 +851,11 @@ export const addProgram = async (
 
   if (result.success) {
     try {
-      const { name, description, levels } = result.data
+      const { name, description, levels, code } = result.data
 
       await prisma.program.create({
         data: {
+          code: code.toUpperCase(),
           name,
           description,
           levels: {
@@ -887,16 +911,21 @@ export const addPayment = async (
       date,
       discount,
       payedAmount,
-      period,
+      from,
+      to,
       studentId,
       note,
       due,
       kidsIds,
       partnerId,
     } = result.data
-    const total = Number(amount) - Number(discount)
+    const total = Number(amount) - Number(discount || 0)
     const status =
-      !payedAmount || payedAmount === 0 ? "unpaid" : payedAmount === total ? "paid" : "partial"
+      !payedAmount || payedAmount === 0
+        ? "not paid"
+        : payedAmount === total
+        ? "completed"
+        : "incomplete"
 
     const studentsIds = [studentId]
 
@@ -930,15 +959,40 @@ export const addPayment = async (
         })
     }
 
+    const student = await prisma.student.findUnique({
+      where: {
+        id: studentId,
+      },
+      select: {
+        classes: {
+          select: {
+            program: {
+              select: {
+                code: true,
+              },
+            },
+          },
+        },
+      },
+    })
+
+    const programCode = student?.classes[0]?.program?.code ?? "UKN"
+
+    const code =
+      partnerId || kidsIds
+        ? `INV-FM-${new Date().getFullYear()}-${uuidv4().slice(0, 4).toUpperCase()}`
+        : `INV-${programCode}-${new Date().getFullYear()}-${uuidv4().slice(0, 4).toUpperCase()}`
+
     try {
       await prisma.payment.create({
         data: {
           amount: Number(amount),
-          code: `INV-${new Date().getFullYear()}-${uuidv4().slice(0, 4).toUpperCase()}`,
+          code,
           date,
           discount: Number(discount),
           payedAmount: Number(payedAmount),
-          period,
+          from,
+          to,
           status,
           note,
           total,
@@ -970,7 +1024,7 @@ export const addPayment = async (
       return { status: 200, success: true }
     } catch (error) {
       // eslint-disable-next-line no-console
-      console.log("🚀 ~ file: actions.ts:711 ~ error:", error)
+      console.log("🚀 ~ file: actions.ts:1022 ~ error:", error)
       return { status: 500, success: false, errors: "Internal Server Error" }
     }
   }

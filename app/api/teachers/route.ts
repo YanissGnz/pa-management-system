@@ -6,7 +6,7 @@ export async function GET() {
       id: true,
       firstName: true,
       lastName: true,
-      email: true,
+      username: true,
       address: true,
       phoneNumber: true,
     },

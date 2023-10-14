@@ -43,10 +43,23 @@ const handleCompletePayment = async (id: string) => {
 
 const columns: ColumnDef<TPaymentSchema>[] = [
   {
+    accessorKey: "code",
+    header: ({ column }) => <DataTableColumnHeader column={column} title='Code' />,
+  },
+  {
     id: "student",
-    accessorFn: ({ students }) => students && students[0].fullName,
+    accessorFn: ({ students }) => students && students.length > 0 && students[0].fullName,
     header: ({ column }) => <DataTableColumnHeader column={column} title='Student' />,
   },
+  {
+    id: "class",
+    accessorFn: ({ students }) =>
+      students && students[0] && students[0].classes && students[0].classes[0]
+        ? students[0].classes[0].title
+        : "No class",
+    header: ({ column }) => <DataTableColumnHeader column={column} title='Class' />,
+  },
+
   {
     accessorKey: "date",
     header: ({ column }) => <DataTableColumnHeader column={column} title='Created At' />,
@@ -66,22 +79,17 @@ const columns: ColumnDef<TPaymentSchema>[] = [
     }) => format(new Date(due), "PP"),
   },
   {
-    accessorKey: "total",
-    header: ({ column }) => <DataTableColumnHeader column={column} title='Total to pay' />,
+    id: "paid",
+    header: ({ column }) => <DataTableColumnHeader column={column} title='Paid / Total' />,
     cell: ({
       row: {
-        original: { total },
+        original: { total, payedAmount },
       },
-    }) => <span className='font-semibold'>{total} Da</span>,
-  },
-  {
-    accessorKey: "payedAmount",
-    header: ({ column }) => <DataTableColumnHeader column={column} title='Payed Amount' />,
-    cell: ({
-      row: {
-        original: { payedAmount },
-      },
-    }) => <span className='font-semibold'>{payedAmount} Da</span>,
+    }) => (
+      <p>
+        {payedAmount || 0} / <span className='font-semibold'>{total} Da</span>
+      </p>
+    ),
   },
   {
     accessorKey: "status",

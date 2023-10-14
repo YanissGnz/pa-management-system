@@ -10,17 +10,29 @@ export async function GET() {
       code: true,
       total: true,
       date: true,
-      period: true,
+      from: true,
+      to: true,
       payedAmount: true,
       payedDate: true,
       status: true,
       due: true,
       students: {
-        include: {
+        select: {
+          fullName: true,
           classes: {
             select: {
               id: true,
               title: true,
+              program: {
+                select: {
+                  name: true,
+                },
+              },
+              level: {
+                select: {
+                  name: true,
+                },
+              },
             },
           },
         },

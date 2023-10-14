@@ -13,9 +13,9 @@ export const classSchema = z.object({
   id: z.string().optional(),
   title: z.string().min(2, "Class title must be at least 2 characters long"),
   description: z.string().optional(),
-  teacherId: z.string(),
-  programId: z.string(),
-  levelId: z.string(),
+  teacherId: z.string().optional().nullable(),
+  programId: z.string().optional().nullable(),
+  levelId: z.string().optional().nullable(),
   studentsIds: z.array(z.string()).optional(),
   classSessions: z.array(classDaysSchema).min(1, "Class must have at least 1 classDays"),
   startDate: z.date(),
@@ -26,17 +26,17 @@ export const classSchema = z.object({
 export type TClassDay = z.infer<typeof classDaysSchema>
 
 export type TClassSchema = z.infer<typeof classSchema> & {
-  teacher: {
+  teacher?: {
     id: string
     firstName: string
     lastName: string
   }
-  students: Partial<Student>[]
-  program: {
+  students: Student[]
+  program?: {
     id: string
     name: string
   }
-  level: {
+  level?: {
     id: string
     name: string
   }

@@ -33,13 +33,14 @@ import {
   ContextMenuLabel,
   ContextMenuTrigger,
 } from "@/components/ui/context-menu"
-import { Edit2Icon, Trash2Icon, UserPlus } from "lucide-react"
+import { ClipboardListIcon, Edit2Icon, Trash2Icon, UserPlus } from "lucide-react"
 import { TClassSchema } from "@/types/Class"
 import { useAppDispatch } from "@/app/store/hooks"
 import { openAssignStudentsDialog } from "@/app/store/slices/assignStudentsDialog"
 import { openDialog } from "@/app/store/slices/deleteDialogSlice"
 import Link from "next/link"
 import { PATHS } from "@/lib/routes"
+import { openAttendanceSheetDialog } from "@/app/store/slices/attendanceSheetDialog"
 import DataTableToolbar from "./data-table-toolbar"
 
 const fuzzyFilter: FilterFn<TClassSchema> = (row, columnId, value, addMeta) => {
@@ -143,6 +144,15 @@ export default function DataTable<TValue>({ columns, data }: DataTableProps<TVal
                     >
                       <UserPlus className='mr-2 h-4 w-4' />
                       Assign Students
+                    </ContextMenuItem>
+                    <ContextMenuItem
+                      onClick={e => {
+                        e.stopPropagation()
+                        dispatch(openAttendanceSheetDialog(row.original.id!))
+                      }}
+                    >
+                      <ClipboardListIcon className='mr-2 h-4 w-4' />
+                      Fill attendance sheet
                     </ContextMenuItem>
                     <ContextMenuItem
                       className='text-red-500 hover:text-red-500'

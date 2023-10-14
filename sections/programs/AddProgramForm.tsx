@@ -24,6 +24,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import { Calendar } from "@/components/ui/calendar"
 import { toast } from "sonner"
+import { PATHS } from "@/lib/routes"
 
 const levelInitialState: TLevelSchema = {
   name: "",
@@ -47,6 +48,7 @@ export default function AddProgramForm() {
     defaultValues: {
       name: "",
       description: "",
+      code: "",
     },
   })
   async function onSubmit(values: TProgramSchema) {
@@ -66,7 +68,7 @@ export default function AddProgramForm() {
       }
     } else {
       toast.success("Program added successfully")
-      push("/dashboard/programs")
+      push(PATHS.programs.root)
       form.reset()
     }
   }
@@ -84,13 +86,27 @@ export default function AddProgramForm() {
   return (
     <ScrollArea className='h-full w-full !overflow-x-visible'>
       <FormProvider {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className='grid w-full grid-cols-2 gap-5 px-2'>
+        <form onSubmit={form.handleSubmit(onSubmit)} className='grid w-full grid-cols-3 gap-5 px-2'>
           <FormField
             control={form.control}
             name='name'
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Name</FormLabel>
+                <FormControl>
+                  <Input {...field} />
+                </FormControl>
+
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name='code'
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Code</FormLabel>
                 <FormControl>
                   <Input {...field} />
                 </FormControl>
@@ -112,8 +128,8 @@ export default function AddProgramForm() {
               </FormItem>
             )}
           />
-          <div className='col-span-2 mb-2 grid grid-cols-3 gap-5 px-2'>
-            <h1 className='col-span-4 border-b text-base font-bold'>Add levels</h1>
+          <div className='col-span-3 mb-2 grid grid-cols-3 gap-5 px-2'>
+            <h1 className='col-span-3 border-b text-base font-bold'>Add levels</h1>
             <FormItem>
               <FormLabel>Name</FormLabel>
               <FormControl>
@@ -196,14 +212,14 @@ export default function AddProgramForm() {
               <FormMessage />
             </FormItem>
           </div>
-          <div className='col-span-2 flex justify-end'>
+          <div className='col-span-3 flex justify-end'>
             <Button type='button' variant='outline' onClick={handleAddLevel}>
               Add level
             </Button>
           </div>
-          <div className='col-span-2'>
+          <div className='col-span-3'>
             <h1 className='border-b text-base font-bold'>Levels</h1>
-            <div className='mt-2 gap-5'>
+            <div className='mt-2 space-y-2'>
               {levels.map((l, i) => (
                 <div key={i} className='flex items-start justify-between rounded-md border p-2'>
                   <div className='flex flex-1 flex-col gap-2'>
@@ -230,7 +246,7 @@ export default function AddProgramForm() {
               {/* delete level */}
             </div>
           </div>
-          <div className='col-span-2 flex items-center justify-end gap-2'>
+          <div className='col-span-3 flex items-center justify-end gap-2'>
             <Button type='submit' disabled={form.formState.isSubmitting}>
               {form.formState.isSubmitting && <Loader className='animate-spin' />}
               Submit

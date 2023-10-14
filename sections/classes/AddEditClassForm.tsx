@@ -190,7 +190,7 @@ export default function AddEditClassForm({
 
   useEffect(() => {
     if (isEdit && currentClass) {
-      setSelectedProgramId(currentClass.programId)
+      setSelectedProgramId(currentClass.programId ?? "")
     }
   }, [currentClass, isEdit, form])
 

@@ -65,9 +65,9 @@ const InvoicePDFView = ({ payment }: { payment: TPaymentSchema }) => {
           <Image src={logo.src} style={styles.logo} />
           <View style={styles.statusView}>
             <Text>
-              {payment.status === "paid" && <Text style={styles.status}>Paid</Text>}
-              {payment.status === "unpaid" && <Text style={styles.status}>Pending</Text>}
-              {payment.status === "partial" && <Text style={styles.status}>Partial</Text>}
+              {payment.status === "complete" && <Text style={styles.status}>Complete</Text>}
+              {payment.status === "not paid" && <Text style={styles.status}>Not paid</Text>}
+              {payment.status === "incomplete" && <Text style={styles.status}>Incomplete</Text>}
             </Text>
             {/* <Text style={styles.paymentTitle}>{payment.paymentTitle}</Text> */}
           </View>
@@ -90,7 +90,7 @@ const InvoicePDFView = ({ payment }: { payment: TPaymentSchema }) => {
           }}
         >
           <View style={{ display: "flex", flexDirection: "column", gap: 4, flex: 0.5 }}>
-            <Text style={{ fontSize: 12, fontWeight: "bold", marginBottom: 5 }}>Created Date</Text>
+            <Text style={{ fontSize: 12, fontWeight: "bold", marginBottom: 5 }}>Created At</Text>
             <Text style={{ fontSize: 10 }}>
               {format(new Date(payment.date), "dd/MM/yyyy HH:mm")}
             </Text>
@@ -141,58 +141,56 @@ const InvoicePDFView = ({ payment }: { payment: TPaymentSchema }) => {
             </View>
 
             <View style={{ display: "flex", flexDirection: "column", gap: 4, flex: 0.2 }}>
-              <Text style={{ fontSize: 12 }}>{student.classes?.map(c => c.title).join(", ")}</Text>
+              <Text style={{ fontSize: 12 }}>
+                {student.classes && student.classes?.length > 0
+                  ? student.classes?.map(c => c.title).join(", ")
+                  : "No class"}
+              </Text>
             </View>
           </View>
         ))}
         {/* Subtotal, Tax, Total */}
         {/* {payment.discount && ( */}
-        <View
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "space-between",
-            alignItems: "flex-end",
-            marginBottom: 20,
-          }}
-        >
-          <View style={{ display: "flex", flexDirection: "column", gap: 4, flex: 0.1 }}></View>
-          <View style={{ display: "flex", flexDirection: "column", gap: 4, flex: 0.1 }}></View>
-          <View style={{ display: "flex", flexDirection: "column", gap: 4, flex: 0.3 }}></View>
+        {payment.discount && (
           <View
             style={{
               display: "flex",
-              flexDirection: "column",
-              justifyContent: "flex-end",
-              gap: 4,
-              flex: 0.3,
+              flexDirection: "row",
+              justifyContent: "space-between",
+              alignItems: "flex-end",
+              marginBottom: 20,
             }}
           >
-            <Text
+            <View style={{ display: "flex", flexDirection: "column", gap: 4, flex: 0.1 }}></View>
+            <View style={{ display: "flex", flexDirection: "column", gap: 4, flex: 0.1 }}></View>
+            <View style={{ display: "flex", flexDirection: "column", gap: 4, flex: 0.4 }}></View>
+            <View style={{ display: "flex", flexDirection: "column", gap: 4, flex: 0.2 }}>
+              <Text
+                style={{
+                  fontSize: 14,
+                  fontWeight: "bold",
+                  marginBottom: 5,
+                  alignItems: "flex-end",
+                  justifyContent: "flex-end",
+                  display: "flex",
+                }}
+              >
+                Discount
+              </Text>
+            </View>
+            <View
               style={{
-                fontSize: 14,
-                fontWeight: "bold",
-                marginBottom: 5,
+                display: "flex",
                 alignItems: "flex-end",
-                justifyContent: "flex-end",
+                flexDirection: "column",
+                gap: 4,
+                flex: 0.2,
               }}
             >
-              Discount
-            </Text>
+              <Text style={{ fontSize: 14 }}>{payment.discount} Da</Text>
+            </View>
           </View>
-          <View
-            style={{
-              display: "flex",
-              alignItems: "flex-end",
-              flexDirection: "column",
-              gap: 4,
-              flex: 0.2,
-            }}
-          >
-            <Text style={{ fontSize: 14 }}>{payment.discount} Da</Text>
-          </View>
-        </View>
-        ){/* } */}
+        )}
         <View
           style={{
             display: "flex",

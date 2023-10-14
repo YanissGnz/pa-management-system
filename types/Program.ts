@@ -11,6 +11,7 @@ const levelSchema = z.object({
 export const programSchema = z.object({
   id: z.string().optional(),
   name: z.string().min(2, "Program name must be at least 2 characters long"),
+  code: z.string(),
   description: z.string().optional(),
   levels: z.array(levelSchema).min(1, "Program must have at least 1 level"),
 })

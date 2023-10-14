@@ -1,7 +1,14 @@
 "use client"
 
 import { ColumnDef } from "@tanstack/react-table"
-import { Edit2Icon, MoreHorizontal, ReplaceIcon, Trash2Icon, UserPlus } from "lucide-react"
+import {
+  CircleDollarSignIcon,
+  Edit2Icon,
+  MoreHorizontal,
+  ReplaceIcon,
+  Trash2Icon,
+  UserPlus,
+} from "lucide-react"
 import { TStudentSchema } from "@/types/Student"
 import {
   DropdownMenu,
@@ -17,6 +24,7 @@ import { store } from "@/app/store"
 import { openDialog } from "@/app/store/slices/deleteDialogSlice"
 import { openAssignDialog } from "@/app/store/slices/assignToClassDialog"
 import Link from "next/link"
+import { PATHS } from "@/lib/routes"
 
 const columns: ColumnDef<TStudentSchema>[] = [
   {
@@ -184,9 +192,15 @@ const columns: ColumnDef<TStudentSchema>[] = [
           <DropdownMenuContent align='end'>
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuItem asChild onClick={e => e.stopPropagation()}>
-              <Link href={`/dashboard/students/edit/${original.id}`}>
+              <Link href={PATHS.students.edit(original.id)}>
                 <Edit2Icon className='mr-2 h-4 w-4' />
                 Edit
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem asChild onClick={e => e.stopPropagation()}>
+              <Link href={`${PATHS.accounting.create}?studentId=${original.id}`}>
+                <CircleDollarSignIcon className='mr-2 h-4 w-4' />
+                Add payment
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem

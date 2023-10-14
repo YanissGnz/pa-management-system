@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react"
 import { Table } from "@tanstack/react-table"
 import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
+import { XIcon } from "lucide-react"
 import DataTableViewOptions from "./data-table-view-options"
 import { DataTableFacetedFilter } from "./data-table-faceted-filter"
 
@@ -52,7 +54,7 @@ export default function DataTableToolbar<TData>({
   globalFilter,
   setGlobalFilter,
 }: DataTableToolbarProps<TData>) {
-  //   const isFiltered = table.getState().columnFilters.length > 0
+  const isFiltered = table.getState().columnFilters.length > 0
 
   return (
     <div className='flex items-center justify-between'>
@@ -72,13 +74,6 @@ export default function DataTableToolbar<TData>({
           />
         )}
 
-        {/* {table.getColumn("priority") && (
-          <DataTableFacetedFilter
-            column={table.getColumn("priority")}
-            title='Priority'
-            options={priorities}
-          />
-        )}
         {isFiltered && (
           <Button
             variant='ghost'
@@ -86,9 +81,9 @@ export default function DataTableToolbar<TData>({
             className='h-8 px-2 lg:px-3'
           >
             Reset
-            <Cross2Icon className='ml-2 h-4 w-4' />
+            <XIcon className='ml-2 h-4 w-4' />
           </Button>
-        )} */}
+        )}
       </div>
       <DataTableViewOptions table={table} />
     </div>
