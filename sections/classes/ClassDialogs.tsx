@@ -15,7 +15,7 @@ import { closeAssignStudentsDialog } from "@/app/store/slices/assignStudentsDial
 import useSWR from "swr"
 import { TStudentSchema } from "@/types/Student"
 import { Button, buttonVariants } from "@/components/ui/button"
-import { LoaderIcon } from "lucide-react"
+import { ArrowLeftIcon, LoaderIcon } from "lucide-react"
 import { toast } from "sonner"
 import { capitalize } from "lodash"
 import { assignStudentsToClass, deleteClass, updateSessionAttendance } from "@/app/actions"
@@ -329,8 +329,23 @@ export default function ClassDialogs() {
         }}
       >
         <SheetContent side='bottom' className='flex h-screen flex-col p-0'>
-          <SheetHeader className='px-2'>
-            <SheetTitle>Fill attendance sheet</SheetTitle>
+          <SheetHeader className='px-2 pt-2'>
+            <SheetTitle className='flex items-center'>
+              <Button
+                variant='outline'
+                className='mr-2'
+                onClick={() => {
+                  setAttendanceOpen(false)
+                  setTimeout(() => {
+                    dispatch(closeAttendanceSheetDialog())
+                  }, 300)
+                }}
+              >
+                <ArrowLeftIcon className='mr-1 h-5 w-5' />
+                Back
+              </Button>
+              Fill attendance sheet
+            </SheetTitle>
           </SheetHeader>
           {studentsLoading || sessionLoading || classLoading ? (
             <div className='flex h-full items-center justify-center'>
