@@ -1,16 +1,16 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import { useRouter } from "next/navigation"
 import { isString } from "lodash"
-import { addDays, format } from "date-fns"
+import { format } from "date-fns"
 import { DateRange } from "react-day-picker"
 // form
 import { useForm, FormProvider } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { cn } from "@/lib/utils"
 // actions
-import { addProgram } from "@/app/actions"
+import { addProgram, updateProgram } from "@/app/actions"
 // components
 import { CalendarIcon, Loader, Trash2Icon } from "lucide-react"
 import { FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/form"
@@ -33,26 +33,45 @@ const levelInitialState: TLevelSchema = {
   price: 0,
 }
 
-export default function AddProgramForm() {
+export default function AddEditProgramForm({
+  isEdit = false,
+  currentProgram,
+}: {
+  isEdit?: boolean
+  currentProgram?: TProgramSchema
+}) {
   const { push } = useRouter()
 
   const [level, setLevel] = useState<TLevelSchema>(levelInitialState)
   const [levels, setLevels] = useState<TLevelSchema[]>([])
   const [date, setDate] = useState<DateRange | undefined>({
-    from: new Date(),
-    to: addDays(new Date(), 20),
+    from: undefined,
+    to: undefined,
   })
 
-  const form = useForm<TProgramSchema>({
-    resolver: zodResolver(programSchema),
-    defaultValues: {
+  const defaultValues = useMemo(() => {
+    if (isEdit && currentProgram) {
+      return {
+        name: currentProgram.name,
+        description: currentProgram.description,
+        code: currentProgram.code,
+      }
+    }
+    return {
       name: "",
       description: "",
       code: "",
-    },
+    }
+  }, [currentProgram, isEdit])
+
+  const form = useForm<TProgramSchema>({
+    resolver: zodResolver(programSchema),
+    defaultValues,
   })
   async function onSubmit(values: TProgramSchema) {
-    const result = await addProgram(values)
+    const result = await (isEdit
+      ? updateProgram(values, currentProgram?.id ?? "")
+      : addProgram(values))
     if (result.errors) {
       const { errors } = result
 
@@ -67,9 +86,9 @@ export default function AddProgramForm() {
         }
       }
     } else {
-      toast.success("Program added successfully")
-      push(PATHS.programs.root)
+      toast.success(isEdit ? "Program updated successfully" : "Program added successfully")
       form.reset()
+      push(PATHS.programs.root)
     }
   }
 
@@ -80,8 +99,20 @@ export default function AddProgramForm() {
       setLevels(prev => [...prev, newLevel.data])
       form.setValue("levels", [...levels, newLevel.data])
       setLevel(levelInitialState)
+      setDate({
+        from: undefined,
+        to: undefined,
+      })
     } else toast.error(newLevel.error.issues.map(issue => issue.message).join(", "))
   }
+
+  useEffect(() => {
+    if (isEdit && currentProgram) {
+      setLevels(currentProgram.levels)
+      form.setValue("levels", currentProgram.levels)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentProgram, isEdit])
 
   return (
     <ScrollArea className='h-full w-full !overflow-x-visible'>
@@ -236,7 +267,8 @@ export default function AddProgramForm() {
                     variant={"destructive"}
                     onClick={() => {
                       setLevels(prev => prev.filter((_, index) => index !== i))
-                      form.setValue("levels", [...levels])
+
+                      form.setValue("levels", [...levels.filter((_, index) => index !== i)])
                     }}
                   >
                     <Trash2Icon size={18} />

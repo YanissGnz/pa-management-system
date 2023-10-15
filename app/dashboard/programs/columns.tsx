@@ -14,14 +14,28 @@ import DataTableColumnHeader from "@/components/ui/data-table-column"
 import { deleteProgram } from "@/app/actions"
 import { TProgramSchema } from "@/types/Program"
 import { toast } from "sonner"
+import Link from "next/link"
+import { PATHS } from "@/lib/routes"
 
 const handleDelete = async (id: string) => {
-  const result = await deleteProgram(id)
-  if (result.success) {
-    toast.success("Program deleted successfully")
-  } else {
-    toast.error("Program deletion failed")
-  }
+  const promise = new Promise((resolve, reject) => {
+    deleteProgram(id)
+      .then(result => {
+        if (result.success) {
+          resolve("Program deleted successfully")
+        } else {
+          reject()
+        }
+      })
+      .catch(() => {
+        reject()
+      })
+  })
+  toast.promise(promise, {
+    loading: "Deleting program...",
+    success: () => "Program deleted successfully",
+    error: "Error deleting program",
+  })
 }
 
 const columns: ColumnDef<TProgramSchema>[] = [
@@ -55,9 +69,11 @@ const columns: ColumnDef<TProgramSchema>[] = [
         </DropdownMenuTrigger>
         <DropdownMenuContent align='end'>
           <DropdownMenuLabel>Actions</DropdownMenuLabel>
-          <DropdownMenuItem>
-            <Edit2Icon className='mr-2 h-4 w-4' />
-            Edit
+          <DropdownMenuItem asChild>
+            <Link href={PATHS.programs.edit(id!)}>
+              <Edit2Icon className='mr-2 h-4 w-4' />
+              Edit
+            </Link>
           </DropdownMenuItem>
           <DropdownMenuItem
             onClick={() => handleDelete(id as string)}

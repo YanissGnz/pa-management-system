@@ -882,6 +882,22 @@ export const addProgram = async (
 
 export const deleteProgram = async (id: string) => {
   try {
+
+    const program = await prisma.program.findUnique({
+      where: { id },
+      include: { levels: true },
+    })
+
+    const levelsIds = program?.levels.map(l => l.id) ?? []
+
+    await prisma.level.deleteMany({
+      where: {
+        id: {
+          in: levelsIds,
+        },
+      },
+    })
+
     await prisma.program.delete({ where: { id } })
 
     revalidateTag("programs")
@@ -893,6 +909,74 @@ export const deleteProgram = async (id: string) => {
     return { status: 500, success: false, errors: "Program deletion failed" }
   }
 }
+
+export const updateProgram = async(
+  formData: TProgramSchema,
+  id: string
+): Promise<TActionReturn<TProgramSchema>> => {
+  const result = programSchema.safeParse(formData)
+
+  let zodErrors: ZodErrors<TClassSchema> = {}
+
+  if (result.success) {
+    try {
+      const { name, description, levels, code } = result.data
+      console.log("🚀 ~ file: actions.ts:908 ~ levels:", levels)
+
+      const oldProgram = await prisma.program.findUnique({
+        where: { id },
+        include: { levels: true },
+      })
+
+      const levelsIds = oldProgram?.levels.map(l => l.id) ?? []
+      console.log("🚀 ~ file: actions.ts:915 ~ levelsIds:", levelsIds)
+
+      const levelsToDelete = levelsIds.filter(level => !levels.map(l => l.id).includes(level))
+      console.log("🚀 ~ file: actions.ts:917 ~ levelsToDelete:", levelsToDelete)
+
+      const levelsToCreate = levels.filter(level => !levelsIds.includes(level.id ?? ""))
+
+      await prisma.level.deleteMany({
+        where: {
+          id: {
+            in: levelsToDelete,
+          },
+        },
+      })
+
+      await prisma.program.update({
+        where: { id },
+        data: {
+          code: code.toUpperCase(),
+          name,
+          description,
+          levels: {
+            create: levelsToCreate,
+            deleteMany: {
+              id: {
+                in: levelsToDelete,
+              },
+            },
+          },
+        },
+      })
+
+      revalidateTag("programs")
+
+      return { status: 200, success: true }
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.log("🚀 ~ file: actions.ts:946 ~ error:", error)
+      return { status: 500, success: false, errors: "Internal Server Error" }
+    }
+  }
+
+  result.error.issues.forEach(issue => {
+    zodErrors = { ...zodErrors, [issue.path[0]]: issue.message }
+  })
+  return { errors: zodErrors, status: 400 }
+}
+
 // Payments Actions
 
 export const addPayment = async (

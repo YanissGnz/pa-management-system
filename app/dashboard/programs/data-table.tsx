@@ -26,6 +26,19 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import DataTablePagination from "@/components/ui/data-table-paggination"
+import {
+  ContextMenu,
+  ContextMenuContent,
+  ContextMenuItem,
+  ContextMenuLabel,
+  ContextMenuTrigger,
+} from "@/components/ui/context-menu"
+import Link from "next/link"
+import { PATHS } from "@/lib/routes"
+import { Edit2Icon, Trash2Icon } from "lucide-react"
+import { TProgramSchema } from "@/types/Program"
+import { toast } from "sonner"
+import { deleteProgram } from "@/app/actions"
 import DataTableToolbar from "./data-table-toolbar"
 
 const fuzzyFilter: FilterFn<unknown> = (row, columnId, value, addMeta) => {
@@ -41,12 +54,12 @@ const fuzzyFilter: FilterFn<unknown> = (row, columnId, value, addMeta) => {
   return itemRank.passed
 }
 
-interface DataTableProps<TData, TValue> {
-  columns: ColumnDef<TData, TValue>[]
-  data: TData[]
+interface DataTableProps<TValue> {
+  columns: ColumnDef<TProgramSchema, TValue>[]
+  data: TProgramSchema[]
 }
 
-export default function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData, TValue>) {
+export default function DataTable<TValue>({ columns, data }: DataTableProps<TValue>) {
   const [rowSelection, setRowSelection] = useState({})
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({})
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
@@ -80,6 +93,27 @@ export default function DataTable<TData, TValue>({ columns, data }: DataTablePro
     getFacetedUniqueValues: getFacetedUniqueValues(),
   })
 
+  const handleDelete = async (id: string) => {
+    const promise = new Promise((resolve, reject) => {
+      deleteProgram(id)
+        .then(result => {
+          if (result.success) {
+            resolve("Program deleted successfully")
+          } else {
+            reject()
+          }
+        })
+        .catch(() => {
+          reject()
+        })
+    })
+    toast.promise(promise, {
+      loading: "Deleting program...",
+      success: () => "Program deleted successfully",
+      error: "Error deleting program",
+    })
+  }
+
   return (
     <div className='space-y-4'>
       <DataTableToolbar
@@ -105,13 +139,33 @@ export default function DataTable<TData, TValue>({ columns, data }: DataTablePro
           <TableBody>
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map(row => (
-                <TableRow key={row.id} data-state={row.getIsSelected() && "selected"}>
-                  {row.getVisibleCells().map(cell => (
-                    <TableCell key={cell.id}>
-                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                    </TableCell>
-                  ))}
-                </TableRow>
+                <ContextMenu key={row.id}>
+                  <ContextMenuTrigger asChild>
+                    <TableRow data-state={row.getIsSelected() && "selected"}>
+                      {row.getVisibleCells().map(cell => (
+                        <TableCell key={cell.id}>
+                          {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                        </TableCell>
+                      ))}
+                    </TableRow>
+                  </ContextMenuTrigger>
+                  <ContextMenuContent>
+                    <ContextMenuLabel>Actions</ContextMenuLabel>
+                    <ContextMenuItem>
+                      <Link href={PATHS.programs.edit(row.original.id!)}>
+                        <Edit2Icon className='mr-2 h-4 w-4' />
+                      </Link>
+                      Edit
+                    </ContextMenuItem>
+                    <ContextMenuItem
+                      onClick={() => handleDelete(row.original.id!)}
+                      className='text-red-500 hover:!text-red-600'
+                    >
+                      <Trash2Icon className='mr-2 h-4 w-4' />
+                      Delete
+                    </ContextMenuItem>
+                  </ContextMenuContent>
+                </ContextMenu>
               ))
             ) : (
               <TableRow>

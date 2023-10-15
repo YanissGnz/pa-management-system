@@ -64,3 +64,11 @@ export const getClassById = async (id: string) => {
 
   return classes
 }
+
+export const getProgramById = async (id: string) => {
+  const programs = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/programs/${id}`, {
+    cache: "no-cache",
+  }).then(res => res.json())
+
+  return programs
+}
