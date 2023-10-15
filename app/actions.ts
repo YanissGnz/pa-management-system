@@ -882,7 +882,6 @@ export const addProgram = async (
 
 export const deleteProgram = async (id: string) => {
   try {
-
     const program = await prisma.program.findUnique({
       where: { id },
       include: { levels: true },
@@ -910,7 +909,7 @@ export const deleteProgram = async (id: string) => {
   }
 }
 
-export const updateProgram = async(
+export const updateProgram = async (
   formData: TProgramSchema,
   id: string
 ): Promise<TActionReturn<TProgramSchema>> => {

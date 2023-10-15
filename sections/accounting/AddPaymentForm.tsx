@@ -29,7 +29,7 @@ import {
   CommandItem,
 } from "@/components/ui/command"
 import { Textarea } from "@/components/ui/textarea"
-import { addDays, format } from "date-fns"
+import { addMonths, format } from "date-fns"
 import { Calendar } from "@/components/ui/calendar"
 import {
   Dialog,
@@ -90,8 +90,8 @@ export default function AddPaymentForm() {
   const [selectedClassesId, setSelectedClassesId] = useState<string>("")
 
   const [date, setDate] = useState<DateRange | undefined>({
-    from: new Date(),
-    to: addDays(new Date(), 20),
+    from: undefined,
+    to: undefined,
   })
 
   const studentsList = useMemo(() => {
@@ -120,7 +120,9 @@ export default function AddPaymentForm() {
       note: "",
       studentId: "",
       status: "",
-      due: new Date(),
+      due: new Date(
+        new Date().getDate() < 15 ? new Date().setDate(15) : addMonths(new Date().setDate(15), 1)
+      ),
     },
   })
 
@@ -369,7 +371,7 @@ export default function AddPaymentForm() {
                   <Input
                     {...field}
                     type='number'
-                    value={field.value || 0}
+                    value={field.value || ""}
                     onChange={e => field.onChange(Number(e.target.value))}
                   />
                 </FormControl>
@@ -388,7 +390,7 @@ export default function AddPaymentForm() {
                   <Input
                     {...field}
                     type='number'
-                    value={field.value || 0}
+                    value={field.value || ""}
                     onChange={e => field.onChange(Number(e.target.value))}
                   />
                 </FormControl>

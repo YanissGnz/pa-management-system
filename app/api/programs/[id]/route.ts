@@ -3,7 +3,7 @@ import prisma from "@/lib/prisma"
 export async function GET(request: Request, { params }: { params: { id: string } }) {
   const { id } = params
 
-  const program = await prisma.program.findUnique({ where: { id } ,include: { levels: true }})
+  const program = await prisma.program.findUnique({ where: { id }, include: { levels: true } })
 
   return Response.json(program, { status: 200 })
 }
