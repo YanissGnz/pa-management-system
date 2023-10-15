@@ -147,46 +147,49 @@ export default function CalendarView({ sessions }: { sessions: TSession[] }) {
           }
         }}
       >
-        <SheetContent>
+        <SheetContent className='flex h-screen flex-col '>
           <SheetHeader>
             <SheetTitle>Session Details</SheetTitle>
-            {selectedEvent && (
-              <div className=' space-y-2'>
-                <p>
-                  <span className='font-semibold'>Title:</span> {selectedEvent?.title}
-                </p>
-                <p>
-                  <span className='font-semibold'>Date:</span>{" "}
-                  {format(new Date(selectedEvent?.startStr.toString()), "dd/MM/yyyy") ||
-                    "Not valid"}
-                </p>
-                <p>
-                  <span className='font-semibold'>Time:</span>{" "}
-                  {format(new Date(selectedEvent?.startStr.toString()), "HH:mm a") || "Not valid"} -{" "}
-                  {format(new Date(selectedEvent?.endStr.toString()), "HH:mm a") || "Not valid"}
-                </p>
-                <p>
-                  <span className='font-semibold'>Teacher:</span>{" "}
-                  {selectedEvent?.extendedProps.teacher?.firstName}{" "}
-                  {selectedEvent?.extendedProps.teacher?.lastName}
-                </p>
-                <p>
-                  <span className='font-semibold'>Description:</span>{" "}
-                  {selectedEvent?.extendedProps.description || "No description"}
-                </p>
-                <p>
-                  <span className='font-semibold'>Students:</span>{" "}
-                </p>
+          </SheetHeader>
+          {selectedEvent && (
+            <div className=' flex h-full flex-1 flex-col space-y-2'>
+              <p>
+                <span className='font-semibold'>Title:</span> {selectedEvent?.title}
+              </p>
+              <p>
+                <span className='font-semibold'>Date:</span>{" "}
+                {format(new Date(selectedEvent?.startStr.toString()), "dd/MM/yyyy") || "Not valid"}
+              </p>
+              <p>
+                <span className='font-semibold'>Time:</span>{" "}
+                {format(new Date(selectedEvent?.startStr.toString()), "HH:mm a") || "Not valid"} -{" "}
+                {format(new Date(selectedEvent?.endStr.toString()), "HH:mm a") || "Not valid"}
+              </p>
+              <p>
+                <span className='font-semibold'>Teacher:</span>{" "}
+                {selectedEvent?.extendedProps.teacher?.firstName}{" "}
+                {selectedEvent?.extendedProps.teacher?.lastName}
+              </p>
+              <p>
+                <span className='font-semibold'>Description:</span>{" "}
+                {selectedEvent?.extendedProps.description || "No description"}
+              </p>
+              <p>
+                <span className='font-semibold'>Students:</span>{" "}
+              </p>
+              <ScrollArea className='max-h-52 flex-1'>
                 {selectedEvent?.extendedProps.students.length > 0 ? (
                   selectedEvent?.extendedProps.students?.map((student: Partial<TStudentSchema>) => (
-                    <p key={student.id}>{student.fullName}</p>
+                    <p key={student.id} className='mb-1'>
+                      {student.fullName}
+                    </p>
                   ))
                 ) : (
                   <p>No students</p>
                 )}
-              </div>
-            )}
-          </SheetHeader>
+              </ScrollArea>
+            </div>
+          )}
           <SheetFooter className='mt-5'>
             <div className='flex-1 space-y-2'>
               <Button className='w-full' onClick={() => setOpenAssign(true)}>

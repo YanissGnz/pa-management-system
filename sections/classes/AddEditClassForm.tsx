@@ -179,6 +179,12 @@ export default function AddEditClassForm({
   }
 
   const handleAddSession = () => {
+    // check if start time is before end time
+    if (day.startTime >= day.endTime) {
+      toast.error("Start time must be before end time")
+      return
+    }
+
     const newSession = classDaysSchema.safeParse(day)
 
     if (newSession.success) {
