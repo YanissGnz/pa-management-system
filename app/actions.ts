@@ -570,7 +570,7 @@ export const addClass = async (formData: TClassSchema): Promise<TActionReturn<TC
         }
       }
 
-      classSessions.forEach(async (d,) => {
+      classSessions.forEach(async d => {
         const { startTime, endTime, day, color } = d
         const start = new Date(startDate)
         start.setDate(start.getDate() + ((7 + dayStringToNumber(day) - start.getDay()) % 7))
@@ -581,7 +581,7 @@ export const addClass = async (formData: TClassSchema): Promise<TActionReturn<TC
           sessionsPromises.push(
             prisma.session.create({
               data: {
-              title: classSessions.length > 1 ? `${capitalize(d.day) }-${title}` : title,
+                title: classSessions.length > 1 ? `${capitalize(d.day)}-${title}` : title,
                 description,
                 color,
                 teacherId: teacherId || undefined,
@@ -600,7 +600,7 @@ export const addClass = async (formData: TClassSchema): Promise<TActionReturn<TC
         classesPromises.push(
           prisma.class.create({
             data: {
-              title: classSessions.length > 1 ? `${capitalize(d.day) }-${title}` : title,
+              title: classSessions.length > 1 ? `${capitalize(d.day)}-${title}` : title,
               day,
               startTime,
               endTime,

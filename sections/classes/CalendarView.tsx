@@ -157,12 +157,13 @@ export default function CalendarView({ sessions }: { sessions: TSession[] }) {
                 </p>
                 <p>
                   <span className='font-semibold'>Date:</span>{" "}
-                  {format(new Date(selectedEvent?.startStr.toString()), "dd/MM/yyyy")}
+                  {format(new Date(selectedEvent?.startStr.toString()), "dd/MM/yyyy") ||
+                    "Not valid"}
                 </p>
                 <p>
                   <span className='font-semibold'>Time:</span>{" "}
-                  {format(new Date(selectedEvent?.startStr.toString()), "HH:mm a")} -{" "}
-                  {format(new Date(selectedEvent?.endStr.toString()), "HH:mm a")}
+                  {format(new Date(selectedEvent?.startStr.toString()), "HH:mm a") || "Not valid"} -{" "}
+                  {format(new Date(selectedEvent?.endStr.toString()), "HH:mm a") || "Not valid"}
                 </p>
                 <p>
                   <span className='font-semibold'>Teacher:</span>{" "}
