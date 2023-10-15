@@ -131,7 +131,7 @@ export default function ClassDialogs() {
         })
     })
     toast.promise(promise, {
-      loading: "Assigning students...",
+      loading: "Deleting class...",
       success: () => "Class deleted successfully",
       error: "Error assigning students",
     })

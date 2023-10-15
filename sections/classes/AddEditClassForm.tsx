@@ -456,7 +456,7 @@ export default function AddEditClassForm({
           {!isEdit && (
             <>
               <div className='col-span-2 mb-2 grid grid-cols-4 gap-5 px-2'>
-                <h1 className='col-span-4 border-b text-base font-bold'>Add classSessions</h1>
+                <h1 className='col-span-4 border-b text-base font-bold'>Add week sessions</h1>
                 <FormItem>
                   <FormLabel>Day</FormLabel>
                   <Select
@@ -517,7 +517,7 @@ export default function AddEditClassForm({
               </div>
               <div className='col-span-2'>
                 <h1 className='border-b text-base font-bold'>Sessions</h1>
-                <div className='mt-2 gap-5'>
+                <div className='mt-2 space-y-2'>
                   {days.map((d, i) => (
                     <div key={i} className='flex items-start justify-between rounded-md border p-2'>
                       <div className='flex flex-1 flex-col gap-2'>

@@ -13,6 +13,7 @@ import { TPaymentSchema, paymentSchema } from "@/types/Payment"
 import { Prisma } from "@prisma/client"
 import { DefaultArgs } from "@prisma/client/runtime/library"
 import { authOptions } from "@/lib/utils/authOptions"
+import { capitalize } from "lodash"
 
 export type TActionReturn<TSchema> = {
   errors?: string | { [K in keyof TSchema]?: string }
@@ -569,7 +570,7 @@ export const addClass = async (formData: TClassSchema): Promise<TActionReturn<TC
         }
       }
 
-      classSessions.forEach(async d => {
+      classSessions.forEach(async (d,) => {
         const { startTime, endTime, day, color } = d
         const start = new Date(startDate)
         start.setDate(start.getDate() + ((7 + dayStringToNumber(day) - start.getDay()) % 7))
@@ -580,7 +581,7 @@ export const addClass = async (formData: TClassSchema): Promise<TActionReturn<TC
           sessionsPromises.push(
             prisma.session.create({
               data: {
-                title,
+              title: classSessions.length > 1 ? `${capitalize(d.day) }-${title}` : title,
                 description,
                 color,
                 teacherId: teacherId || undefined,
@@ -599,7 +600,7 @@ export const addClass = async (formData: TClassSchema): Promise<TActionReturn<TC
         classesPromises.push(
           prisma.class.create({
             data: {
-              title,
+              title: classSessions.length > 1 ? `${capitalize(d.day) }-${title}` : title,
               day,
               startTime,
               endTime,
