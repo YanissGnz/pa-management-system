@@ -15,8 +15,8 @@ import {
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
-} from "../ui/dropdown-menu"
-import { Avatar, AvatarFallback } from "../ui/avatar"
+} from "../../../components/ui/dropdown-menu"
+import { Avatar, AvatarFallback } from "../../../components/ui/avatar"
 
 export default function User() {
   const session = useSession()

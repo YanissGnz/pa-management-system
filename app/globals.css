@@ -67,3 +67,23 @@ body,
 .rdp-vhidden {
   @apply hidden;
 }
+
+/* width */
+::-webkit-scrollbar {
+  @apply h-3 w-3;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  @apply rounded-full bg-background;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  @apply rounded-full bg-gray-500;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-500/80;
+}

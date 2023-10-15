@@ -147,7 +147,7 @@ export async function GET() {
             },
           },
           payedDate: new Date(),
-          code: `INV-${v4().slice(0, 4).toUpperCase()}`,
+          code: `INV-SCH-2023-${v4().slice(0, 4).toUpperCase()}`,
           payedAmount:
             student.paymentStatus === "completed"
               ? Number(student.amount!)

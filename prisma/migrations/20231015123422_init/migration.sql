@@ -1,175 +1,177 @@
 -- CreateTable
 CREATE TABLE "User" (
-    "id" TEXT NOT NULL,
-    "name" TEXT,
-    "username" TEXT,
-    "password" TEXT,
-    "image" TEXT,
+    "id" STRING NOT NULL,
+    "name" STRING,
+    "username" STRING,
+    "password" STRING,
+    "image" STRING,
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "Teacher" (
-    "id" TEXT NOT NULL,
-    "firstName" TEXT NOT NULL,
-    "lastName" TEXT NOT NULL,
-    "email" TEXT NOT NULL,
-    "password" TEXT NOT NULL,
-    "address" TEXT,
-    "phoneNumber" TEXT,
+    "id" STRING NOT NULL,
+    "firstName" STRING NOT NULL,
+    "lastName" STRING NOT NULL,
+    "username" STRING,
+    "password" STRING,
+    "address" STRING,
+    "phoneNumber" STRING,
 
     CONSTRAINT "Teacher_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "Student" (
-    "id" TEXT NOT NULL,
-    "code" TEXT NOT NULL,
-    "fullName" TEXT NOT NULL,
-    "address" TEXT,
-    "phoneNumber" TEXT,
-    "email" TEXT,
-    "type" TEXT NOT NULL,
-    "age" INTEGER,
-    "ageCategory" TEXT,
-    "level" TEXT,
-    "whatsappNumber" TEXT,
-    "parentName" TEXT,
-    "parentNumber" TEXT,
-    "parentEmail" TEXT,
-    "parentAddress" TEXT,
-    "parentOccupation" TEXT,
-    "schoolType" TEXT,
-    "schoolYear" TEXT,
+    "id" STRING NOT NULL,
+    "code" STRING NOT NULL,
+    "fullName" STRING NOT NULL,
+    "address" STRING,
+    "phoneNumber" STRING,
+    "email" STRING,
+    "type" STRING NOT NULL,
+    "age" INT4,
+    "ageCategory" STRING,
+    "level" STRING,
+    "whatsappNumber" STRING,
+    "parentName" STRING,
+    "parentNumber" STRING,
+    "parentEmail" STRING,
+    "parentAddress" STRING,
+    "parentOccupation" STRING,
+    "schoolType" STRING,
+    "schoolYear" STRING,
     "registrationDate" TIMESTAMP(3) NOT NULL,
-    "registrationStatus" TEXT NOT NULL,
-    "expectedClasses" TEXT[],
-    "paymentStatus" TEXT NOT NULL,
-    "sex" TEXT NOT NULL,
-    "paymentId" TEXT,
-    "sessionId" TEXT,
-    "note" TEXT,
+    "registrationStatus" STRING NOT NULL,
+    "expectedClasses" STRING[],
+    "paymentStatus" STRING NOT NULL,
+    "sex" STRING NOT NULL,
+    "paymentId" STRING,
+    "sessionId" STRING,
+    "note" STRING,
 
     CONSTRAINT "Student_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "Partner" (
-    "id" TEXT NOT NULL,
-    "studentId" TEXT NOT NULL,
-    "partnerId" TEXT NOT NULL,
+    "id" STRING NOT NULL,
+    "studentId" STRING NOT NULL,
+    "partnerId" STRING NOT NULL,
 
     CONSTRAINT "Partner_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "Kid" (
-    "id" TEXT NOT NULL,
-    "studentId" TEXT NOT NULL,
-    "parentId" TEXT NOT NULL,
+    "id" STRING NOT NULL,
+    "studentId" STRING NOT NULL,
+    "parentId" STRING NOT NULL,
 
     CONSTRAINT "Kid_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "Class" (
-    "id" TEXT NOT NULL,
-    "title" TEXT NOT NULL,
-    "description" TEXT,
-    "teacherId" TEXT NOT NULL,
-    "programId" TEXT NOT NULL,
-    "levelId" TEXT NOT NULL,
+    "id" STRING NOT NULL,
+    "title" STRING NOT NULL,
+    "description" STRING,
+    "teacherId" STRING,
+    "programId" STRING,
+    "levelId" STRING,
     "startDate" TIMESTAMP(3) NOT NULL,
     "endDate" TIMESTAMP(3) NOT NULL,
-    "day" TEXT NOT NULL,
-    "startTime" TEXT NOT NULL,
-    "endTime" TEXT NOT NULL,
-    "color" TEXT,
+    "day" STRING NOT NULL,
+    "startTime" STRING NOT NULL,
+    "endTime" STRING NOT NULL,
+    "color" STRING,
 
     CONSTRAINT "Class_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "Session" (
-    "id" TEXT NOT NULL,
-    "title" TEXT NOT NULL,
-    "description" TEXT,
-    "teacherId" TEXT NOT NULL,
-    "attendance" TEXT[] DEFAULT ARRAY[]::TEXT[],
-    "programId" TEXT NOT NULL,
-    "levelId" TEXT NOT NULL,
+    "id" STRING NOT NULL,
+    "title" STRING NOT NULL,
+    "description" STRING,
+    "teacherId" STRING,
+    "attendance" STRING[] DEFAULT ARRAY[]::STRING[],
+    "programId" STRING,
+    "levelId" STRING,
     "start" TIMESTAMP(3) NOT NULL,
     "end" TIMESTAMP(3) NOT NULL,
-    "color" TEXT,
-    "classId" TEXT,
+    "color" STRING,
+    "classId" STRING,
 
     CONSTRAINT "Session_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "Program" (
-    "id" TEXT NOT NULL,
-    "name" TEXT NOT NULL,
-    "description" TEXT,
+    "id" STRING NOT NULL,
+    "name" STRING NOT NULL,
+    "description" STRING,
+    "code" STRING NOT NULL,
 
     CONSTRAINT "Program_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "Level" (
-    "id" TEXT NOT NULL,
-    "name" TEXT NOT NULL,
-    "duration" DOUBLE PRECISION NOT NULL,
-    "description" TEXT,
-    "price" DOUBLE PRECISION NOT NULL,
-    "programId" TEXT NOT NULL,
+    "id" STRING NOT NULL,
+    "name" STRING NOT NULL,
+    "duration" FLOAT8 NOT NULL,
+    "description" STRING,
+    "price" FLOAT8 NOT NULL,
+    "programId" STRING NOT NULL,
 
     CONSTRAINT "Level_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "Payment" (
-    "id" TEXT NOT NULL,
-    "code" TEXT NOT NULL,
-    "amount" DOUBLE PRECISION NOT NULL,
-    "total" DOUBLE PRECISION NOT NULL,
+    "id" STRING NOT NULL,
+    "code" STRING NOT NULL,
+    "amount" FLOAT8 NOT NULL,
+    "total" FLOAT8 NOT NULL,
     "date" TIMESTAMP(3) NOT NULL,
-    "period" TEXT NOT NULL,
-    "status" TEXT NOT NULL,
-    "discount" DOUBLE PRECISION NOT NULL,
-    "note" TEXT,
-    "payedAmount" DOUBLE PRECISION NOT NULL,
+    "from" TIMESTAMP(3) NOT NULL,
+    "to" TIMESTAMP(3) NOT NULL,
+    "status" STRING NOT NULL,
+    "discount" FLOAT8,
+    "note" STRING,
+    "payedAmount" FLOAT8,
     "due" TIMESTAMP(3) NOT NULL,
     "payedDate" TIMESTAMP(3),
-    "archived" BOOLEAN NOT NULL DEFAULT false,
+    "archived" BOOL NOT NULL DEFAULT false,
 
     CONSTRAINT "Payment_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "_ClassToStudent" (
-    "A" TEXT NOT NULL,
-    "B" TEXT NOT NULL
+    "A" STRING NOT NULL,
+    "B" STRING NOT NULL
 );
 
 -- CreateTable
 CREATE TABLE "_SessionToStudent" (
-    "A" TEXT NOT NULL,
-    "B" TEXT NOT NULL
+    "A" STRING NOT NULL,
+    "B" STRING NOT NULL
 );
 
 -- CreateTable
 CREATE TABLE "_PaymentToStudent" (
-    "A" TEXT NOT NULL,
-    "B" TEXT NOT NULL
+    "A" STRING NOT NULL,
+    "B" STRING NOT NULL
 );
 
 -- CreateIndex
 CREATE UNIQUE INDEX "User_username_key" ON "User"("username");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Teacher_email_key" ON "Teacher"("email");
+CREATE UNIQUE INDEX "Teacher_username_key" ON "Teacher"("username");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Partner_studentId_key" ON "Partner"("studentId");
@@ -182,6 +184,9 @@ CREATE UNIQUE INDEX "Class_title_key" ON "Class"("title");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Session_title_start_end_key" ON "Session"("title", "start", "end");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Program_code_key" ON "Program"("code");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "_ClassToStudent_AB_unique" ON "_ClassToStudent"("A", "B");

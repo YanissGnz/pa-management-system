@@ -7,6 +7,7 @@ import { assignToClassDialog } from "./slices/assignToClassDialog"
 import { assignStudentsDialog } from "./slices/assignStudentsDialog"
 import { studentDetailsSlice } from "./slices/studentsDetailsSlice"
 import { attendanceSheetDialog } from "./slices/attendanceSheetDialog"
+import { sidebarSlice } from "./slices/sidebarSlice"
 
 const rootReducer = combineReducers({
   printDialog: printDialogSlice.reducer,
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   assignStudentsDialog: assignStudentsDialog.reducer,
   studentDetails: studentDetailsSlice.reducer,
   attendanceSheetDialog: attendanceSheetDialog.reducer,
+  sidebar: sidebarSlice.reducer,
 })
 
 export const store = configureStore({

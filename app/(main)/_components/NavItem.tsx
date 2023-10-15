@@ -3,6 +3,8 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
+import { useAppDispatch } from "@/app/store/hooks"
+import { closeSidebar } from "@/app/store/slices/sidebarSlice"
 
 type Props = {
   href: string
@@ -12,9 +14,13 @@ type Props = {
 
 export default function NavItem({ href, name, icon }: Props) {
   const pathname = usePathname()
+  const dispatch = useAppDispatch()
+
+  const handleLinkClick = () => dispatch(closeSidebar())
 
   return (
     <Link
+      onClick={handleLinkClick}
       href={href}
       key={name}
       className={cn(
