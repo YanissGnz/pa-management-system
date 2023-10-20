@@ -27,8 +27,15 @@ export const PATHS = {
     edit: (id: string) => getPath(`/programs/edit/${id}`),
   },
   accounting: {
-    root: getPath("/accounting"),
-    create: getPath("/accounting/add"),
-    edit: (id: string) => getPath(`/accounting/edit/${id}`),
+    payments: {
+      root: getPath("/accounting/payments"),
+      create: getPath("/accounting/payments/add"),
+      edit: (id: string) => getPath(`/accounting/payments/edit/${id}`),
+    },
+    expenses: {
+      root: getPath("/accounting/expenses"),
+      create: getPath("/accounting/expenses/add"),
+      edit: (id: string) => getPath(`/accounting/expenses/edit/${id}`),
+    }
   },
 }

@@ -1,7 +1,7 @@
 import { Metadata } from "next"
 // components
 import HeaderBreadcrumbs from "@/components/ui/HeaderBreadcrumbs"
-import AddPaymentForm from "@/sections/accounting/AddPaymentForm"
+import AddPaymentForm from "@/sections/accounting/payments/AddPaymentForm"
 
 export const metadata: Metadata = {
   title: "New Payment",

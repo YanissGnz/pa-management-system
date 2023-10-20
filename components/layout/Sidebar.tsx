@@ -1,33 +1,70 @@
-import { Backpack, Clipboard, DollarSignIcon, DoorOpen, Users } from "lucide-react"
+import {
+  Backpack,
+  Clipboard,
+  DollarSignIcon,
+  DoorOpen,
+  PercentCircleIcon,
+  Users,
+  Wallet,
+} from "lucide-react"
 import Image from "next/image"
+import { PATHS } from "@/lib/routes"
 import NavItem from "./NavItem"
 import User from "./User"
+import { Accordion } from "../ui/accordion"
 
-const NAV_ITEMS = [
+const NAV_ITEMS: {
+  name: string
+  href: string
+  icon: React.ReactNode
+  type: "link" | "accordion"
+  subItems?: {
+    name: string
+    href: string
+    icon: React.ReactNode
+  }[]
+}[] = [
   {
     name: "Students",
-    href: "/dashboard/students",
+    href: PATHS.students.root,
     icon: <Backpack />,
+    type: "link",
   },
   {
     name: "Classes",
-    href: "/dashboard/classes",
+    href: PATHS.classes.root,
     icon: <DoorOpen />,
+    type: "link",
   },
   {
     name: "Programs",
-    href: "/dashboard/programs",
+    href: PATHS.programs.root,
     icon: <Clipboard />,
+    type: "link",
   },
   {
     name: "Accounting",
     href: "/dashboard/accounting",
     icon: <DollarSignIcon />,
+    type: "accordion",
+    subItems: [
+      {
+        name: "Payments",
+        href: PATHS.accounting.payments.root,
+        icon: <Wallet />,
+      },
+      {
+        name: "Expenses",
+        href: PATHS.accounting.expenses.root,
+        icon: <PercentCircleIcon />,
+      },
+    ],
   },
   {
     name: "Teachers",
-    href: "/dashboard/teachers",
+    href: PATHS.teachers.root,
     icon: <Users />,
+    type: "link",
   },
 ]
 
@@ -39,11 +76,11 @@ export default async function Sidebar() {
       </div>
       <User />
 
-      <ul className='mt-1 flex-1 space-y-2 '>
+      <Accordion type='single' collapsible className='mt-1 flex-1 space-y-2 divide-y-0'>
         {NAV_ITEMS.map((item, i) => (
           <NavItem key={i} {...item} />
         ))}
-      </ul>
+      </Accordion>
     </div>
   )
 }
