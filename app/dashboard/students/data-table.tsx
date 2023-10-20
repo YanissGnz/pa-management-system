@@ -34,6 +34,7 @@ import {
 import Link from "next/link"
 import {
   CircleDollarSignIcon,
+  Contact2Icon,
   Edit2Icon,
   ReplaceIcon,
   Trash2Icon,
@@ -125,6 +126,12 @@ export function DataTable<TValue>({ columns, data }: DataTableProps<TValue>) {
                   </ContextMenuTrigger>
                   <ContextMenuContent>
                     <ContextMenuLabel>Actions for {row.original.fullName}</ContextMenuLabel>
+                    <ContextMenuItem asChild>
+                      <Link href={PATHS.students.details(row.original.id)}>
+                        <Contact2Icon className='mr-2 h-4 w-4' />
+                        Details
+                      </Link>
+                    </ContextMenuItem>
                     <ContextMenuItem asChild>
                       <Link href={PATHS.students.edit(row.original.id)}>
                         <Edit2Icon className='mr-2 h-4 w-4' />

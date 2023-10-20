@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from "@/app/store/hooks"
 import { Button, buttonVariants } from "@/components/ui/button"
 import { closeDialog as closeDeleteDialog } from "@/app/store/slices/deleteDialogSlice"
 import { assignStudentToClass, deleteStudent } from "@/app/actions"
-import { LoaderIcon } from "lucide-react"
+import { Contact2, Edit2, LoaderIcon } from "lucide-react"
 import useSWR from "swr"
 import { TClassSchema } from "@/types/Class"
 import { capitalize } from "lodash"
@@ -28,6 +28,10 @@ import { Badge } from "@/components/ui/badge"
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet"
 import { closeStudentDetails } from "@/app/store/slices/studentsDetailsSlice"
 import { format } from "date-fns"
+import Link from "next/link"
+import { Tooltip } from "@radix-ui/react-tooltip"
+import { TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
+import { PATHS } from "@/lib/routes"
 
 const fetcher = (url: string) => fetch(url).then(res => res.json())
 
@@ -264,8 +268,44 @@ export default function StudentDialogs() {
         }}
       >
         <SheetContent>
-          <SheetHeader className='mb-5'>
-            <SheetTitle>Student details</SheetTitle>
+          <SheetHeader className='mb-5 flex flex-row items-center gap-2'>
+            <SheetTitle className='flex-1'>Student details</SheetTitle>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button
+                    size={"icon"}
+                    variant={"outline"}
+                    asChild
+                    onClick={() => dispatch(closeStudentDetails())}
+                  >
+                    <Link href={`/dashboard/students/${currentStudent?.id}/edit`}>
+                      <Edit2 className='h-4 w-4' />
+                    </Link>
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Edit student</p>
+                </TooltipContent>
+              </Tooltip>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button
+                    size={"icon"}
+                    variant={"outline"}
+                    asChild
+                    onClick={() => dispatch(closeStudentDetails())}
+                  >
+                    <Link href={PATHS.students.details(currentStudent?.id ?? "")}>
+                      <Contact2 className='h-4 w-4' />
+                    </Link>
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Student details</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
           </SheetHeader>
           {currentStudent && (
             <div className='space-y-2'>

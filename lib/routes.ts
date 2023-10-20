@@ -13,6 +13,7 @@ export const PATHS = {
   },
   students: {
     root: getPath("/students"),
+    details: (id: string) => getPath(`/students/${id}`),
     create: getPath("/students/add"),
     edit: (id: string) => getPath(`/students/edit/${id}`),
   },

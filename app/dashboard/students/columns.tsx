@@ -3,6 +3,7 @@
 import { ColumnDef } from "@tanstack/react-table"
 import {
   CircleDollarSignIcon,
+  Contact2Icon,
   Edit2Icon,
   MoreHorizontal,
   ReplaceIcon,
@@ -191,6 +192,12 @@ const columns: ColumnDef<TStudentSchema>[] = [
           </DropdownMenuTrigger>
           <DropdownMenuContent align='end'>
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
+            <DropdownMenuItem asChild>
+              <Link href={PATHS.students.details(original.id)}>
+                <Contact2Icon className='mr-2 h-4 w-4' />
+                Details
+              </Link>
+            </DropdownMenuItem>
             <DropdownMenuItem asChild onClick={e => e.stopPropagation()}>
               <Link href={PATHS.students.edit(original.id)}>
                 <Edit2Icon className='mr-2 h-4 w-4' />
