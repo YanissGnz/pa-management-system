@@ -198,7 +198,7 @@ const columns: ColumnDef<TStudentSchema>[] = [
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem asChild onClick={e => e.stopPropagation()}>
-              <Link href={`${PATHS.accounting.create}?studentId=${original.id}`}>
+              <Link href={`${PATHS.accounting.payments.create}?studentId=${original.id}`}>
                 <CircleDollarSignIcon className='mr-2 h-4 w-4' />
                 Add payment
               </Link>

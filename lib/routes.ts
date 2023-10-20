@@ -36,6 +36,6 @@ export const PATHS = {
       root: getPath("/accounting/expenses"),
       create: getPath("/accounting/expenses/add"),
       edit: (id: string) => getPath(`/accounting/expenses/edit/${id}`),
-    }
+    },
   },
 }

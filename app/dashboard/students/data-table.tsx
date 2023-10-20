@@ -132,7 +132,9 @@ export function DataTable<TValue>({ columns, data }: DataTableProps<TValue>) {
                       </Link>
                     </ContextMenuItem>
                     <ContextMenuItem asChild onClick={e => e.stopPropagation()}>
-                      <Link href={`${PATHS.accounting.create}?studentId=${row.original.id}`}>
+                      <Link
+                        href={`${PATHS.accounting.payments.create}?studentId=${row.original.id}`}
+                      >
                         <CircleDollarSignIcon className='mr-2 h-4 w-4' />
                         Add payment
                       </Link>

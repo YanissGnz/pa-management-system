@@ -66,7 +66,7 @@ export const addTeacher = async (
       return { status: 200, success: true }
     } catch (error) {
       // eslint-disable-next-line no-console
-      console.log("🚀 ~ file: actions.ts:64 ~ error:", error)
+      console.log("🚀 ~ file: actions.ts:69 ~ error:", error)
       return { status: 500, success: false, errors: "Internal Server Error" }
     }
   }
@@ -92,7 +92,7 @@ export const deleteTeacher = async (id: string) => {
     })
   } catch (error) {
     // eslint-disable-next-line no-console
-    console.log("🚀 ~ file: actions.ts:82 ~ deleteTeacher ~ error:", error)
+    console.log("🚀 ~ file: actions.ts:95 ~ deleteTeacher ~ error:", error)
     return { status: 500, success: false, errors: "Internal Server Error" }
   }
 
@@ -167,7 +167,7 @@ export const updateTeacher = async (
       return { status: 200, success: true }
     } catch (error) {
       // eslint-disable-next-line no-console
-      console.log("🚀 ~ file: actions.ts:133 ~ error:", error)
+      console.log("🚀 ~ file: actions.ts:170 ~ error:", error)
       return { status: 500, success: false, errors: "Internal Server Error" }
     }
   }
@@ -316,7 +316,7 @@ export const addStudent = async (
       return { status: 200, success: true }
     } catch (error) {
       // eslint-disable-next-line no-console
-      console.log("🚀 ~ file: actions.ts:284 ~ error:", error)
+      console.log("🚀 ~ file: actions.ts:319 ~ error:", error)
       return { status: 500, success: false, errors: "Internal Server Error" }
     }
   }
@@ -339,7 +339,7 @@ export const deleteStudent = async (id: string) => {
     })
   } catch (error) {
     // eslint-disable-next-line no-console
-    console.log("🚀 ~ file: actions.ts:300 ~ deleteStudent ~ error:", error)
+    console.log("🚀 ~ file: actions.ts:342 ~ deleteStudent ~ error:", error)
     return { status: 500, success: false, errors: "Internal Server Error" }
   }
 
@@ -411,7 +411,7 @@ export const updateStudent = async (
       return { status: 200, success: true }
     } catch (error) {
       // eslint-disable-next-line no-console
-      console.log("🚀 ~ file: actions.ts:366 ~ error:", error)
+      console.log("🚀 ~ file: actions.ts:414 ~ error:", error)
       return { status: 500, success: false, errors: "Internal Server Error" }
     }
   }
@@ -456,7 +456,7 @@ export const assignStudentToClass = async (studentId: string, classId: string) =
     })
   } catch (error) {
     // eslint-disable-next-line no-console
-    console.log("🚀 ~ file: actions.ts:403 ~ assignStudentToClass ~ error:", error)
+    console.log("🚀 ~ file: actions.ts:459 ~ assignStudentToClass ~ error:", error)
     return { status: 500, success: false, errors: "Internal Server Error" }
   }
 
@@ -487,7 +487,7 @@ export const assignMultipleStudentsToSession = async (studentsIds: string[], ses
     })
   } catch (error) {
     // eslint-disable-next-line no-console
-    console.log("🚀 ~ file: actions.ts:442 ~ assignMultipleStudentsToSession ~ error:", error)
+    console.log("🚀 ~ file: actions.ts:490 ~ assignMultipleStudentsToSession ~ error:", error)
     return { status: 500, success: false, errors: "Internal Server Error" }
   }
 
@@ -624,7 +624,7 @@ export const addClass = async (formData: TClassSchema): Promise<TActionReturn<TC
       return { status: 200, success: true }
     } catch (error) {
       // eslint-disable-next-line no-console
-      console.log("🚀 ~ file: actions.ts:625 ~ addClass ~ error:", error)
+      console.log("🚀 ~ file: actions.ts:627 ~ addClass ~ error:", error)
 
       return { status: 500, success: false, errors: "Internal Server Error" }
     }
@@ -698,7 +698,7 @@ export const updateClass = async (
       return { status: 200, success: true }
     } catch (error) {
       // eslint-disable-next-line no-console
-      console.log("🚀 ~ file: actions.ts:531 ~ addClass ~ error:", error)
+      console.log("🚀 ~ file: actions.ts:701 ~ addClass ~ error:", error)
 
       return { status: 500, success: false, errors: "Internal Server Error" }
     }
@@ -741,7 +741,7 @@ export const updateSessionAttendance = async (sessionId: string, studentsIds: st
     })
   } catch (error) {
     // eslint-disable-next-line no-console
-    console.log("🚀 ~ file: actions.ts:442 ~ assignMultipleStudentsToSession ~ error:", error)
+    console.log("🚀 ~ file: actions.ts:744 ~ assignMultipleStudentsToSession ~ error:", error)
     return { status: 500, success: false, errors: "Internal Server Error" }
   }
 
@@ -827,7 +827,7 @@ export const assignStudentsToClass = async (classId: string, studentsIds: string
     await prisma.$transaction(studentsPromises)
   } catch (error) {
     // eslint-disable-next-line no-console
-    console.log("🚀 ~ file: actions.ts:442 ~ assignMultipleStudentsToSession ~ error:", error)
+    console.log("🚀 ~ file: actions.ts:830 ~ assignMultipleStudentsToSession ~ error:", error)
     return { status: 500, success: false, errors: "Internal Server Error" }
   }
 
@@ -870,7 +870,7 @@ export const addProgram = async (
       return { status: 200, success: true }
     } catch (error) {
       // eslint-disable-next-line no-console
-      console.log("🚀 ~ file: actions.ts:596 ~ error:", error)
+      console.log("🚀 ~ file: actions.ts:873 ~ error:", error)
       return { status: 500, success: false, errors: "Internal Server Error" }
     }
   }
@@ -905,7 +905,7 @@ export const deleteProgram = async (id: string) => {
     return { status: 200, success: true }
   } catch (error) {
     // eslint-disable-next-line no-console
-    console.log("🚀 ~ file: actions.ts:804 ~ error:", error)
+    console.log("🚀 ~ file: actions.ts:908 ~ error:", error)
     return { status: 500, success: false, errors: "Program deletion failed" }
   }
 }
@@ -921,7 +921,6 @@ export const updateProgram = async (
   if (result.success) {
     try {
       const { name, description, levels, code } = result.data
-      console.log("🚀 ~ file: actions.ts:908 ~ levels:", levels)
 
       const oldProgram = await prisma.program.findUnique({
         where: { id },
@@ -929,10 +928,8 @@ export const updateProgram = async (
       })
 
       const levelsIds = oldProgram?.levels.map(l => l.id) ?? []
-      console.log("🚀 ~ file: actions.ts:915 ~ levelsIds:", levelsIds)
 
       const levelsToDelete = levelsIds.filter(level => !levels.map(l => l.id).includes(level))
-      console.log("🚀 ~ file: actions.ts:917 ~ levelsToDelete:", levelsToDelete)
 
       const levelsToCreate = levels.filter(level => !levelsIds.includes(level.id ?? ""))
 
@@ -966,7 +963,7 @@ export const updateProgram = async (
       return { status: 200, success: true }
     } catch (error) {
       // eslint-disable-next-line no-console
-      console.log("🚀 ~ file: actions.ts:946 ~ error:", error)
+      console.log("🚀 ~ file: actions.ts:966 ~ error:", error)
       return { status: 500, success: false, errors: "Internal Server Error" }
     }
   }
@@ -1108,7 +1105,7 @@ export const addPayment = async (
       return { status: 200, success: true }
     } catch (error) {
       // eslint-disable-next-line no-console
-      console.log("🚀 ~ file: actions.ts:1022 ~ error:", error)
+      console.log("🚀 ~ file: actions.ts:1108 ~ error:", error)
       return { status: 500, success: false, errors: "Internal Server Error" }
     }
   }
@@ -1133,7 +1130,7 @@ export const archivePayment = async (id: string) => {
     })
   } catch (error) {
     // eslint-disable-next-line no-console
-    console.log("🚀 ~ file: actions.ts:731 ~ archivePayment ~ error:", error)
+    console.log("🚀 ~ file: actions.ts:1133 ~ archivePayment ~ error:", error)
     return { status: 500, success: false, errors: "Internal Server Error" }
   }
 
@@ -1172,7 +1169,7 @@ export const completePayment = async (id: string) => {
     })
   } catch (error) {
     // eslint-disable-next-line no-console
-    console.log("🚀 ~ file: actions.ts:765 ~ completePayment ~ error:", error)
+    console.log("🚀 ~ file: actions.ts:1172 ~ completePayment ~ error:", error)
     return { status: 500, success: false, errors: "Internal Server Error" }
   }
 
