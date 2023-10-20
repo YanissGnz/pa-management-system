@@ -43,7 +43,7 @@ export default function NavItem({ href, name, icon, type, subItems }: Props) {
 
   if (type === "accordion")
     return (
-      <AccordionItem value={name} className='rounded border-0 border-l'>
+      <AccordionItem value={name}>
         <AccordionTrigger
           className={cn(
             "flex cursor-pointer items-center justify-start space-x-2 rounded p-3 font-bold text-white hover:bg-secondary hover:text-black hover:no-underline  dark:hover:text-white",
@@ -53,10 +53,9 @@ export default function NavItem({ href, name, icon, type, subItems }: Props) {
           <span className='h-6 w-6'>{icon}</span>
           <p className='flex-1 text-start font-medium'>{name}</p>
         </AccordionTrigger>
-        <AccordionContent className='mt-1'>
+        <AccordionContent className='ml-5 mt-1'>
           {subItems?.map(item => (
             <div key={item.name} className='flex items-center'>
-              <div className='h-px w-5 bg-secondary' />
               <LinkItem {...item} isActive={pathname.includes(item.href)} className='flex-1' />
             </div>
           ))}
