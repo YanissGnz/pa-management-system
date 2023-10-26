@@ -1,7 +1,14 @@
 "use client"
 
 import { ColumnDef } from "@tanstack/react-table"
-import { ClipboardListIcon, Edit2Icon, MoreHorizontal, Trash2Icon, UserPlus } from "lucide-react"
+import {
+  CalendarCheck2Icon,
+  ClipboardListIcon,
+  Edit2Icon,
+  MoreHorizontal,
+  Trash2Icon,
+  UserPlus,
+} from "lucide-react"
 import { TClassSchema } from "@/types/Class"
 import {
   DropdownMenu,
@@ -67,15 +74,6 @@ const columns: ColumnDef<TClassSchema>[] = [
     }) => format(new Date(startDate), "PPP"),
   },
   {
-    accessorKey: "endDate",
-    header: ({ column }) => <DataTableColumnHeader column={column} title='End Date' />,
-    cell: ({
-      row: {
-        original: { endDate },
-      },
-    }) => format(new Date(endDate), "PPP"),
-  },
-  {
     id: "studentsCount",
     header: ({ column }) => <DataTableColumnHeader column={column} title='Students Count' />,
     cell: ({
@@ -126,6 +124,15 @@ const columns: ColumnDef<TClassSchema>[] = [
           >
             <ClipboardListIcon className='mr-2 h-4 w-4' />
             Fill attendance sheet
+          </DropdownMenuItem>
+          <DropdownMenuItem
+            className='text-red-500 hover:text-red-500'
+            onClick={e => {
+              e.stopPropagation()
+            }}
+          >
+            <CalendarCheck2Icon className='mr-2 h-4 w-4' />
+            End class
           </DropdownMenuItem>
           <DropdownMenuItem
             className='text-red-500 hover:text-red-500'

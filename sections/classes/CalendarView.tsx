@@ -1,15 +1,33 @@
 "use client"
 
-import { useEffect, useMemo, useState } from "react"
+import { useEffect, useMemo, useRef, useState } from "react"
 import useSWR from "swr"
+// utils
+import { format } from "date-fns"
+import { capitalize } from "lodash"
+import { assignMultipleStudentsToSession, updateSessionAttendance } from "@/app/actions"
+// types
+import { TSession } from "@/types/Session"
+import { TStudentSchema } from "@/types/Student"
+// calender
 import FullCalendar from "@fullcalendar/react"
 import timeGridPlugin from "@fullcalendar/timegrid"
-import { Sheet, SheetContent, SheetFooter, SheetHeader, SheetTitle } from "@/components/ui/sheet"
-import { TSession } from "@/types/Session"
+import dayGridPlugin from "@fullcalendar/daygrid"
+import listPlugin from "@fullcalendar/list"
 import { EventSourceInput } from "@fullcalendar/core/index.js"
 import { EventImpl } from "@fullcalendar/core/internal"
-import { format } from "date-fns"
-import { TStudentSchema } from "@/types/Student"
+// icons
+import {
+  CalendarDaysIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  GalleryHorizontalIcon,
+  GalleryVerticalIcon,
+  ListIcon,
+  LoaderIcon,
+} from "lucide-react"
+// components
+import { Sheet, SheetContent, SheetFooter, SheetHeader, SheetTitle } from "@/components/ui/sheet"
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
@@ -18,14 +36,13 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog"
-import { LoaderIcon } from "lucide-react"
 import { Checkbox } from "@/components/ui/checkbox"
 import { toast } from "sonner"
-import { assignMultipleStudentsToSession, updateSessionAttendance } from "@/app/actions"
 import { Badge } from "@/components/ui/badge"
-import { capitalize } from "lodash"
 import { Input } from "@/components/ui/input"
 import { ScrollArea } from "@/components/ui/scroll-area"
+import { Toggle } from "@/components/ui/toggle"
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 
 const fetcher = (url: string) => fetch(url).then(res => res.json())
 
@@ -53,12 +70,15 @@ export default function CalendarView({ sessions }: { sessions: TSession[] }) {
     fetcher
   )
 
+  const calenderRef = useRef<FullCalendar>(null)
+
   const [selectedEvent, setSelectedEvent] = useState<EventImpl | null>(null)
   const [openDetails, setOpenDetails] = useState(false)
   const [openAssign, setOpenAssign] = useState(false)
   const [openAttendance, setOpenAttendance] = useState(false)
   const [selectedStudentsIds, setSelectedStudentsIds] = useState<string[]>([])
   const [filteredStudents, setFilteredStudents] = useState<TStudentSchema[]>([])
+  const [currentView, setCurrentView] = useState("timeGridWeek")
 
   const handleAssignStudents = async () => {
     if (!selectedEvent) return
@@ -122,9 +142,169 @@ export default function CalendarView({ sessions }: { sessions: TSession[] }) {
 
   return (
     <div>
+      <TooltipProvider>
+        <div className='mb-5 flex w-full items-center justify-between'>
+          <div className='divide-x rounded border'>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Toggle
+                  aria-label='Toggle month'
+                  data-state={currentView === "dayGridMonth" ? "on" : "off"}
+                  onPressedChange={() => {
+                    if (calenderRef.current) {
+                      calenderRef.current.getApi().changeView("dayGridMonth")
+                      setCurrentView("dayGridMonth")
+                    }
+                  }}
+                  pressed={currentView === "dayGridMonth"}
+                >
+                  <CalendarDaysIcon className='h-4 w-4' />
+                </Toggle>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Month view</p>
+              </TooltipContent>
+            </Tooltip>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Toggle
+                  aria-label='Toggle week'
+                  data-state={currentView === "timeGridWeek" ? "on" : "off"}
+                  onPressedChange={() => {
+                    if (calenderRef.current) {
+                      calenderRef.current.getApi().changeView("timeGridWeek")
+                      setCurrentView("timeGridWeek")
+                    }
+                  }}
+                  pressed={currentView === "timeGridWeek"}
+                >
+                  <GalleryHorizontalIcon className='h-4 w-4' />
+                </Toggle>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Week view</p>
+              </TooltipContent>
+            </Tooltip>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Toggle
+                  aria-label='Toggle list'
+                  data-state={currentView === "listWeek" ? "on" : "off"}
+                  onPressedChange={() => {
+                    if (calenderRef.current) {
+                      calenderRef.current.getApi().changeView("listWeek")
+                      setCurrentView("listWeek")
+                    }
+                  }}
+                  pressed={currentView === "listWeek"}
+                >
+                  <ListIcon className='h-4 w-4' />
+                </Toggle>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>List view</p>
+              </TooltipContent>
+            </Tooltip>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Toggle
+                  aria-label='Toggle day'
+                  data-state={currentView === "timeGridDay" ? "on" : "off"}
+                  onPressedChange={() => {
+                    if (calenderRef.current) {
+                      calenderRef.current.getApi().changeView("timeGridDay")
+                      setCurrentView("timeGridDay")
+                    }
+                  }}
+                  pressed={currentView === "timeGridDay"}
+                >
+                  <GalleryVerticalIcon className='h-4 w-4' />
+                </Toggle>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Day view</p>
+              </TooltipContent>
+            </Tooltip>
+          </div>
+          <h2>
+            {calenderRef.current?.getApi().view.type === "timeGridWeek" && (
+              <span className='ml-2 text-gray-500'>
+                {format(new Date(calenderRef.current?.getApi().view.currentStart), "dd/MM/yyyy")} -{" "}
+                {format(new Date(calenderRef.current?.getApi().view.currentEnd), "dd/MM/yyyy")}
+              </span>
+            )}
+            {calenderRef.current?.getApi().view.type === "dayGridMonth" && (
+              <span className='ml-2 text-gray-500'>
+                {format(new Date(calenderRef.current?.getApi().view.currentStart), "MMMM yyyy")}
+              </span>
+            )}
+            {calenderRef.current?.getApi().view.type === "listWeek" && (
+              <span className='ml-2 text-gray-500'>
+                {format(new Date(calenderRef.current?.getApi().view.currentStart), "MMMM yyyy")}
+              </span>
+            )}
+            {calenderRef.current?.getApi().view.type === "timeGridDay" && (
+              <span className='ml-2 text-gray-500'>
+                {format(new Date(calenderRef.current?.getApi().view.currentStart), "dd/MM/yyyy")}
+              </span>
+            )}
+          </h2>
+          <div className='flex items-center space-x-2'>
+            <Button
+              variant='outline'
+              onClick={() => {
+                if (calenderRef.current) {
+                  calenderRef.current.getApi().today()
+                }
+              }}
+            >
+              Today
+            </Button>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button
+                  variant='outline'
+                  size='icon'
+                  onClick={() => {
+                    if (calenderRef.current) {
+                      calenderRef.current.getApi().prev()
+                    }
+                  }}
+                >
+                  <ChevronLeftIcon className='h-4 w-4' />
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>Previous</TooltipContent>
+            </Tooltip>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button
+                  variant='outline'
+                  size='icon'
+                  onClick={() => {
+                    if (calenderRef.current) {
+                      calenderRef.current.getApi().next()
+                    }
+                  }}
+                >
+                  <ChevronRightIcon className='h-4 w-4' />
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>Next</TooltipContent>
+            </Tooltip>
+          </div>
+        </div>
+      </TooltipProvider>
       <FullCalendar
-        plugins={[timeGridPlugin]}
-        initialView='timeGridWeek'
+        ref={calenderRef}
+        headerToolbar={false}
+        plugins={[timeGridPlugin, dayGridPlugin, listPlugin]}
+        views={{
+          timeGridWeek: {
+            titleFormat: { year: "numeric", month: "long", day: "numeric" },
+          },
+        }}
+        initialView='listWeek'
         events={events}
         slotMinTime='08:00:00'
         slotMaxTime='21:00:00'
@@ -259,8 +439,8 @@ export default function CalendarView({ sessions }: { sessions: TSession[] }) {
                             id={student.id}
                             onCheckedChange={checked => {
                               if (checked) {
-                                if (selectedStudentsIds.length >= 15) {
-                                  toast.error("You can't assign more than 15 students at once")
+                                if (selectedStudentsIds.length >= 20) {
+                                  toast.error("You can't assign more than 20 students at once")
                                   return
                                 }
                                 setSelectedStudentsIds(prev => [...prev, student.id])
@@ -353,8 +533,8 @@ export default function CalendarView({ sessions }: { sessions: TSession[] }) {
                         id={student.id}
                         onCheckedChange={checked => {
                           if (checked) {
-                            if (selectedStudentsIds.length >= 15) {
-                              toast.error("You can't assign more than 15 students at once")
+                            if (selectedStudentsIds.length >= 20) {
+                              toast.error("You can't assign more than 20 students at once")
                               return
                             }
                             setSelectedStudentsIds(prev => [...prev, student.id])
