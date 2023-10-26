@@ -279,7 +279,7 @@ export default function StudentDialogs() {
                     asChild
                     onClick={() => dispatch(closeStudentDetails())}
                   >
-                    <Link href={`/dashboard/students/${currentStudent?.id}/edit`}>
+                    <Link href={PATHS.students.edit(currentStudent?.id ?? "")}>
                       <Edit2 className='h-4 w-4' />
                     </Link>
                   </Button>
