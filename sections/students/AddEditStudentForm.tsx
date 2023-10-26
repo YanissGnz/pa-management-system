@@ -90,7 +90,17 @@ export default function AddEditStudentForm({
     if (isEdit && student) {
       return {
         ...student,
-
+        email: student.email && student.email?.length > 0 ? student.email : null,
+        parentEmail:
+          student.parentEmail && student.parentEmail?.length > 0 ? student.parentEmail : null,
+        parentName:
+          student.parentName && student.parentName?.length > 0 ? student.parentName : null,
+        parentNumber:
+          student.parentNumber && student.parentNumber?.length > 0 ? student.parentNumber : null,
+        parentOccupation:
+          student.parentOccupation && student.parentOccupation?.length > 0
+            ? student.parentOccupation
+            : null,
         registrationDate: new Date(student.registrationDate?.toLocaleString() || ""),
       }
     }

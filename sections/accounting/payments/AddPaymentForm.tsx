@@ -73,7 +73,7 @@ export default function AddPaymentForm() {
     partner: string | null
     kids: string[]
     isAssigned: boolean
-    expectedClasses: string[] | undefined
+    expectedClasses: string[] | undefined | null
   }>({
     expectedClasses: [],
     hasFamilyPlan: false,
