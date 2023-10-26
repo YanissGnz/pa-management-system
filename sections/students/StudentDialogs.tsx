@@ -371,7 +371,7 @@ export default function StudentDialogs() {
                   </p>
                   <p>
                     <span className='font-semibold'>Students count:</span>{" "}
-                    {currentStudent.classes[0].students.length} / 15
+                    {currentStudent.classes[0].students.length} / 20
                   </p>
                 </div>
               ) : (

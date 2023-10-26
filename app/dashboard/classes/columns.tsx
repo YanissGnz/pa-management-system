@@ -82,7 +82,7 @@ const columns: ColumnDef<TClassSchema>[] = [
       row: {
         original: { students },
       },
-    }) => `${students ? students.length : 0} / 15`,
+    }) => `${students ? students.length : 0} / 20`,
   },
   {
     id: "actions",

@@ -260,8 +260,8 @@ export default function ClassDialogs() {
                             id={student.id}
                             onCheckedChange={checked => {
                               if (checked) {
-                                if (selectedStudentsIds.length >= 15) {
-                                  toast.error("You can't assign more than 15 students at once")
+                                if (selectedStudentsIds.length >= 20) {
+                                  toast.error("You can't assign more than 20 students in a class")
                                   return
                                 }
                                 setSelectedStudentsIds(prev => [...prev, student.id])
