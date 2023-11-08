@@ -5,7 +5,7 @@
 import { TPaymentSchema } from "@/types/Payment"
 import { Page, Text, Image, View, Document, StyleSheet, Font } from "@react-pdf/renderer"
 import { format } from "date-fns"
-import logo from "public/logo.png"
+import logo from "public/pa-logo.jpg"
 
 // imp
 
@@ -21,20 +21,18 @@ const InvoicePDFView = ({ payment }: { payment: TPaymentSchema }) => {
   const styles = StyleSheet.create({
     page: {
       fontFamily: "Courier",
-      padding: 15,
-      paddingHorizontal: 30,
+      padding: 5,
     },
     header: {
       display: "flex",
       flexDirection: "row",
       justifyContent: "space-between",
       alignItems: "center",
-      marginBottom: 30,
+      marginBottom: 10,
     },
     logo: {
-      height: 80,
-      width: 80,
-      mixBlendMode: "multiply",
+      height: 35,
+      
     },
     statusView: {
       display: "flex",
@@ -43,11 +41,11 @@ const InvoicePDFView = ({ payment }: { payment: TPaymentSchema }) => {
       gap: 5,
     },
     status: {
-      fontSize: 20,
+      fontSize: 8,
       fontWeight: "bold",
     },
     paymentTitle: {
-      fontSize: 14,
+      fontSize: 8,
     },
     // mb-10 grid grid-cols-2
     info: {
@@ -55,17 +53,17 @@ const InvoicePDFView = ({ payment }: { payment: TPaymentSchema }) => {
       flexDirection: "row",
       justifyContent: "space-between",
       alignItems: "flex-start",
-      marginBottom: 20,
+      marginBottom: 5,
     },
   })
   return (
     <Document>
-      <Page size='A4' style={styles.page}>
+      <Page size='A7' style={styles.page} orientation='landscape'>
         <View style={styles.header}>
           <Image src={logo.src} style={styles.logo} />
           <View style={styles.statusView}>
             <Text>
-              {payment.status === "complete" && <Text style={styles.status}>Complete</Text>}
+              {payment.status === "completed" && <Text style={styles.status}>Complete</Text>}
               {payment.status === "not paid" && <Text style={styles.status}>Not paid</Text>}
               {payment.status === "incomplete" && <Text style={styles.status}>Incomplete</Text>}
             </Text>
@@ -73,34 +71,14 @@ const InvoicePDFView = ({ payment }: { payment: TPaymentSchema }) => {
           </View>
         </View>
         <View style={styles.info}>
-          <View style={{ display: "flex", flexDirection: "column", gap: 4, flex: 0.5 }}>
-            <Text style={{ fontSize: 12, fontWeight: "bold", marginBottom: 5 }}>Invoice From</Text>
+          <View style={{ display: "flex", flexDirection: "column", gap: 4 }}>
             <Text style={{ fontSize: 10 }}>Present Academy</Text>
             <Text style={{ fontSize: 10 }}>N° 28, Av.Ahmed Maghrabbi, Blida, Algeria</Text>
             <Text style={{ fontSize: 10 }}>0770 11 44 92</Text>
           </View>
         </View>
-        <View
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "space-between",
-            alignItems: "flex-start",
-            marginBottom: 20,
-          }}
-        >
-          <View style={{ display: "flex", flexDirection: "column", gap: 4, flex: 0.5 }}>
-            <Text style={{ fontSize: 12, fontWeight: "bold", marginBottom: 5 }}>Created At</Text>
-            <Text style={{ fontSize: 10 }}>
-              {format(new Date(payment.date), "dd/MM/yyyy HH:mm")}
-            </Text>
-          </View>
-          <View style={{ display: "flex", flexDirection: "column", gap: 4, flex: 0.5 }}>
-            <Text style={{ fontSize: 12, fontWeight: "bold", marginBottom: 5 }}>Due Date</Text>
-            <Text style={{ fontSize: 10 }}>{format(new Date(payment.due), "dd/MM/yyyy")}</Text>
-          </View>
-        </View>
-        <Text style={{ fontSize: 12, fontWeight: "bold", marginBottom: 20 }}>Invoice Details</Text>
+
+        <Text style={{ fontSize: 10, fontWeight: "bold", marginBottom: 5 }}>Invoice Details</Text>
         {/* Items list into a table */}
         <View
           style={{
@@ -108,18 +86,18 @@ const InvoicePDFView = ({ payment }: { payment: TPaymentSchema }) => {
             flexDirection: "row",
             justifyContent: "space-between",
             alignItems: "flex-start",
-            marginBottom: 20,
+            marginBottom: 5,
           }}
         >
           <View style={{ display: "flex", flexDirection: "column", gap: 4, maxWidth: 50 }}>
-            <Text style={{ fontSize: 12, fontWeight: "bold", marginBottom: 5 }}>#</Text>
+            <Text style={{ fontSize: 10, fontWeight: "bold", marginBottom: 1 }}>#</Text>
           </View>
           <View style={{ display: "flex", flexDirection: "column", gap: 4, flex: 0.7 }}>
-            <Text style={{ fontSize: 12, fontWeight: "bold", marginBottom: 5 }}>Student</Text>
+            <Text style={{ fontSize: 10, fontWeight: "bold", marginBottom: 1 }}>Student</Text>
           </View>
 
           <View style={{ display: "flex", flexDirection: "column", gap: 4, flex: 0.2 }}>
-            <Text style={{ fontSize: 12, fontWeight: "bold", marginBottom: 5 }}>Class</Text>
+            <Text style={{ fontSize: 10, fontWeight: "bold", marginBottom: 1 }}>Class</Text>
           </View>
         </View>
         {payment?.students?.map((student, index) => (
@@ -130,18 +108,18 @@ const InvoicePDFView = ({ payment }: { payment: TPaymentSchema }) => {
               flexDirection: "row",
               justifyContent: "space-between",
               alignItems: "flex-start",
-              marginBottom: 20,
+              marginBottom: 5,
             }}
           >
             <View style={{ display: "flex", flexDirection: "column", gap: 4, maxWidth: 50 }}>
-              <Text style={{ fontSize: 12 }}>{index + 1}</Text>
+              <Text style={{ fontSize: 8 }}>{index + 1}</Text>
             </View>
             <View style={{ display: "flex", flexDirection: "column", gap: 4, flex: 0.7 }}>
-              <Text style={{ fontSize: 12 }}>{student.fullName}</Text>
+              <Text style={{ fontSize: 8 }}>{student.fullName}</Text>
             </View>
 
             <View style={{ display: "flex", flexDirection: "column", gap: 4, flex: 0.2 }}>
-              <Text style={{ fontSize: 12 }}>
+              <Text style={{ fontSize: 8 }}>
                 {student.classes && student.classes?.length > 0
                   ? student.classes?.map(c => c.title).join(", ")
                   : "No class"}
@@ -156,20 +134,15 @@ const InvoicePDFView = ({ payment }: { payment: TPaymentSchema }) => {
             style={{
               display: "flex",
               flexDirection: "row",
-              justifyContent: "space-between",
-              alignItems: "flex-end",
-              marginBottom: 20,
+              marginBottom: 5,
             }}
           >
-            <View style={{ display: "flex", flexDirection: "column", gap: 4, flex: 0.1 }}></View>
-            <View style={{ display: "flex", flexDirection: "column", gap: 4, flex: 0.1 }}></View>
-            <View style={{ display: "flex", flexDirection: "column", gap: 4, flex: 0.4 }}></View>
             <View style={{ display: "flex", flexDirection: "column", gap: 4, flex: 0.2 }}>
               <Text
                 style={{
-                  fontSize: 14,
+                  fontSize: 8,
                   fontWeight: "bold",
-                  marginBottom: 5,
+                  marginBottom: 1,
                   alignItems: "flex-end",
                   justifyContent: "flex-end",
                   display: "flex",
@@ -177,17 +150,8 @@ const InvoicePDFView = ({ payment }: { payment: TPaymentSchema }) => {
               >
                 Discount
               </Text>
-            </View>
-            <View
-              style={{
-                display: "flex",
-                alignItems: "flex-end",
-                flexDirection: "column",
-                gap: 4,
-                flex: 0.2,
-              }}
-            >
-              <Text style={{ fontSize: 14 }}>{payment.discount} Da</Text>
+
+              <Text style={{ fontSize: 8 }}>{payment.discount} Da</Text>
             </View>
           </View>
         )}
@@ -196,30 +160,47 @@ const InvoicePDFView = ({ payment }: { payment: TPaymentSchema }) => {
             display: "flex",
             flexDirection: "row",
             justifyContent: "space-between",
-            alignItems: "flex-end",
-            marginBottom: 20,
+            marginBottom: 5,
           }}
         >
-          <View style={{ display: "flex", flexDirection: "column", gap: 4, flex: 0.1 }}></View>
-          <View style={{ display: "flex", flexDirection: "column", gap: 4, flex: 0.1 }}></View>
-          <View style={{ display: "flex", flexDirection: "column", gap: 4, flex: 0.5 }}></View>
-          <View style={{ display: "flex", flexDirection: "column", gap: 4, flex: 0.1 }}>
-            <Text
-              style={{ fontSize: 14, fontWeight: "bold", marginBottom: 5, alignItems: "flex-end" }}
-            >
-              Total
-            </Text>
-          </View>
           <View
             style={{
               display: "flex",
-              alignItems: "flex-end",
-              flexDirection: "column",
               gap: 4,
-              flex: 0.2,
+              flexDirection: "row",
             }}
           >
-            <Text style={{ fontSize: 14 }}>{payment.total} Da</Text>
+            <Text
+              style={{
+                fontSize: 8,
+                fontWeight: "extrabold",
+                marginBottom: 1,
+              }}
+            >
+              Total
+            </Text>
+
+            <Text style={{ fontSize: 8 }}>{payment.total} Da</Text>
+          </View>
+        </View>
+        <View
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "flex-start",
+            marginBottom: 5,
+          }}
+        >
+          <View style={{ display: "flex", flexDirection: "column", gap: 4, flex: 0.5 }}>
+            <Text style={{ fontSize: 8, fontWeight: "bold", marginBottom: 1 }}>Created At</Text>
+            <Text style={{ fontSize: 8 }}>
+              {format(new Date(payment.date), "dd/MM/yyyy HH:mm")}
+            </Text>
+          </View>
+          <View style={{ display: "flex", flexDirection: "column", gap: 4, flex: 0.5 }}>
+            <Text style={{ fontSize: 8, fontWeight: "bold", marginBottom: 1 }}>Due Date</Text>
+            <Text style={{ fontSize: 8 }}>{format(new Date(payment.due), "dd/MM/yyyy")}</Text>
           </View>
         </View>
         {/* Notes */}

@@ -8,24 +8,34 @@ generator client {
   provider = "prisma-client-js"
 }
 
+enum Roles {
+  ADMIN
+  TEACHER
+  STUDENT
+  ACCOUNTANT
+  GENERAL
+}
+
 model User {
-  id       String  @id @default(uuid())
+  id       String    @id @default(uuid())
   name     String?
-  username String? @unique
+  username String?   @unique
   password String?
   image    String?
+  role     Roles     @default(GENERAL)
+  Teacher  Teacher[]
 }
 
 model Teacher {
   id          String    @id @default(uuid())
   firstName   String
   lastName    String
-  username    String?   @unique
-  password    String?
   address     String?
   phoneNumber String?
   Class       Class[]
   Session     Session[]
+  user        User?     @relation(fields: [userId], references: [id], onDelete: NoAction)
+  userId      String?
 }
 
 model Student {
@@ -111,7 +121,7 @@ model Session {
   start       DateTime
   end         DateTime
   color       String?
-  class       Class?    @relation(fields: [classId], references: [id])
+  class       Class?    @relation(fields: [classId], references: [id], onDelete: Cascade)
   classId     String?
 
   @@unique([title, start, end])
@@ -134,7 +144,7 @@ model Level {
   description String?
   price       Float
   programId   String
-  program     Program   @relation(fields: [programId], references: [id], onDelete: NoAction)
+  program     Program   @relation(fields: [programId], references: [id], onDelete: Cascade)
   Class       Class[]
   Session     Session[]
 }

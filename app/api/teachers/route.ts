@@ -6,9 +6,14 @@ export async function GET() {
       id: true,
       firstName: true,
       lastName: true,
-      username: true,
       address: true,
       phoneNumber: true,
+      user: {
+        select: {
+          id: true,
+        username: true,
+        },
+      },
     },
   })
 

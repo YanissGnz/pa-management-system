@@ -37,7 +37,7 @@ import {
   CommandItem,
 } from "@/components/ui/command"
 import { TProgramSchema } from "@/types/Program"
-import { format } from "date-fns"
+import { addYears, format } from "date-fns"
 import { Calendar } from "@/components/ui/calendar"
 import { toast } from "sonner"
 
@@ -95,7 +95,7 @@ export default function AddEditClassForm({
       return {
         ...currentClass,
         startDate: new Date(currentClass.startDate),
-        endDate: new Date(currentClass.endDate),
+        endDate: new Date(currentClass.endDate ?? addYears(new Date(currentClass.startDate), 1)),
         classSessions: [],
       }
     }

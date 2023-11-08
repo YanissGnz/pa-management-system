@@ -19,7 +19,7 @@ export const classSchema = z.object({
   studentsIds: z.array(z.string()).optional(),
   classSessions: z.array(classDaysSchema).min(1, "Class must have at least 1 classDays"),
   startDate: z.date(),
-  endDate: z.date(),
+  endDate: z.date().optional(),
   color: z.string().optional(),
 })
 

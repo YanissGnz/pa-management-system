@@ -14,6 +14,7 @@ import { Prisma } from "@prisma/client"
 import { DefaultArgs } from "@prisma/client/runtime/library"
 import { authOptions } from "@/lib/utils/authOptions"
 import { capitalize } from "lodash"
+import { addYears } from "date-fns"
 
 export type TActionReturn<TSchema> = {
   errors?: string | { [K in keyof TSchema]?: string }
@@ -39,29 +40,49 @@ export const addTeacher = async (
   if (result.success) {
     try {
       const { username, firstName, lastName, password, address, phoneNumber } = result.data
-      if (username) {
-        const exist = await prisma.teacher.findUnique({
+      if (username && password) {
+        const exist = await prisma.user.findUnique({
           where: {
             username,
           },
         })
         if (exist) {
-          zodErrors = { ...zodErrors, username: "Email already exists" }
+          zodErrors = { ...zodErrors, username: "Username already exists" }
           return { errors: zodErrors, status: 400 }
         }
-      }
 
-      const hashedPassword = await bcrypt.hash(password ?? "", 10)
+        const hashedPassword = await bcrypt.hash(password ?? "", 10)
+
+        const user = await prisma.user.create({
+          data: {
+            name: `${firstName} ${lastName}`,
+            username,
+            password: hashedPassword,
+            role: "TEACHER",
+          },
+        })
+
+        await prisma.teacher.create({
+          data: {
+            firstName,
+            lastName,
+            address,
+            phoneNumber,
+            userId: user.id,
+          },
+        })
+
+      } else {
+        
       await prisma.teacher.create({
         data: {
           firstName,
           lastName,
-          username,
-          password: password ? hashedPassword : null,
           address,
           phoneNumber,
         },
       })
+    }
       revalidateTag("teachers")
       return { status: 200, success: true }
     } catch (error) {
@@ -119,49 +140,41 @@ export const updateTeacher = async (
     try {
       const { firstName, lastName, password, address, phoneNumber, username } = result.data
 
-      if (username) {
-        const exist = await prisma.teacher.findUnique({
-          where: {
+      if (username && password) {
+        
+
+        const hashedPassword = await bcrypt.hash(password ?? "", 10)
+
+        const user = await prisma.user.update({
+          where: { id },
+          data: {
             username,
+            password: hashedPassword,
           },
         })
 
-        if (exist && exist.id !== id) {
-          zodErrors = { ...zodErrors, username: "Username already exists" }
-          return { errors: zodErrors, status: 400 }
-        }
-      }
-
-      if (password) {
-        const hashedPassword = await bcrypt.hash(password, 10)
         await prisma.teacher.update({
-          where: {
-            id,
-          },
+          where: { id },
           data: {
             firstName,
             lastName,
-            username,
-            password: hashedPassword,
+            address,
+            phoneNumber,
+            userId: user.id,
+          },
+        })
+      } else {
+        await prisma.teacher.update({
+          where: { id },
+          data: {
+            firstName,
+            lastName,
             address,
             phoneNumber,
           },
         })
       }
-
-      await prisma.teacher.update({
-        where: {
-          id,
-        },
-        data: {
-          firstName,
-          lastName,
-          username,
-          address,
-          phoneNumber,
-        },
-      })
-
+      
       revalidateTag("teachers")
 
       return { status: 200, success: true }
@@ -574,10 +587,34 @@ export const addClass = async (formData: TClassSchema): Promise<TActionReturn<TC
         const { startTime, endTime, day, color } = d
         const start = new Date(startDate)
         start.setDate(start.getDate() + ((7 + dayStringToNumber(day) - start.getDay()) % 7))
-        const end = new Date(endDate)
+        const end = new Date(endDate ?? addYears(start, 1))
         end.setDate(end.getDate() + ((7 + dayStringToNumber(day) - end.getDay()) % 7))
-
-        const classId = uuidv4()
+        
+        const classId = uuidv4()        
+        
+        classesPromises.push(
+          prisma.class.create({
+            data: {
+              id: classId,
+              title: classSessions.length > 1 ? `${capitalize(d.day)}-${title}` : title,
+              description,
+              teacherId: teacherId || undefined,
+              programId: programId || undefined,
+              levelId: levelId || undefined,
+              startDate: new Date(
+                start.setHours(Number(startTime.split(":")[0]), Number(startTime.split(":")[1]))
+              ),
+              endDate: new Date(
+                end.setHours(Number(endTime.split(":")[0]), Number(endTime.split(":")[1]))
+              ),
+              day,
+              startTime,
+              endTime,
+              color,
+            },
+          })
+        )
+        
 
         for (let date = start; date <= end; date.setDate(date.getDate() + 7)) {
           sessionsPromises.push(
@@ -600,28 +637,11 @@ export const addClass = async (formData: TClassSchema): Promise<TActionReturn<TC
             })
           )
         }
-        classesPromises.push(
-          prisma.class.create({
-            data: {
-              id: classId,
-              title: classSessions.length > 1 ? `${capitalize(d.day)}-${title}` : title,
-              day,
-              startTime,
-              endTime,
-              startDate,
-              endDate,
-              description,
-              teacherId: teacherId || undefined,
-              programId: programId || undefined,
-              levelId: levelId || undefined,
-              color,
-            },
-          })
-        )
+        
       })
 
-      await prisma.$transaction(sessionsPromises)
       await prisma.$transaction(classesPromises)
+      await prisma.$transaction(sessionsPromises)
 
       revalidateTag("classes")
 
