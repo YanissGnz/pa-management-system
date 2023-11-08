@@ -7,6 +7,7 @@ import { TStudentSchema } from "@/types/Student"
 import HeaderBreadcrumbs from "@/components/ui/HeaderBreadcrumbs"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import StudentClassesHistory from "@/sections/students/StudentClassesHistory"
 
 export const metadata: Metadata = {
   title: "Student Details",
@@ -86,7 +87,9 @@ export default async function StudentsList({ params: { id } }: { params: { id: s
             <CardContent>{student.note ? student.note : <p>No comments</p>}</CardContent>
           </Card>
         </TabsContent>
-        <TabsContent value='classes'></TabsContent>
+        <TabsContent value='classes'>
+          <StudentClassesHistory classes={student.classes ?? []} />
+        </TabsContent>
         <TabsContent value='payments'></TabsContent>
       </Tabs>
     </main>

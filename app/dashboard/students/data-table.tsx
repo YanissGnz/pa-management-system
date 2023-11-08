@@ -42,7 +42,7 @@ import {
 } from "lucide-react"
 import { TStudentSchema } from "@/types/Student"
 import { useAppDispatch } from "@/app/store/hooks"
-import { openAssignDialog } from "@/app/store/slices/assignToClassDialog"
+import { openAssignDialog } from "@/app/store/slices/studentsDialogsSlice"
 import { openDialog } from "@/app/store/slices/deleteDialogSlice"
 import { openStudentDetails } from "@/app/store/slices/studentsDetailsSlice"
 import { PATHS } from "@/lib/routes"

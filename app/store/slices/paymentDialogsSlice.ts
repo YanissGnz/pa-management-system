@@ -8,12 +8,14 @@ import { TPaymentSchema } from "@/types/Payment"
 interface PrintDialog {
   payment: TPaymentSchema | null
   isOpen: boolean
+  isPartialPaymentOpen: boolean
 }
 
 // Define the initial state using that type
 const initialState: PrintDialog = {
   payment: null,
   isOpen: false,
+  isPartialPaymentOpen: false,
 }
 
 export const printDialogSlice = createSlice({
@@ -28,7 +30,16 @@ export const printDialogSlice = createSlice({
       state.payment = null
       state.isOpen = false
     },
+    openPartialPaymentDialog: (state, action: PayloadAction<TPaymentSchema>) => {
+      state.payment = action.payload
+      state.isPartialPaymentOpen = true
+    },
+    closePartialPaymentDialog: state => {
+      state.payment = null
+      state.isPartialPaymentOpen = false
+    }
+
   },
 })
 
-export const { openDialog, closeDialog } = printDialogSlice.actions
+export const { openDialog, closeDialog,closePartialPaymentDialog,openPartialPaymentDialog } = printDialogSlice.actions

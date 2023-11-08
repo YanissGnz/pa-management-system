@@ -23,7 +23,7 @@ import DataTableColumnHeader from "@/components/ui/data-table-column"
 import { Badge } from "@/components/ui/badge"
 import { store } from "@/app/store"
 import { openDialog } from "@/app/store/slices/deleteDialogSlice"
-import { openAssignDialog } from "@/app/store/slices/assignToClassDialog"
+import { openAssignDialog } from "@/app/store/slices/studentsDialogsSlice"
 import Link from "next/link"
 import { PATHS } from "@/lib/routes"
 

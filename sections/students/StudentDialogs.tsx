@@ -20,7 +20,7 @@ import {
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Label } from "@/components/ui/label"
 import { TStudentSchema } from "@/types/Student"
-import { closeAssignDialog } from "@/app/store/slices/assignToClassDialog"
+import { closeAssignDialog } from "@/app/store/slices/studentsDialogsSlice"
 import { toast } from "sonner"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Input } from "@/components/ui/input"
@@ -38,7 +38,7 @@ const fetcher = (url: string) => fetch(url).then(res => res.json())
 export default function StudentDialogs() {
   const dispatch = useAppDispatch()
   const { id, isOpen: isDeleteOpen } = useAppSelector(state => state.deleteDialog)
-  const { id: studentId, isOpen: isAssignOpen } = useAppSelector(state => state.assignToClassDialog)
+  const { id: studentId, isOpen: isAssignOpen } = useAppSelector(state => state.studentDialogs)
   const { isOpen: isDetailsOpen, student: currentStudent } = useAppSelector(
     state => state.studentDetails
   )

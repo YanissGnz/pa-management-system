@@ -1,0 +1,62 @@
+code,fullName,age,sex,phoneNumber,schoolType,level,paymentStatus,amount,note,registrationStatus,ageCategory,schoolYear,type,address,email,whatsappNumber,parentName,parentNumber,parentEmail,parentAddress,parentOccupation,payedAmount
+REG-067F,Benaissa Cherif Youssef,0,,673906424.,,unknown,,0,,registered,adult,2023-2024,individual,,,,,0,,,,0
+REG-0B44,Alaoui Aissa,0,,770825455,,unknown,incomplete,24000,,registered,adult,2023-2024,individual,,,,,0,,,,24000
+PRE-AFD7,Choman Radhia,0,,549585912,,unknown,not paid,24000,,pre-registered,adult,2023-2024,individual,,,,,0,,,,24000
+PRE-D856,Fouka Zoubeyda,0,,779019336,,unknown,not paid,24000,,pre-registered,adult,2023-2024,individual,,,,,0,,,,24000
+PRE-64C5,Hamdaoui Safaa,0,,542473348,,unknown,not paid,24000,,pre-registered,adult,2023-2024,individual,,,,,0,,,,24000
+PRE-3441,Bounedjeat Fahima,0,,551996221,,unknown,not paid,24000,,pre-registered,adult,2023-2024,individual,,,,,0,,,,24000
+REG-ABFC,Lainache Mohamed,0,,660504765,,unknown,incomplete,24000,,registered,adult,2023-2024,individual,,,,,0,,,,24000
+REG-4A25,Khedaoui Asma,0,,696383448,,unknown,incomplete,24000,,registered,adult,2023-2024,individual,,,,,0,,,,24000
+REG-F933,Soumia Tsouri ben tsouri,0,,796187146,,unknown,incomplete,24000,,registered,adult,2023-2024,individual,,,,,0,,,,24000
+REG-FBCE,Boumdal Abdessamed,0,,666341514,,unknown,incomplete,24000,,registered,adult,2023-2024,individual,,,,,0,,,,24000
+REG-5E24,Sahlaoui Hadil,0,,554021610,,unknown,incomplete,24000,,registered,adult,2023-2024,individual,,,,,0,,,,24000
+REG-5197,Oudah Fazia,0,,771308159,,unknown,incomplete,24000,,registered,adult,2023-2024,individual,,,,,0,,,,24000
+REG-38C7,Ezziane Amina,0,,549633525,,unknown,incomplete,24000,,registered,adult,2023-2024,individual,,,,,0,,,,24000
+PRE-21CA,Mokdad Nawal,0,,770378740,,unknown,not paid,24000,,pre-registered,adult,2023-2024,individual,,,,,0,,,,24000
+REG-4A10,Boudjemaa Nacera,0,,771476936,,unknown,incomplete,24000,,registered,adult,2023-2024,individual,,,,,0,,,,24000
+PRE-A601,Othmani Abdraouf,0,,559144555,,unknown,not paid,24000,,pre-registered,adult,2023-2024,individual,,,,,0,,,,24000
+REG-7D1E,Tomi Amani,0,,797619265,,unknown,incomplete,8000,discount by MK,registered,adult,2023-2024,individual,,,,,0,,,,8000
+REG-6849,Rihab Eltelbani,0,,783946465,,unknown,incomplete,24000,,registered,adult,2023-2024,individual,,,,,0,,,,24000
+REG-F084,Tefret Wissal Lamisse,0,,658782893,,unknown,incomplete,24000,,registered,adult,2023-2024,individual,,,,,0,,,,24000
+REG-C563,mouaizia soumia,0,,661685791,,unknown,,1000,,registered,adult,2023-2024,individual,,,,,0,,,,1000
+REG-9A1D,Ghayoub nadji,0,,661685791,,unknown,,1000,,registered,adult,2023-2024,individual,,,,,0,,,,1000
+REG-60AF,Hellali Yasmine,0,,550481501,,unknown,incomplete,20000,,registered,adult,2023-2024,individual,,,,,0,,,,20000
+REG-42DE,Rahmouni Amina,0,,793812558,,unknown,incomplete,24000,,registered,adult,2023-2024,individual,,,,,0,,,,24000
+REG-21F4,Driouch Amina,0,,658460208,,unknown,incomplete,24000,,registered,adult,2023-2024,individual,,,,,0,,,,24000
+REG-113A,Gramtia Zahia,0,,672025783,,unknown,incomplete,24000,,registered,adult,2023-2024,individual,,,,,0,,,,24000
+REG-5846,Mekkaoui rym,0,,798930757,,unknown,incomplete,24000,,registered,adult,2023-2024,individual,,,,,0,,,,24000
+REG-B727,Boutouil reguia,0,,782979243,,unknown,incomplete,24000,,registered,adult,2023-2024,individual,,,,,0,,,,24000
+REG-86FD,Bouchemal Baya sirine,0,,558571738,,unknown,incomplete,24000,,registered,adult,2023-2024,individual,,,,,0,,,,24000
+REG-CA1B,Boutemdjet Fatima zohra,0,,673295094,,unknown,incomplete,24000,,registered,adult,2023-2024,individual,,,,,0,,,,24000
+REG-6A48,Badaoui Malek,0,,669751706,,unknown,incomplete,24000,,registered,adult,2023-2024,individual,,,,,0,,,,24000
+REG-BC7D,Mohamed Djerbi,0,,783845635,,unknown,incomplete,24000,,registered,adult,2023-2024,individual,,,,,0,,,,24000
+REG-14E8,Laleg hiba,0,,661156032,,unknown,incomplete,24000,,registered,adult,2023-2024,individual,,,,,0,,,,24000
+REG-EC99,Laleg Douaa,0,,661156032,,unknown,incomplete,8000,,registered,adult,2023-2024,individual,,,,,0,,,,8000
+PRE-9E25,Ben ahmed bouchra,0,,,,unknown,not paid,24000,,pre-registered,adult,2023-2024,individual,,,,,0,,,,24000
+REG-A46D,Tebbal Nihel,0,,655161064,,unknown,incomplete,24000,,registered,adult,2023-2024,individual,,,,,0,,,,24000
+REG-0168,Benzuidja Mohamed khire eddine,0,,556833377,,unknown,incomplete,24000,,registered,adult,2023-2024,individual,,,,,0,,,,24000
+REG-F142,Farouzi Hamza,0,,698078853,,unknown,incomplete,24000,,registered,adult,2023-2024,individual,,,,,0,,,,24000
+REG-86B0,Boudjemaa chahrazad,0,,794332603,,unknown,incomplete,24000,,registered,adult,2023-2024,individual,,,,,0,,,,24000
+REG-BAB7,Hocine Sabrina,0,,557470014,,unknown,incomplete,24000,,registered,adult,2023-2024,individual,,,,,0,,,,24000
+REG-39BB,Chikh Bachir,0,,661730430,,unknown,incomplete,24000,,registered,adult,2023-2024,individual,,,,,0,,,,24000
+REG-65B6,Sebbache Abdelbasset,0,,550566413,,unknown,incomplete,24000,called 23-10-23 informed to start,registered,adult,2023-2024,individual,,,,,0,,,,24000
+REG-579E,Ralemi Abdellah,0,,,,unknown,,0,"24-10-23 his le is broken,registered,adult,2023-2024,individual,,,,,0,,,,0
+REG-65DA,Abderezzak Kouadri,0,,697154178,,unknown,incomplete,24000,called 24-10-23 to start next friday,registered,adult,2023-2024,individual,,,,,0,,,,24000
+REG-9DDA,Benhlal Rima,0,,657818673,,unknown,incomplete,24000,,registered,adult,2023-2024,individual,,,,,0,,,,24000
+REG-CC44,Boumdal Yacine Farouk,0,,661135530,,unknown,incomplete,24000,,registered,adult,2023-2024,individual,,,,,0,,,,24000
+REG-5404,Bendahib Leila,0,,696625422,,unknown,incomplete,24000,,registered,adult,2023-2024,individual,,,,,0,,,,24000
+REG-AB22,Ezzerouk Rym,0,,783124119,,unknown,completed,24000,,registered,adult,2023-2024,individual,,,,,0,,,,24000
+PRE-06DB,Walid Kaderi,0,,770216361,,unknown,not paid,24000,called 23-10-23 informed to start,pre-registered,adult,2023-2024,individual,,,,,0,,,,24000
+REG-E2C4,Ouali Rania,0,,557670279,,unknown,incomplete,24000,,registered,adult,2023-2024,individual,,,,,0,,,,24000
+REG-06ED,Chelghoum Chakib,0,,549585912,,unknown,incomplete,24000,,registered,adult,2023-2024,individual,,,,,0,,,,24000
+REG-B151,Sahli Nada,0,,661970475,,unknown,incomplete,24000,,registered,adult,2023-2024,individual,,,,,0,,,,24000
+REG-A7BF,Djellout Madina,0,,559444495,,unknown,incomplete,24000,,registered,adult,2023-2024,individual,,,,,0,,,,24000
+REG-9B57,Bounouwa manel,0,,562383973,,unknown,incomplete,24000,,registered,adult,2023-2024,individual,,,,,0,,,,24000
+REG-044D,Haithem Chawi,0,,698945633,,unknown,incomplete,24000,,registered,adult,2023-2024,individual,,,,,0,,,,24000
+REG-CC18,Amrandi Anfel,0,,557418235,,unknown,incomplete,24000,,registered,adult,2023-2024,individual,,,,,0,,,,24000
+REG-AD03,Sedrati Chaimaa,0,,698270550,,unknown,incomplete,24000,,registered,adult,2023-2024,individual,,,,,0,,,,24000
+REG-C01C,Boumerzoug Med Abdeldjalil,0,,670247616,,unknown,completed,20000,,registered,adult,2023-2024,individual,,,,,0,,,,20000
+REG-9A0B,Hadef Sara Naouara,0,,656259316,,unknown,incomplete,24000,,registered,adult,2023-2024,individual,,,,,0,,,,24000
+REG-D748,Mohamedi Sabrina,0,,655779108,,unknown,completed,30000,pack of 20 hours / 1500 per hour,registered,adult,2023-2024,individual,,,,,0,,,,30000
+REG-0D3F,Labgaa Mohamed,0,,671495338,,unknown,incomplete,30000,1500 per hour,registered,adult,2023-2024,individual,,,,,0,,,,30000
+REG-385E,Meliani Nabil,0,,659347863,,unknown,completed,3000,1500 per hour,registered,adult,2023-2024,individual,,,,,0,,,,3000

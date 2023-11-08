@@ -1,23 +1,23 @@
 import prisma from "@/lib/prisma"
 import fs from "fs"
 import { v4 } from "uuid"
-import { hash } from "bcrypt"
+// import { hash } from "bcrypt"
 
 export async function GET() {
   // read the data from the csv file with fs
 
   try {
-    const exist = await prisma.user.findFirst({
-      where: {
-        username: "admin",
-      },
-    })
+    // const exist = await prisma.user.findFirst({
+    //   where: {
+    //     username: "admin",
+    //   },
+    // })
 
-    if (exist) {
-      return Response.json({ message: "Data already imported" }, { status: 200 })
-    }
+    // if (exist) {
+    //   return Response.json({ message: "Data already imported" }, { status: 200 })
+    // }
 
-    const data = fs.readFileSync("data.csv", "utf8")
+    const data = fs.readFileSync("data_efe.csv", "utf8")
 
     // split the data by rows
 
@@ -98,37 +98,37 @@ export async function GET() {
 
     // create the students promises
 
-    const password = await hash("123456789", 10)
+    // const password = await hash("123456789", 10)   1
+    
 
-    await prisma.user.create({
-      data: {
-        name: "admin",
-        username: "admin",
-        password,
-      },
-    })
+    // await prisma.user.create({
+    //   data: {
+    //     name: "admin",
+    //     username: "admin",
+    //     password,
+    //   },
+    // })
 
     students.map(async student => {
       const s = await prisma.student.create({
         data: {
-          code: student.code || `PRE-${v4().slice(0, 4).toUpperCase()}`,
+          code: student.code,
           fullName: student.fullName!,
           paymentStatus: student.paymentStatus!,
           note: student.note!,
           type: "individual",
           registrationDate: new Date(),
           level: student.level,
-          sex: student.sex!,
+          sex: "unknown",
           parentAddress: "",
           parentName: "",
           registrationStatus: student.registrationStatus!,
           address: "",
-          age: Number(student.age!),
-          ageCategory: "kid",
+          age:0,
+          ageCategory: "adult",
           email: "",
           expectedClasses: [],
           phoneNumber: student.phoneNumber!,
-          schoolType: student.schoolType!,
           schoolYear: "2023-2024",
         },
       })
@@ -147,7 +147,7 @@ export async function GET() {
             },
           },
           payedDate: new Date(),
-          code: `INV-${v4().slice(0, 4).toUpperCase()}`,
+          code: `INV-EFE-${new Date().getFullYear()}-${v4().slice(0, 4).toUpperCase()}`,
           payedAmount:
             student.paymentStatus === "completed"
               ? Number(student.amount!)

@@ -39,7 +39,7 @@ import { TPaymentSchema } from "@/types/Payment"
 import { completePayment } from "@/app/actions"
 import { toast } from "sonner"
 import { openDialog } from "@/app/store/slices/deleteDialogSlice"
-import { openDialog as openPrintDialog } from "@/app/store/slices/printDialogSlice"
+import { openDialog as openPrintDialog } from "@/app/store/slices/paymentDialogsSlice"
 
 import DataTableToolbar from "./data-table-toolbar"
 

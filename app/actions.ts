@@ -577,6 +577,8 @@ export const addClass = async (formData: TClassSchema): Promise<TActionReturn<TC
         const end = new Date(endDate)
         end.setDate(end.getDate() + ((7 + dayStringToNumber(day) - end.getDay()) % 7))
 
+        const classId = uuidv4()
+
         for (let date = start; date <= end; date.setDate(date.getDate() + 7)) {
           sessionsPromises.push(
             prisma.session.create({
@@ -587,6 +589,7 @@ export const addClass = async (formData: TClassSchema): Promise<TActionReturn<TC
                 teacherId: teacherId || undefined,
                 programId: programId || undefined,
                 levelId: levelId || undefined,
+                classId,
                 start: new Date(
                   date.setHours(Number(startTime.split(":")[0]), Number(startTime.split(":")[1]))
                 ),
@@ -600,6 +603,7 @@ export const addClass = async (formData: TClassSchema): Promise<TActionReturn<TC
         classesPromises.push(
           prisma.class.create({
             data: {
+              id: classId,
               title: classSessions.length > 1 ? `${capitalize(d.day)}-${title}` : title,
               day,
               startTime,
@@ -1174,6 +1178,82 @@ export const completePayment = async (id: string) => {
   }
 
   revalidateTag("payments")
+
+  return { status: 200, success: true }
+}
+
+export const addPaymentSlice = async(
+  id: string,
+sliceAmount: number
+): Promise<TActionReturn<TPaymentSchema>> => {
+
+  const session = await getServerSession(authOptions)
+
+  if (!session) {
+    return { status: 401, errors: "Unauthorized" }
+  }
+  try {
+    const payment = await prisma.payment.update({
+      where: { id },
+      data: {
+        status: "paid",
+        payedDate: new Date(),
+        payedAmount: await prisma.payment.findUnique({ where: { id } }).then(p => (p?.payedAmount || 0) + sliceAmount),
+      },
+      include: { students: true },
+    })
+
+    await prisma.student.updateMany({
+      where: {
+        id: {
+          in: payment?.students.map(s => s.id) || [],
+        },
+      },
+      data: {
+        paymentStatus: payment.payedAmount === payment.total ? "paid" : "incomplete",
+        registrationStatus: "registered",
+      },
+    })
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.log("🚀 ~ file: actions.ts:1215 ~ completePayment ~ error:", error)
+    return { status: 500, success: false, errors: "Internal Server Error" }
+  }
+
+  revalidateTag("payments")
+
+  return { status: 200, success: true }
+}
+
+export const endClass = async (classId: string):Promise<TActionReturn<TClassSchema>> => {
+  const session = await getServerSession(authOptions)
+
+  if (!session) {
+        return { status: 401, errors: "Unauthorized" }
+
+  }
+  
+  try {
+    const endedClass = await prisma.class.update({
+      where: { id: classId },
+      data: { endDate: new Date() },
+    })
+
+    await prisma.session.deleteMany({
+      where: {
+        title: endedClass.title, 
+        end: { gt: new Date() }
+      },
+    })
+
+
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.log("🚀 ~ file: actions.ts:1247 ~ endClass ~ error:", error)
+    return { status: 500, success: false, errors: "Internal Server Error" }
+  }
+
+  revalidateTag("classes")
 
   return { status: 200, success: true }
 }

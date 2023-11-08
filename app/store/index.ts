@@ -1,18 +1,18 @@
 "use client"
 
 import { combineReducers, configureStore } from "@reduxjs/toolkit"
-import { printDialogSlice } from "./slices/printDialogSlice"
+import { printDialogSlice } from "./slices/paymentDialogsSlice"
 import { deleteDialogSlice } from "./slices/deleteDialogSlice"
-import { assignToClassDialog } from "./slices/assignToClassDialog"
-import { assignStudentsDialog } from "./slices/assignStudentsDialog"
 import { studentDetailsSlice } from "./slices/studentsDetailsSlice"
+import { classDialogs } from "./slices/classDialogSlice"
+import { studentDialogs } from "./slices/studentsDialogsSlice"
 import { attendanceSheetDialog } from "./slices/attendanceSheetDialog"
 
 const rootReducer = combineReducers({
   printDialog: printDialogSlice.reducer,
   deleteDialog: deleteDialogSlice.reducer,
-  assignToClassDialog: assignToClassDialog.reducer,
-  assignStudentsDialog: assignStudentsDialog.reducer,
+  studentDialogs: studentDialogs.reducer,
+  classDialogs: classDialogs.reducer,
   studentDetails: studentDetailsSlice.reducer,
   attendanceSheetDialog: attendanceSheetDialog.reducer,
 })

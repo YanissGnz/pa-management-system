@@ -18,7 +18,7 @@ import { Badge } from "@/components/ui/badge"
 import { toast } from "sonner"
 import { store } from "@/app/store"
 import { openDialog } from "@/app/store/slices/deleteDialogSlice"
-import { openDialog as openPrintDialog } from "@/app/store/slices/printDialogSlice"
+import { openDialog as openPrintDialog } from "@/app/store/slices/paymentDialogsSlice"
 
 const handleCompletePayment = async (id: string) => {
   const promise = new Promise((resolve, reject) => {

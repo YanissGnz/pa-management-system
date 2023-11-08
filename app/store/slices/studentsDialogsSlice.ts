@@ -15,8 +15,8 @@ const initialState: AssignDialog = {
   isOpen: false,
 }
 
-export const assignToClassDialog = createSlice({
-  name: "deleteDialog",
+export const studentDialogs = createSlice({
+  name: "studentDialogs",
   initialState,
   reducers: {
     openAssignDialog: (state, action: PayloadAction<string>) => {
@@ -27,7 +27,9 @@ export const assignToClassDialog = createSlice({
       state.id = null
       state.isOpen = false
     },
+   
+
   },
 })
 
-export const { closeAssignDialog, openAssignDialog } = assignToClassDialog.actions
+export const { closeAssignDialog, openAssignDialog ,} = studentDialogs.actions

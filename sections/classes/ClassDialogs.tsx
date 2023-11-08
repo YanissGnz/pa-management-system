@@ -11,14 +11,19 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog"
 import { useAppDispatch, useAppSelector } from "@/app/store/hooks"
-import { closeAssignStudentsDialog } from "@/app/store/slices/assignStudentsDialog"
+import { closeAssignStudentsDialog, closeEndClassDialog } from "@/app/store/slices/classDialogSlice"
 import useSWR from "swr"
 import { TStudentSchema } from "@/types/Student"
 import { Button, buttonVariants } from "@/components/ui/button"
 import { ArrowLeftIcon, LoaderIcon } from "lucide-react"
 import { toast } from "sonner"
 import { capitalize } from "lodash"
-import { assignStudentsToClass, deleteClass, updateSessionAttendance } from "@/app/actions"
+import {
+  assignStudentsToClass,
+  deleteClass,
+  endClass,
+  updateSessionAttendance,
+} from "@/app/actions"
 import { Checkbox } from "@/components/ui/checkbox"
 import { closeDialog as closeDeleteDialog } from "@/app/store/slices/deleteDialogSlice"
 import { ScrollArea } from "@/components/ui/scroll-area"
@@ -44,7 +49,11 @@ const fetcher = (url: string) => fetch(url).then(res => res.json())
 export default function ClassDialogs() {
   const { id: classIdToDelete, isOpen } = useAppSelector(state => state.deleteDialog)
 
-  const { isOpen: isAssignStudentsOpen, id } = useAppSelector(state => state.assignStudentsDialog)
+  const {
+    isOpen: isAssignStudentsOpen,
+    id,
+    isOpenEndDialog,
+  } = useAppSelector(state => state.classDialogs)
 
   const { id: classSheetId, isOpen: isOpenAttendance } = useAppSelector(
     state => state.attendanceSheetDialog
@@ -137,6 +146,30 @@ export default function ClassDialogs() {
     })
   }
 
+  const handleEndClass = async () => {
+    if (!id) return
+    dispatch(closeDeleteDialog())
+
+    const promise = new Promise((resolve, reject) => {
+      endClass(id)
+        .then(result => {
+          if (result.success) {
+            resolve("Class ended successfully")
+          } else {
+            reject()
+          }
+        })
+        .catch(() => {
+          reject()
+        })
+    })
+    toast.promise(promise, {
+      loading: "Ending class...",
+      success: () => "Class ended successfully",
+      error: "Error ending class",
+    })
+  }
+
   const handleUpdateSessionAttendance = async (sessionId: string, studentsIds: string[]) => {
     if (!sessionId) return
     dispatch(closeDeleteDialog())
@@ -190,7 +223,7 @@ export default function ClassDialogs() {
           <DialogHeader>
             <DialogTitle>Confirm action</DialogTitle>
           </DialogHeader>
-          <DialogDescription>Are you sure you want to delete this student?</DialogDescription>
+          <DialogDescription>Are you sure you want to delete this class?</DialogDescription>
           <DialogFooter>
             <Button
               variant={"ghost"}
@@ -206,6 +239,36 @@ export default function ClassDialogs() {
               onClick={handleDeleteClass}
             >
               Delete
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+      <Dialog
+        open={isOpenEndDialog}
+        onOpenChange={open => {
+          if (!open) dispatch(closeEndClassDialog())
+        }}
+      >
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Confirm action</DialogTitle>
+          </DialogHeader>
+          <DialogDescription>Are you sure you want to end this class?</DialogDescription>
+          <DialogFooter>
+            <Button
+              variant={"ghost"}
+              onClick={() => {
+                dispatch(closeEndClassDialog())
+              }}
+            >
+              Cancel
+            </Button>
+            <Button
+              variant={"destructive"}
+              className={buttonVariants({ variant: "destructive" })}
+              onClick={handleEndClass}
+            >
+              End class
             </Button>
           </DialogFooter>
         </DialogContent>

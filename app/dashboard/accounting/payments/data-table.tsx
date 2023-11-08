@@ -33,13 +33,13 @@ import {
   ContextMenuLabel,
   ContextMenuTrigger,
 } from "@/components/ui/context-menu"
-import { ArchiveIcon, CheckCircleIcon, PrinterIcon } from "lucide-react"
+import { ArchiveIcon, CheckCircleIcon, MinusCircleIcon, PrinterIcon } from "lucide-react"
 import { useAppDispatch } from "@/app/store/hooks"
 import { TPaymentSchema } from "@/types/Payment"
 import { completePayment } from "@/app/actions"
 import { toast } from "sonner"
 import { openDialog } from "@/app/store/slices/deleteDialogSlice"
-import { openDialog as openPrintDialog } from "@/app/store/slices/printDialogSlice"
+import { openPartialPaymentDialog, openDialog as openPrintDialog } from "@/app/store/slices/paymentDialogsSlice"
 
 import DataTableToolbar from "./data-table-toolbar"
 
@@ -159,10 +159,16 @@ export default function DataTable<TValue>({ columns, data }: DataTableProps<TVal
                       Print
                     </ContextMenuItem>{" "}
                     {row.original.status !== "completed" && (
+                      <>
+                       <ContextMenuItem onClick={() => dispatch(openPartialPaymentDialog(row.original))}>
+              <MinusCircleIcon className='mr-2 h-4 w-4' />
+                Add payment slice
+            </ContextMenuItem>
                       <ContextMenuItem onClick={() => handleCompletePayment(row.original.id)}>
                         <CheckCircleIcon className='mr-2 h-4 w-4' />
                         Complete Payment
                       </ContextMenuItem>
+                      </>
                     )}
                     <ContextMenuItem
                       onClick={() => dispatch(openDialog(row.original.id))}

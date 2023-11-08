@@ -7,16 +7,18 @@ import { createSlice, type PayloadAction } from "@reduxjs/toolkit"
 interface AssignStudentsDialog {
   id: string | null
   isOpen: boolean
+  isOpenEndDialog: boolean,
 }
 
 // Define the initial state using that type
 const initialState: AssignStudentsDialog = {
   id: null,
   isOpen: false,
+  isOpenEndDialog: false,
 }
 
-export const assignStudentsDialog = createSlice({
-  name: "assignStudentsDialog",
+export const classDialogs = createSlice({
+  name: "classDialogs",
   initialState,
   reducers: {
     openAssignStudentsDialog: (state, action: PayloadAction<string>) => {
@@ -27,7 +29,15 @@ export const assignStudentsDialog = createSlice({
       state.id = null
       state.isOpen = false
     },
+     openEndClassDialog: (state, action: PayloadAction<string>) => {
+      state.id = action.payload
+      state.isOpenEndDialog = true
+    },
+    closeEndClassDialog: state => {
+      state.id = null
+      state.isOpenEndDialog = false
+    }
   },
 })
 
-export const { closeAssignStudentsDialog, openAssignStudentsDialog } = assignStudentsDialog.actions
+export const { closeAssignStudentsDialog, openAssignStudentsDialog ,openEndClassDialog,closeEndClassDialog} = classDialogs.actions

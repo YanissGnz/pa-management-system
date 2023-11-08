@@ -33,10 +33,16 @@ import {
   ContextMenuLabel,
   ContextMenuTrigger,
 } from "@/components/ui/context-menu"
-import { ClipboardListIcon, Edit2Icon, Trash2Icon, UserPlus } from "lucide-react"
+import {
+  CalendarCheck2Icon,
+  ClipboardListIcon,
+  Edit2Icon,
+  Trash2Icon,
+  UserPlus,
+} from "lucide-react"
 import { TClassSchema } from "@/types/Class"
 import { useAppDispatch } from "@/app/store/hooks"
-import { openAssignStudentsDialog } from "@/app/store/slices/assignStudentsDialog"
+import { openAssignStudentsDialog, openEndClassDialog } from "@/app/store/slices/classDialogSlice"
 import { openDialog } from "@/app/store/slices/deleteDialogSlice"
 import Link from "next/link"
 import { PATHS } from "@/lib/routes"
@@ -154,6 +160,18 @@ export default function DataTable<TValue>({ columns, data }: DataTableProps<TVal
                       <ClipboardListIcon className='mr-2 h-4 w-4' />
                       Fill attendance sheet
                     </ContextMenuItem>
+                    {row.original.endDate < new Date() && (
+                      <ContextMenuItem
+                        className='text-red-500 hover:text-red-500'
+                        onClick={e => {
+                          e.stopPropagation()
+                          dispatch(openEndClassDialog(row.original.id!))
+                        }}
+                      >
+                        <CalendarCheck2Icon className='mr-2 h-4 w-4' />
+                        End class
+                      </ContextMenuItem>
+                    )}
                     <ContextMenuItem
                       className='text-red-500 hover:text-red-500'
                       onClick={() => dispatch(openDialog(row.original.id!))}

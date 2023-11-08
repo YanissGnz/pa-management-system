@@ -23,7 +23,7 @@ import { format } from "date-fns"
 import { capitalize } from "lodash"
 import { Badge } from "@/components/ui/badge"
 import { store } from "@/app/store"
-import { openAssignStudentsDialog } from "@/app/store/slices/assignStudentsDialog"
+import { openAssignStudentsDialog, openEndClassDialog } from "@/app/store/slices/classDialogSlice"
 import { openDialog } from "@/app/store/slices/deleteDialogSlice"
 import Link from "next/link"
 import { PATHS } from "@/lib/routes"
@@ -87,11 +87,7 @@ const columns: ColumnDef<TClassSchema>[] = [
     header: "Actions",
     enableHiding: true,
     enableGlobalFilter: false,
-    cell: ({
-      row: {
-        original: { id },
-      },
-    }) => (
+    cell: ({ row: { original } }) => (
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant='outline' size={"icon"}>
@@ -102,7 +98,7 @@ const columns: ColumnDef<TClassSchema>[] = [
         <DropdownMenuContent align='end'>
           <DropdownMenuLabel>Actions</DropdownMenuLabel>
           <DropdownMenuItem asChild>
-            <Link href={PATHS.classes.edit(id!)}>
+            <Link href={PATHS.classes.edit(original.id!)}>
               <Edit2Icon className='mr-2 h-4 w-4' />
               Edit
             </Link>
@@ -110,7 +106,7 @@ const columns: ColumnDef<TClassSchema>[] = [
           <DropdownMenuItem
             onClick={e => {
               e.stopPropagation()
-              store.dispatch(openAssignStudentsDialog(id!))
+              store.dispatch(openAssignStudentsDialog(original.id!))
             }}
           >
             <UserPlus className='mr-2 h-4 w-4' />
@@ -119,26 +115,29 @@ const columns: ColumnDef<TClassSchema>[] = [
           <DropdownMenuItem
             onClick={e => {
               e.stopPropagation()
-              store.dispatch(openAttendanceSheetDialog(id!))
+              store.dispatch(openAttendanceSheetDialog(original.id!))
             }}
           >
             <ClipboardListIcon className='mr-2 h-4 w-4' />
             Fill attendance sheet
           </DropdownMenuItem>
+          {original.endDate < new Date() && (
+            <DropdownMenuItem
+              className='text-red-500 hover:text-red-500'
+              onClick={e => {
+                e.stopPropagation()
+                store.dispatch(openEndClassDialog(original.id!))
+              }}
+            >
+              <CalendarCheck2Icon className='mr-2 h-4 w-4' />
+              End class
+            </DropdownMenuItem>
+          )}
           <DropdownMenuItem
             className='text-red-500 hover:text-red-500'
             onClick={e => {
               e.stopPropagation()
-            }}
-          >
-            <CalendarCheck2Icon className='mr-2 h-4 w-4' />
-            End class
-          </DropdownMenuItem>
-          <DropdownMenuItem
-            className='text-red-500 hover:text-red-500'
-            onClick={e => {
-              e.stopPropagation()
-              store.dispatch(openDialog(id!))
+              store.dispatch(openDialog(original.id!))
             }}
           >
             <Trash2Icon className='mr-2 h-4 w-4' />
