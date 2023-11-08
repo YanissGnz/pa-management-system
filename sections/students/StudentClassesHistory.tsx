@@ -16,7 +16,7 @@ export default function StudentClassesHistory({ classes }: { classes: TClassSche
               <CardContent>
                 <p>{c.level?.name}</p>
                 <p>{format(new Date(c.startDate), "PPP")}</p>
-                <p>{format(new Date(c.endDate), "PPP")}</p>
+                <p>{format(new Date(c.endDate!), "PPP")}</p>
                 <p>{c.description}</p>
               </CardContent>
             </Card>

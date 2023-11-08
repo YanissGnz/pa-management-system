@@ -32,7 +32,6 @@ const InvoicePDFView = ({ payment }: { payment: TPaymentSchema }) => {
     },
     logo: {
       height: 35,
-      
     },
     statusView: {
       display: "flex",

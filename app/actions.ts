@@ -71,18 +71,16 @@ export const addTeacher = async (
             userId: user.id,
           },
         })
-
       } else {
-        
-      await prisma.teacher.create({
-        data: {
-          firstName,
-          lastName,
-          address,
-          phoneNumber,
-        },
-      })
-    }
+        await prisma.teacher.create({
+          data: {
+            firstName,
+            lastName,
+            address,
+            phoneNumber,
+          },
+        })
+      }
       revalidateTag("teachers")
       return { status: 200, success: true }
     } catch (error) {
@@ -141,8 +139,6 @@ export const updateTeacher = async (
       const { firstName, lastName, password, address, phoneNumber, username } = result.data
 
       if (username && password) {
-        
-
         const hashedPassword = await bcrypt.hash(password ?? "", 10)
 
         const user = await prisma.user.update({
@@ -174,7 +170,7 @@ export const updateTeacher = async (
           },
         })
       }
-      
+
       revalidateTag("teachers")
 
       return { status: 200, success: true }
@@ -589,9 +585,9 @@ export const addClass = async (formData: TClassSchema): Promise<TActionReturn<TC
         start.setDate(start.getDate() + ((7 + dayStringToNumber(day) - start.getDay()) % 7))
         const end = new Date(endDate ?? addYears(start, 1))
         end.setDate(end.getDate() + ((7 + dayStringToNumber(day) - end.getDay()) % 7))
-        
-        const classId = uuidv4()        
-        
+
+        const classId = uuidv4()
+
         classesPromises.push(
           prisma.class.create({
             data: {
@@ -614,7 +610,6 @@ export const addClass = async (formData: TClassSchema): Promise<TActionReturn<TC
             },
           })
         )
-        
 
         for (let date = start; date <= end; date.setDate(date.getDate() + 7)) {
           sessionsPromises.push(
@@ -637,7 +632,6 @@ export const addClass = async (formData: TClassSchema): Promise<TActionReturn<TC
             })
           )
         }
-        
       })
 
       await prisma.$transaction(classesPromises)

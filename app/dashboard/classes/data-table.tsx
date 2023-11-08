@@ -160,7 +160,7 @@ export default function DataTable<TValue>({ columns, data }: DataTableProps<TVal
                       <ClipboardListIcon className='mr-2 h-4 w-4' />
                       Fill attendance sheet
                     </ContextMenuItem>
-                    {row.original.endDate < new Date() && (
+                    {row.original.endDate! < new Date() && (
                       <ContextMenuItem
                         className='text-red-500 hover:text-red-500'
                         onClick={e => {

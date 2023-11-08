@@ -352,7 +352,7 @@ export default function StudentDialogs() {
                   </p>
                   <p>
                     <span className='font-semibold'>End date:</span>{" "}
-                    {format(new Date(currentStudent.classes[0].endDate), "PPP")}
+                    {format(new Date(currentStudent.classes[0].endDate!), "PPP")}
                   </p>
                   <p>
                     <span className='font-semibold'>Week:</span>{" "}

@@ -121,7 +121,7 @@ const columns: ColumnDef<TClassSchema>[] = [
             <ClipboardListIcon className='mr-2 h-4 w-4' />
             Fill attendance sheet
           </DropdownMenuItem>
-          {original.endDate < new Date() && (
+          {original.endDate! < new Date() && (
             <DropdownMenuItem
               className='text-red-500 hover:text-red-500'
               onClick={e => {
