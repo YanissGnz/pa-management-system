@@ -78,22 +78,23 @@ export default function AccountingDialogs() {
       error: "Error adding payment slice",
     })
   }, [payment, sliceAmount])
-  
-  const handleAmountChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.value === "") return
 
-    const max = (payment?.total || 0) - (payment?.payedAmount || 0)
+  const handleAmountChange = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => {
+      if (e.target.value === "") return
 
-    
+      const max = (payment?.total || 0) - (payment?.payedAmount || 0)
 
-    if (Number(e.target.value) < max) setFalse()
-    else {
-      setTrue()
-      toast.error("Amount must be less than the remaining amount")
-    }
+      if (Number(e.target.value) < max) setFalse()
+      else {
+        setTrue()
+        toast.error("Amount must be less than the remaining amount")
+      }
 
-    setSliceAmount(Number(e.target.value))
-  }, [payment?.payedAmount, payment?.total])
+      setSliceAmount(Number(e.target.value))
+    },
+    [payment?.payedAmount, payment?.total]
+  )
 
   return (
     <>

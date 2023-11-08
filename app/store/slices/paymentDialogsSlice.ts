@@ -37,9 +37,9 @@ export const printDialogSlice = createSlice({
     closePartialPaymentDialog: state => {
       state.payment = null
       state.isPartialPaymentOpen = false
-    }
-
+    },
   },
 })
 
-export const { openDialog, closeDialog,closePartialPaymentDialog,openPartialPaymentDialog } = printDialogSlice.actions
+export const { openDialog, closeDialog, closePartialPaymentDialog, openPartialPaymentDialog } =
+  printDialogSlice.actions

@@ -39,7 +39,10 @@ import { TPaymentSchema } from "@/types/Payment"
 import { completePayment } from "@/app/actions"
 import { toast } from "sonner"
 import { openDialog } from "@/app/store/slices/deleteDialogSlice"
-import { openPartialPaymentDialog, openDialog as openPrintDialog } from "@/app/store/slices/paymentDialogsSlice"
+import {
+  openPartialPaymentDialog,
+  openDialog as openPrintDialog,
+} from "@/app/store/slices/paymentDialogsSlice"
 
 import DataTableToolbar from "./data-table-toolbar"
 
@@ -160,14 +163,16 @@ export default function DataTable<TValue>({ columns, data }: DataTableProps<TVal
                     </ContextMenuItem>{" "}
                     {row.original.status !== "completed" && (
                       <>
-                       <ContextMenuItem onClick={() => dispatch(openPartialPaymentDialog(row.original))}>
-              <MinusCircleIcon className='mr-2 h-4 w-4' />
-                Add payment slice
-            </ContextMenuItem>
-                      <ContextMenuItem onClick={() => handleCompletePayment(row.original.id)}>
-                        <CheckCircleIcon className='mr-2 h-4 w-4' />
-                        Complete Payment
-                      </ContextMenuItem>
+                        <ContextMenuItem
+                          onClick={() => dispatch(openPartialPaymentDialog(row.original))}
+                        >
+                          <MinusCircleIcon className='mr-2 h-4 w-4' />
+                          Add payment slice
+                        </ContextMenuItem>
+                        <ContextMenuItem onClick={() => handleCompletePayment(row.original.id)}>
+                          <CheckCircleIcon className='mr-2 h-4 w-4' />
+                          Complete Payment
+                        </ContextMenuItem>
                       </>
                     )}
                     <ContextMenuItem

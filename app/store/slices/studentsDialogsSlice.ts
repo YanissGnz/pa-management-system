@@ -27,9 +27,7 @@ export const studentDialogs = createSlice({
       state.id = null
       state.isOpen = false
     },
-   
-
   },
 })
 
-export const { closeAssignDialog, openAssignDialog ,} = studentDialogs.actions
+export const { closeAssignDialog, openAssignDialog } = studentDialogs.actions

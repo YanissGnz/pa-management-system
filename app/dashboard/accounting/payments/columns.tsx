@@ -1,7 +1,13 @@
 "use client"
 
 import { ColumnDef } from "@tanstack/react-table"
-import { ArchiveIcon, CheckCircle2Icon,  MinusCircleIcon, MoreHorizontalIcon, PrinterIcon } from "lucide-react"
+import {
+  ArchiveIcon,
+  CheckCircle2Icon,
+  MinusCircleIcon,
+  MoreHorizontalIcon,
+  PrinterIcon,
+} from "lucide-react"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -18,7 +24,10 @@ import { Badge } from "@/components/ui/badge"
 import { toast } from "sonner"
 import { store } from "@/app/store"
 import { openDialog } from "@/app/store/slices/deleteDialogSlice"
-import { openPartialPaymentDialog, openDialog as openPrintDialog } from "@/app/store/slices/paymentDialogsSlice"
+import {
+  openPartialPaymentDialog,
+  openDialog as openPrintDialog,
+} from "@/app/store/slices/paymentDialogsSlice"
 
 const handleCompletePayment = async (id: string) => {
   const promise = new Promise((resolve, reject) => {
@@ -128,13 +137,13 @@ const columns: ColumnDef<TPaymentSchema>[] = [
           {original.status !== "completed" && (
             <>
               <DropdownMenuItem onClick={() => store.dispatch(openPartialPaymentDialog(original))}>
-              <MinusCircleIcon className='mr-2 h-4 w-4' />
+                <MinusCircleIcon className='mr-2 h-4 w-4' />
                 Add payment slice
-            </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => handleCompletePayment(original.id)}>
-              <CheckCircle2Icon className='mr-2 h-4 w-4' />
-              Complete payment
-            </DropdownMenuItem>
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => handleCompletePayment(original.id)}>
+                <CheckCircle2Icon className='mr-2 h-4 w-4' />
+                Complete payment
+              </DropdownMenuItem>
             </>
           )}
           <DropdownMenuItem

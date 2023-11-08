@@ -1182,11 +1182,10 @@ export const completePayment = async (id: string) => {
   return { status: 200, success: true }
 }
 
-export const addPaymentSlice = async(
+export const addPaymentSlice = async (
   id: string,
-sliceAmount: number
+  sliceAmount: number
 ): Promise<TActionReturn<TPaymentSchema>> => {
-
   const session = await getServerSession(authOptions)
 
   if (!session) {
@@ -1198,7 +1197,9 @@ sliceAmount: number
       data: {
         status: "paid",
         payedDate: new Date(),
-        payedAmount: await prisma.payment.findUnique({ where: { id } }).then(p => (p?.payedAmount || 0) + sliceAmount),
+        payedAmount: await prisma.payment
+          .findUnique({ where: { id } })
+          .then(p => (p?.payedAmount || 0) + sliceAmount),
       },
       include: { students: true },
     })
@@ -1225,14 +1226,13 @@ sliceAmount: number
   return { status: 200, success: true }
 }
 
-export const endClass = async (classId: string):Promise<TActionReturn<TClassSchema>> => {
+export const endClass = async (classId: string): Promise<TActionReturn<TClassSchema>> => {
   const session = await getServerSession(authOptions)
 
   if (!session) {
-        return { status: 401, errors: "Unauthorized" }
-
+    return { status: 401, errors: "Unauthorized" }
   }
-  
+
   try {
     const endedClass = await prisma.class.update({
       where: { id: classId },
@@ -1241,12 +1241,10 @@ export const endClass = async (classId: string):Promise<TActionReturn<TClassSche
 
     await prisma.session.deleteMany({
       where: {
-        title: endedClass.title, 
-        end: { gt: new Date() }
+        title: endedClass.title,
+        end: { gt: new Date() },
       },
     })
-
-
   } catch (error) {
     // eslint-disable-next-line no-console
     console.log("🚀 ~ file: actions.ts:1247 ~ endClass ~ error:", error)

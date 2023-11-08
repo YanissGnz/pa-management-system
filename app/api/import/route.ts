@@ -99,7 +99,6 @@ export async function GET() {
     // create the students promises
 
     // const password = await hash("123456789", 10)   1
-    
 
     // await prisma.user.create({
     //   data: {
@@ -124,7 +123,7 @@ export async function GET() {
           parentName: "",
           registrationStatus: student.registrationStatus!,
           address: "",
-          age:0,
+          age: 0,
           ageCategory: "adult",
           email: "",
           expectedClasses: [],
